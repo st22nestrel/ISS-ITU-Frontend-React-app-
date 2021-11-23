@@ -2,7 +2,7 @@ import './App.css';
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import {
-    Konference,
+  Konference,
   Navigation,
   NewKonference,
   SignIn
@@ -15,7 +15,7 @@ function App() {
     <Routes>
       <Route path="/" element={<SignIn />} />
       <Route path="/signIn" element={<SignIn />} />
-      <Route path="/about" element={<Konference />} />
+      <Route path="/konference" element={<Konference />} />
       <Route path="/contact" element={<NewKonference />} />
       {/* <Route path="/blog" element={<Blog />}>
         <Route path="" element={<Posts />} />
