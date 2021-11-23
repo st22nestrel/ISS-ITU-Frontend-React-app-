@@ -27,12 +27,6 @@ class KonferenceCard extends React.Component{
         } */
 
         let card;
-
-        var Handlechange = e =>
-        {
-            this.setState({open: !this.state.open})
-        }
-        
         const opened = this.state.open;
 
         if (opened){
@@ -72,7 +66,7 @@ class KonferenceCard extends React.Component{
             <div class="card-header card-header-flex">
                 <h3 class="card-title text-bold"> Konference </h3>
                 <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
-                        onClick={Handlechange}>
+                        onClick={(() => this.setState({ open: !this.state.open }))}>
                     <i class="nc-icon nc-stre-up"></i>
                 </button>
             </div>

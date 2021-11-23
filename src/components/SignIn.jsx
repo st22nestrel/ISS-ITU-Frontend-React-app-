@@ -4,6 +4,7 @@ import LoginForm from "./LoginForm";
 import RegistrationForm from "./RegistrationForm";
 import PropTypes from 'prop-types';
 import './SignIn.css';
+import Auth from "./Authentificate"
 
 //TODO
 async function registerUser(credentials) {
@@ -50,6 +51,7 @@ function SignIn() {
             if(answer.data){
                 //if yes, yey чувак
                 setLoginInfo({token: answer.data});
+                Auth.instance.login(answer.data);
                 console.log("redirected");
                 navigate('/konference');
             }

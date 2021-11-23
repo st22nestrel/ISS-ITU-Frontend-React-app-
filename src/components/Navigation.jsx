@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Authentificate from "./Authentificate";
 
 function Navigation() {
+  const signInLink = Authentificate.instance.isAuth();
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -11,12 +13,15 @@ function Navigation() {
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
+              {signInLink &&
               <li className="nav-item">
                 <NavLink className="nav-link" to="/signIn">
                   Přihlášení
                   <span className="sr-only">(current)</span>
                 </NavLink>
               </li>
+              }
+              
               <li className="nav-item">
                 <NavLink className="nav-link" to="/konference">
                   Konference
