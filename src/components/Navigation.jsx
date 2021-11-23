@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Authentificate from "./Authentificate";
+/* import Auth from "./Authentificate"; */
 
 function Navigation() {
-  const signInLink = Authentificate.instance.isAuth();
+  const signInLink = false;
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
-          <NavLink className="navbar-brand" to="/">
-            React Multi-Page Website
+          <NavLink className="navbar-brand" to="/currUserProfile">
+            Profil
           </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">

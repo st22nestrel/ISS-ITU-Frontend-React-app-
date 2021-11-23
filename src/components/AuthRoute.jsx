@@ -3,7 +3,7 @@ import {Route, Navigate} from "react-router-dom";
 import Auth from "./Authentificate"
 
 function ProtectedRoute({ noAuth: NoAuth = false, children }) {
-    const isAuth = Auth.instance.isAuth();
+    const isAuth = Auth.authentificated;
     if (NoAuth && isAuth){
         return;
     }

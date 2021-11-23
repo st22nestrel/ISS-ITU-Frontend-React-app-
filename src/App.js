@@ -8,21 +8,22 @@ import {
   SignIn
 } from "./components";
 
-import Authentificate from './components/Authentificate';
+import Auth from './components/Authentificate';
 import ProtectedRoute from './components/AuthRoute';
+import CurrentUserProfile from './components/CurrentUserProfile';
 
 function App() {
 
   /* const navigate = useNavigate() */
 
   return (
-    <Router>
+  <Router>
     <Navigation />
     <Routes>
       <Route path="/" element={<SignIn />} />
       {/* <Route path="/signIn" element={<ProtectedRoute noAuth> <SignIn /> </ProtectedRoute>} /> */}
 
-      {!Authentificate.instance.isAuth() &&
+      {/* !Auth.authentificated && */
         <Route path="/signIn" element={<SignIn/>}/>
       }
       <Route path="/konference" element={<ProtectedRoute> <Konference /> </ProtectedRoute>}/>
@@ -30,6 +31,7 @@ function App() {
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
       <Route path="/contact" element={<NewKonference />} />
+      <Route path="/currUserProfile" element={<ProtectedRoute> <CurrentUserProfile credentials={{email:"Jana.jall@gmail.com"}} /> </ProtectedRoute>}/>
 
 
       {/* <Route path="/blog" element={<Blog />}>

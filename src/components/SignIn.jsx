@@ -13,9 +13,11 @@ async function registerUser(credentials) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify( {Jmeno: credentials.name, Prijmeni: credentials.surname,
+        Heslo: credentials.password, Role: "uzivatel", Organizace: credentials.organisation,
+        Obor: credentials.field, Zeme: credentials.country, Datum_narozeni: credentials.birthday,
+        Email: credentials.email, TelCislo: credentials.telNMB, Titul: credentials.degree})
     })
-      .then(data => data.json())
    }
 
 
@@ -27,14 +29,11 @@ async function loginUser(credentials) {
       },
       body: JSON.stringify({Email: credentials.email, Heslo: credentials.password, Logon: credentials.Email})
     })
-      .then(data => data.json())
+    .then(data => data.json())
    }
 
 function SignIn() {
-
-    const [loginInfo, setLoginInfo] = useState({token: ""});
     const [error, setError] = useState("");
-    
 
     const navigate = useNavigate();
 
@@ -49,13 +48,12 @@ function SignIn() {
 
             //validate if user exist/ answer from server
             if(answer.data){
-                //if yes, yey чувак
-                setLoginInfo({token: answer.data});
-                Auth.instance.login(answer.data);
+                Auth.login(answer.data);
+                Auth.setEmail(details.email);
                 console.log("redirected");
                 navigate('/konference');
             }
-            //we cannot loogin, user does not exist
+            //we cannot login, user does not exist
             else{
                 //does not work, but we give a fuck
                 console.log(answer.message)
@@ -64,19 +62,29 @@ function SignIn() {
         }
     }
 
-    const Registration = details => {
+    const Registration = async details => {
         console.log("details");
 
         //TODO validate email lil
-        if(details.email && details.password){
+        if(details.email && details.password && details.name && details.surname){
             //send to server
+            let answer = await registerUser(details);
 
-            //validate if user exist
+            //user succesfully registered
+            if(answer.status == 201){
+              //login him TODO maybe display some message
+              let answer = await loginUser(details);
 
-                //if yes, jump da muthafacker
-                setLoginInfo({token: "some token from server"});
+              if(answer.data){
+                Auth.login(answer.data);
+                Auth.setEmail(details.email);
+                console.log("redirected");
+                navigate('/konference');
+              }
+              else
+                console.log("not redirected");
+            }
         }
-
     }
 
   return (

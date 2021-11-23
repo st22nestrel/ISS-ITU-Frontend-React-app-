@@ -1,30 +1,32 @@
 //import React from "react";
 
-export default class Authentificate{
-    static instance = Authentificate.instance || new Authentificate();
+class Authentificate{
 
-    constructor(){
-        this.authentificated = false;
-        this.token = "";
+    static authentificated = false;
+    static token = "";
+    static email = "";
+
+    static setEmail(email){
+        this.email = email;
     }
 
-    login(token){
+    static login(token){
         this.authentificated = true;
         this.token = token;
     }
 
-    logout(token){
+    static logout(token){
         this.authentificated = false;
         this.token = "";
     }
 
-    isAuth(){
+    static isAuth(){
         return this.authentificated;
     }
     
-    getToken(){
+    static getToken(){
         return this.token;
     }
 }
 
-//export default new Authentificate();
+export default Authentificate;
