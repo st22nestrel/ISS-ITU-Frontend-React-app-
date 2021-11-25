@@ -71,7 +71,7 @@ function SignIn() {
             let answer = await registerUser(details);
 
             //user succesfully registered
-            if(answer.status == 201){
+            if(answer.status === 201){
               //login him TODO maybe display some message
               let answer = await loginUser(details);
 

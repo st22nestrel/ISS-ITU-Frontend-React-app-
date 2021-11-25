@@ -3,13 +3,14 @@ import "./index.css";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import {
   Konference,
+  KonfereceDetail,
   Navigation,
   NewKonference,
   SignIn
 } from "./components";
 
 import Auth from './components/Authentificate';
-import ProtectedRoute from './components/AuthRoute';
+import ProtectedRoute, {UnprotectedRoute} from './components/AuthRoute';
 import CurrentUserProfile from './components/CurrentUserProfile';
 
 function App() {
@@ -20,19 +21,18 @@ function App() {
   <Router>
     <Navigation />
     <Routes>
-      <Route path="/" element={<SignIn />} />
+      <Route path="/" element={<UnprotectedRoute><SignIn /></UnprotectedRoute>} />
       {/* <Route path="/signIn" element={<ProtectedRoute noAuth> <SignIn /> </ProtectedRoute>} /> */}
 
-      {/* !Auth.authentificated && */
+      {!Auth.authentificated &&
         <Route path="/signIn" element={<SignIn/>}/>
       }
       <Route path="/konference" element={<ProtectedRoute> <Konference /> </ProtectedRoute>}/>
 
-
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
-      <Route path="/contact" element={<NewKonference />} />
-      <Route path="/currUserProfile" element={<ProtectedRoute> <CurrentUserProfile credentials={{email:"Jana.jall@gmail.com"}} /> </ProtectedRoute>}/>
-
+      <Route path="/novaKonference" element={ <ProtectedRoute>  <NewKonference /> </ProtectedRoute> } />
+      <Route path="/profilUzivatele" element={<ProtectedRoute> <CurrentUserProfile/> </ProtectedRoute>}/>
+      <Route path="/konference/id" element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
 
       {/* <Route path="/blog" element={<Blog />}>
         <Route path="" element={<Posts />} />

@@ -2,7 +2,7 @@
 
 class Authentificate{
 
-    static authentificated = false;
+    static authentificated = window.localStorage.getItem("token") || false;
     static token = "";
     static email = "";
 
@@ -13,6 +13,7 @@ class Authentificate{
     static login(token){
         this.authentificated = true;
         this.token = token;
+        window.localStorage.setItem("token", token);
     }
 
     static logout(token){

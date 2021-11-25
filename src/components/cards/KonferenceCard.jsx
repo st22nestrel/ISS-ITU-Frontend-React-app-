@@ -10,7 +10,7 @@ class KonferenceCard extends React.Component{
         };
       } */
       state = {
-          open: false
+          open: true
       }
 
     konference = this.props.data;

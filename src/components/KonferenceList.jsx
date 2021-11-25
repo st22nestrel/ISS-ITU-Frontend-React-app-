@@ -44,7 +44,7 @@ function Konference() {
     <div className="konference">
         <div class="container-fluid content">
             <div class="row mb-3 justify-content-center">
-                <div class="col-md-12">
+                <div class="col-12">
 
                     {JSONmock.map((konference)=>(
                         <div className="konference-card" key={konference.Nazev}>

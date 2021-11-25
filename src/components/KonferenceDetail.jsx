@@ -1,10 +1,12 @@
 import React, {useState} from "react";
+import KonferenceFormButton from "./cards/KonferenceFormButton";
+import MistnostiTable from "./cards/MistnostiTable";
 
-function NewKonference() {
+function KonferenceDetail() {
 
     const [details, setDetails] = useState({
         name: "", description: "", field: "", country: "", 
-        city: "", place: "" ,
+        city: "", organisation: "", place: "" ,
         startDate: "", endDate: "", startTime: "", endTime: "",
         fee: "", ticketPrice: "", seating: "", addInfo: ""
     });
@@ -15,6 +17,25 @@ function NewKonference() {
         console.log(details)
     }
 
+
+    const dataKonf = {
+        "Nazev": "Excel@FIT",
+        "Popis": "konference pro všechny IT experty jako jsem například já teď tady",
+        "Obor": "IT",
+        "Zeme": "Česká Republika",
+        "Mesto": "Brno",
+        "Misto": "VUT FIT, Božetěchova 1/2, 612 00 Brno-Královo Pole",
+        "Zacatek_datum": "2022-01-20",
+        "Konec_datum": "2022-01-22",
+        "Zacatek_cas": "09:00",
+        "Konec_cas": "20:00",
+        "Poplatek": "8000",
+        "Cena_vstup": "500",
+        "Kapacita": "300",
+        "Doplnujici_udaje": "pivo zdarma"
+    };
+
+
     let form = (
         <form onSubmit={submitHandler} class="needs-validation" novalidate="">
         <div className="form-inner">
@@ -24,7 +45,7 @@ function NewKonference() {
                     <div class="col-12">
                         <label for="name" class="form-label">Název <span class="text-muted">(Nemuže být změněn později)</span></label>
                         <input type="text" class="form-control" id="name"
-                        onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+                        onChange="" value={details.name}/>
                     </div>
 
                     <div class="col-12">
@@ -107,7 +128,7 @@ function NewKonference() {
                     </div>
 
                     <div class="col-12">
-                        <label for="addInfo" class="form-label">Doplňující údaje</label>
+                        <label for="addInfo" class="form-label">Doplnujici udaje</label>
                         <input type="text" class="form-control" id="addInfo"
                         onChange={e => setDetails({...details, addInfo: e.target.value})} value={details.addInfo}/>
                     </div>
@@ -128,14 +149,39 @@ return (
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
                 {/* <!--<main class="form-signin">--> */}
-                <div class="col-4 themed-grid-col">
-                    {form}
+                <div class="col-12 themed-grid-col">
+                    
+                <div class="card">
+                    <div class="card-header card-header-flex">
+                        <h3 class="card-title text-bold"> Detaily konference </h3>
+
+                        <KonferenceFormButton data={dataKonf}></KonferenceFormButton>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header card-header-flex">
+                        <h3 class="card-title text-bold"> Místnosti </h3>
+
+                        <MistnostiTable data={dataKonf}></MistnostiTable>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header card-header-flex">
+                        <h3 class="card-title text-bold"> TODO </h3>
+
+                        <KonferenceFormButton data={dataKonf}></KonferenceFormButton>
+
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
-    </div>      
+    </div>
     
   );
 }
 
-export default NewKonference;
+export default KonferenceDetail;

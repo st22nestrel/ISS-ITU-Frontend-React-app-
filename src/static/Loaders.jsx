@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 /**
  * 
  * @param {*} url server url route
+ * @param {*} token authorization token
  * @returns {*} { data, pending, error }
  */
-const useGet = (url) => {
+const useGet = (url, token) => {
     const [data, setData] = useState(null);
     const [pending, setPending] = useState(true);
     const [error, setError] = useState(null);
@@ -15,7 +16,12 @@ const useGet = (url) => {
   
       fetch(url, { 
           signal: abortCont.signal,
-          method: 'GET'})
+          method: 'GET',
+          headers: {
+              /* "Authorization" : `Bearer ${token}` */
+              "Authorization" : token
+            }
+        })
       .then(res => {
           if (!res.ok) { // error coming back from server
               throw Error('could not fetch the data for that resource');
@@ -47,10 +53,11 @@ const useGet = (url) => {
 /**
  * 
  * @param {*} url server url route
+ * @param {*} token authorization token
  * @param {*} dataToPost should be stringified json 
  * @returns {*} data, pending, error
  */
-const usePost = (url, dataToPost) => {
+const usePost = (url, token, dataToPost) => {
     const [data, setData] = useState(null);
     const [pending, setPending] = useState(true);
     const [error, setError] = useState(null);
@@ -62,7 +69,9 @@ const usePost = (url, dataToPost) => {
           signal: abortCont.signal,
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            /* "Authorization" : `Bearer ${token}` */
+            "Authorization" : token
           },
           body: dataToPost
         })

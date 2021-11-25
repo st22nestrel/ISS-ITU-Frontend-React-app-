@@ -1,30 +1,28 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
+import reactDom from 'react-dom';
 
-function NewKonference() {
+function KonferenceCardButton({data}){
+
+    const [opened, setOpened] = useState(false);
 
     const [details, setDetails] = useState({
-        name: "", description: "", field: "", country: "", 
-        city: "", place: "" ,
-        startDate: "", endDate: "", startTime: "", endTime: "",
-        fee: "", ticketPrice: "", seating: "", addInfo: ""
+        name: data.Nazev, description: data.Popis, field: data.Obor, country: data.Zeme, 
+        city: data.Mesto, place: data.Misto,
+        startDate: data.Zacatek_datum, endDate: data.Konec_datum, startTime: data.Zacatek_cas, endTime: data.Misto.Konec_cas,
+        fee: data.Poplatek, ticketPrice: data.Cena_vstup, seating: data.Kapacita, addInfo: data.Doplnujici_udaje
     });
 
-    const submitHandler = e => {
-        e.preventDefault();
+    let card;
 
-        console.log(details)
-    }
 
-    let form = (
-        <form onSubmit={submitHandler} class="needs-validation" novalidate="">
+    card = (
+        <form onSubmit={null} class="needs-validation" novalidate="">
         <div className="form-inner">
-            <h1 class="h3 mb-3 fw-normal">Nová konference</h1>
-
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="name" class="form-label">Název <span class="text-muted">(Nemuže být změněn později)</span></label>
                         <input type="text" class="form-control" id="name"
-                        onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+                        onChange="" value={details.name}/>
                     </div>
 
                     <div class="col-12">
@@ -107,7 +105,7 @@ function NewKonference() {
                     </div>
 
                     <div class="col-12">
-                        <label for="addInfo" class="form-label">Doplňující údaje</label>
+                        <label for="addInfo" class="form-label">Doplnujici udaje</label>
                         <input type="text" class="form-control" id="addInfo"
                         onChange={e => setDetails({...details, addInfo: e.target.value})} value={details.addInfo}/>
                     </div>
@@ -123,19 +121,20 @@ function NewKonference() {
         </form>
     )
 
-return (
-    <div className="KonferenceNew">
-        <div class="content container-fluid">
-            <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
-                <div class="col-4 themed-grid-col">
-                    {form}
-                </div>
-            </div>
+
+    return(
+        
+        
+        <div>
+                <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
+                        onClick={(() => setOpened(!opened))}>
+                    <i class="nc-icon nc-stre-up"></i>
+                </button>
+                {opened && card}
         </div>
-    </div>      
-    
-  );
+
+    );
+
 }
 
-export default NewKonference;
+export default KonferenceCardButton;

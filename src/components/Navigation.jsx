@@ -8,7 +8,7 @@ function Navigation() {
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
-          <NavLink className="navbar-brand" to="/currUserProfile">
+          <NavLink className="navbar-brand" to="/profilUzivatele">
             Profil
           </NavLink>
           <div>
@@ -28,7 +28,7 @@ function Navigation() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/contact">
+                <NavLink className="nav-link" to="/novaKonference">
                   Přidat konferenci
                 </NavLink>
               </li>
