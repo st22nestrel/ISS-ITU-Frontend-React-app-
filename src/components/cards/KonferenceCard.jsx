@@ -13,49 +13,60 @@ class KonferenceCard extends React.Component{
           open: false
       }
 
-
+    konference = this.props.data;
 
     render(){
 
-        /* const [isOpened, setIsOpened] = useState(false); */
-
-        /* function hide() {
-            this.setState({ open: !this.state.open });
-            //this.setState({open: !this.state.open})
-            //this.state.open = !this.state.open;
-            //setIsOpened(isOpened => !isOpened);
-        } */
-
         let card;
+        let konference = this.props.data;
         const opened = this.state.open;
 
         if (opened){
-            card = (<nav id="navbar" class="navbar navbar-light bg-light px-3">
-            <a class="navbar-brand"></a>
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <button class="btn-round btn-fill btn-primary pull-right"
-                            onClick=""
-                    >
-                        Zobraz príspevky
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn-round btn-fill btn-primary pull-right"
-                            onClick=""
-                    >
-                        Uprav harmonogram
-                    </button>
-                </li>
-                <li>
-                    <button class="btn-round btn-fill btn-primary pull-right"
-                            onClick=""
-                    >
-                        Uprav konferenci
-                    </button>
-                </li>
-            </ul>
-        </nav>)
+            card = (
+        <div className="cardBody">
+            <nav id="navbar" class="navbar navbar-light bg-light px-3">
+                <a class="navbar-brand"></a>
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <button class="btn-round btn-fill btn-primary pull-right"
+                                onClick=""
+                        >
+                            Zobraz príspevky
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn-round btn-fill btn-primary pull-right"
+                                onClick=""
+                        >
+                            Uprav harmonogram
+                        </button>
+                    </li>
+                    <li>
+                        <button class="btn-round btn-fill btn-primary pull-right"
+                                onClick=""
+                        >
+                            Uprav konferenci
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="bg-light px-3">
+                <p>Popis: {konference.Popis}</p>
+                <p>Obor: {konference.Obor}</p>
+                <p>Zeme: {konference.Zeme}</p>
+                <p>Mesto: {konference.Mesto}</p>
+                <p>Misto: {konference.Misto}</p>
+                <p>Zacatek: {konference.Zacatek_datum}, {konference.Zacatek_cas}</p>
+                <p>Konec: {konference.Konec_datum}, {konference.Konec_cas}</p>
+                <p>Poplatek: {konference.Poplatek}</p>
+                <p>Vstupné: {konference.Cena_vstup}</p>
+                <p>Kapacita: {konference.Kapacita}</p>
+                <p>Další údaje: {konference.Doplnujici_udaje}</p>
+            </div>
+                
+            {/* {konference.map((el)=>(<p>{el}</p>))} */}
+        </div>)
         } else {
             card = null;
         }
@@ -64,7 +75,7 @@ class KonferenceCard extends React.Component{
         return (
         <div class="card">
             <div class="card-header card-header-flex">
-                <h3 class="card-title text-bold"> Konference </h3>
+                <h3 class="card-title text-bold"> {konference.Nazev} </h3>
                 <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
                         onClick={(() => this.setState({ open: !this.state.open }))}>
                     <i class="nc-icon nc-stre-up"></i>
@@ -72,11 +83,7 @@ class KonferenceCard extends React.Component{
             </div>
     
             {card}
-    
-            <div class="row">
-                <div class="card-body custom-card-body no-padding-sm-scr" id="konference">
-                </div>
-            </div>
+
         </div>
         )
     }
