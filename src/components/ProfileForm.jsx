@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 
-function ProfileForm({Update, emailDetail}) {
+function ProfileForm({Update, userInfo}) {
 
     const [details, setDetails] = useState({
-        name: "", surname: "", degree: "", email: emailDetail.email, telNmb: "", 
-        password: "", organisation: "", field: "", country: "",
-        birthday: ""
+        name: userInfo.Jmeno, surname: userInfo.Prijmeni, degree: userInfo.Titul, email: userInfo.Email,
+        telNmb: userInfo.TelCislo, organisation: userInfo.Organizace, field: userInfo.Obor,
+        country: userInfo.Zeme, birthday: userInfo.Datum_narozeni
     });
 
     const submitHandler = e => {
@@ -17,7 +17,7 @@ function ProfileForm({Update, emailDetail}) {
     return (
         <form onSubmit={submitHandler} class="needs-validation" novalidate="">
             <div className="form-inner">
-            <h1 class="h3 mb-3 fw-normal">Registrace</h1>
+            <h1 class="h3 mb-3 fw-normal">Údaje</h1>
 
                 <div class="row g-3">
                     <div class="col-sm-6">
@@ -56,26 +56,26 @@ function ProfileForm({Update, emailDetail}) {
                         <!--                                </div>--> */}
                     </div>
 
-                    <div class="col-12">
+{/*                     <div class="col-12">
                         <label for="password" class="form-label">Heslo</label>
                         <input type="password" class="form-control" id="password" required=""
                         onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
                         <div class="invalid-feedback">
                             Zadejte prosím validní email
                         </div>
-                    </div>
+                    </div> */}
 
                     <div class="col-12">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email"
-                        onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
+                        onChange="" value={details.email}/>
                         <div class="invalid-feedback">
                             Zadejte prosím validní email
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <label for="telNmb" class="form-label">Telefonní číslo<span class="text-muted">(Nepovinné)</span></label>
+                        <label for="telNmb" class="form-label">Telefonní číslo</label>
                         <input type="tel" class="form-control" id="telNmb"
                         onChange={e => setDetails({...details, telNmb: e.target.value})} value={details.telNmb}/>
                         <div class="invalid-feedback">
