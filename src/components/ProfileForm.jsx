@@ -11,7 +11,9 @@ function ProfileForm({Update, userInfo}) {
     const submitHandler = e => {
         e.preventDefault();
 
-        Update(details);
+        if(details.name !== "" && details.surname !== ""){
+            Update(details);
+        }
     }
 
     return (
