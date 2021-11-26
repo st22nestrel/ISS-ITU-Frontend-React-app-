@@ -1,5 +1,5 @@
 import React from 'react';
-import reactDom from 'react-dom';
+import {useNavigate} from 'react-router-dom';
 
 class KonferenceCard extends React.Component{
 
@@ -17,6 +17,7 @@ class KonferenceCard extends React.Component{
 
     render(){
 
+
         let card;
         let konference = this.props.data;
         const opened = this.state.open;
@@ -31,7 +32,7 @@ class KonferenceCard extends React.Component{
                         <button class="btn-round btn-fill btn-primary pull-right"
                                 onClick=""
                         >
-                            Zobraz príspevky
+                            Zobraz prezentace
                         </button>
                     </li>
                     <li class="nav-item">
@@ -45,7 +46,7 @@ class KonferenceCard extends React.Component{
                         <button class="btn-round btn-fill btn-primary pull-right"
                                 onClick=""
                         >
-                            Uprav konferenci
+                            Uprav detaily konferenci
                         </button>
                     </li>
                 </ul>

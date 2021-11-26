@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 
-function NewKonference() {    
+function KonferenceForm({Update, setErr}) {    
 
     const [details, setDetails] = useState({
         Nazev: "", Popis: "", Obor: "", Zeme: "", 
@@ -15,6 +15,17 @@ function NewKonference() {
 
         console.log(details)
 
+        if(!details.Nazev || !details.Obor || !details.Zeme || !details.Mesto || !details.Misto
+            || !details.Zacatek_datum || !details.Konec_datum || !details.Zacatek_cas || !details.Konec_cas
+            || !details.Poplatek || !details.Cena_vstup || !details.Kapacita)
+        {
+            setErr("Zkontrolujte zda máte vyplneno Nazev, Obor, Zeme, Mesto, Zacatek,\
+Konec, Poplatek, Cena Vstupenky, Kapacita ->\
+bez nich nelze vytvorit konferenci")
+        }
+        else{
+            Update(details)
+        }
     }
 
     let form = (
@@ -55,7 +66,7 @@ function NewKonference() {
                     <div class="col-12">
                         <label for="Zeme" class="form-label">Zeme</label>
                         <input type="Zeme" class="form-control" id="Zeme"
-                        onChange="" value={details.Zeme}/>
+                        onChange={e => setDetails({...details, Zeme: e.target.value})} value={details.Zeme}/>
                         <div class="invalid-feedback">
                             Zadejte prosím validní Zemi
                         </div>
@@ -64,14 +75,14 @@ function NewKonference() {
                     <div class="col-12">
                         <label for="Mesto" class="form-label">Mesto</label>
                         <input type="Mesto" class="form-control" id="Mesto"
-                        onChange="" value={details.Mesto}/>
+                        onChange={e => setDetails({...details, Mesto: e.target.value})} value={details.Mesto}/>
                     </div>
 
 
                     <div class="col-12">
                         <label for="Misto" class="form-label">Místo</label>
                         <input type="Misto" class="form-control" id="Misto"
-                        onChange="" value={details.Misto}/>
+                        onChange={e => setDetails({...details, Misto: e.target.value})} value={details.Misto}/>
                     </div>
 
                     <div class="col-12">
@@ -126,18 +137,10 @@ function NewKonference() {
     )
 
 return (
-    <div className="KonferenceNew">
-        <div class="content container-fluid">
-            <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
-                <div class="col-4 themed-grid-col">
-                    {form}
-                </div>
-            </div>
-        </div>
-    </div>      
+   
+        form
     
   );
 }
 
-export default NewKonference;
+export default KonferenceForm;

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {useNavigate} from "react-router-dom";
+import {useNavigate} from 'react-router-dom';
 import {Post} from '../../static/Loaders';
 import KonferenceForm from '../KonferenceForm';
 
@@ -23,6 +23,7 @@ export default function KonferenceNew() {
         }
         else{
             //TODO navigate to created konference
+            setMsg(null);
             navigate('/konference');
         }
     }
@@ -34,13 +35,13 @@ export default function KonferenceNew() {
                     {/* <!--<main class="form-signin">--> */}
                     <div class="col-4 themed-grid-col">
                         
-                        <KonferenceForm  />
+                        <KonferenceForm Update={NewKonf} setErr={setMsg}/>
 
                         { msg && 
                         <div>
-                            <h2>{msg}</h2>
-                            <div class="spinner-border text-secondary" role="status">
-                            </div>
+                            <h2>Error: {msg}</h2>
+                            {/* <div class="spinner-border text-secondary" role="status">
+                            </div> */}
                         </div>
                         }
 

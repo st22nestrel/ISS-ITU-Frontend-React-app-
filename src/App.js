@@ -6,6 +6,7 @@ import {
   KonfereceDetail,
   Navigation,
   NewKonference,
+  KonferenceNew,
   SignIn
 } from "./components";
 
@@ -30,7 +31,7 @@ function App() {
       <Route path="/konference" element={<ProtectedRoute> <KonferenceList /> </ProtectedRoute>}/>
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
-      <Route path="/novaKonference" element={ <ProtectedRoute>  <NewKonference /> </ProtectedRoute> } />
+      <Route path="/novaKonference" element={ <ProtectedRoute>  <KonferenceNew /> </ProtectedRoute> } />
       <Route path="/profilUzivatele" element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
       <Route path="/konference/id" element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
 
