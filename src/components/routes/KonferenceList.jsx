@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 /* import hide from "./../static/index.js"; */
-import KonferenceCard from "./cards/KonferenceCard.jsx";
+import KonferenceCard from "../cards/KonferenceCard.jsx";
 /* import hideShowCardBody from './../static/index.js'; */
 
-function Konference() {
+function KonferenceList() {
 
     const JSONmock = [
         {
@@ -59,4 +59,4 @@ function Konference() {
   );
 }
 
-export default Konference;
+export default KonferenceList;

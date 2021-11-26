@@ -1,18 +1,20 @@
 import React, {useState} from "react";
 
-function NewKonference() {
+
+function NewKonference() {    
 
     const [details, setDetails] = useState({
-        name: "", description: "", field: "", country: "", 
-        city: "", place: "" ,
-        startDate: "", endDate: "", startTime: "", endTime: "",
-        fee: "", ticketPrice: "", seating: "", addInfo: ""
+        Nazev: "", Popis: "", Obor: "", Zeme: "", 
+        Mesto: "", Misto: "" ,
+        Zacatek_datum: "", Konec_datum: "", Zacatek_cas: "", Konec_cas: "",
+        Poplatek: "", Cena_vstup: "", Kapacita: "", Doplnujici_udaje: ""
     });
 
     const submitHandler = e => {
         e.preventDefault();
 
         console.log(details)
+
     }
 
     let form = (
@@ -22,21 +24,21 @@ function NewKonference() {
 
                 <div class="row g-3">
                     <div class="col-12">
-                        <label for="name" class="form-label">Název <span class="text-muted">(Nemuže být změněn později)</span></label>
-                        <input type="text" class="form-control" id="name"
-                        onChange={e => setDetails({...details, name: e.target.value})} value={details.name}/>
+                        <label for="Nazev" class="form-label">Název <span class="text-muted">(Nemuže být změněn později)</span></label>
+                        <input type="text" class="form-control" id="Nazev"
+                        onChange={e => setDetails({...details, Nazev: e.target.value})} value={details.Nazev}/>
                     </div>
 
                     <div class="col-12">
-                        <label for="description" class="form-label">Popis</label>
-                        <input type="text" class="form-control" id="description"
-                        onChange={e => setDetails({...details, description: e.target.value})} value={details.description}/>
+                        <label for="Popis" class="form-label">Popis</label>
+                        <input type="text" class="form-control" id="Popis"
+                        onChange={e => setDetails({...details, Popis: e.target.value})} value={details.Popis}/>
                     </div>
 
                     <div class="col-12">
-                        <label for="field" class="form-label">Obor</label>
-                        <input type="text" class="form-control" id="description"
-                        onChange={e => setDetails({...details, description: e.target.value})} value={details.field}/>
+                        <label for="Obor" class="form-label">Obor</label>
+                        <input type="text" class="form-control" id="Obor"
+                        onChange={e => setDetails({...details, Obor: e.target.value})} value={details.Obor}/>
 
                         {/* <br />
                         <select class="form-select" id="degree" 
@@ -51,65 +53,65 @@ function NewKonference() {
                     </div>
 
                     <div class="col-12">
-                        <label for="country" class="form-label">Zeme</label>
-                        <input type="country" class="form-control" id="country"
-                        onChange="" value={details.country}/>
+                        <label for="Zeme" class="form-label">Zeme</label>
+                        <input type="Zeme" class="form-control" id="Zeme"
+                        onChange="" value={details.Zeme}/>
                         <div class="invalid-feedback">
                             Zadejte prosím validní Zemi
                         </div>
                     </div>
 
                     <div class="col-12">
-                        <label for="city" class="form-label">Mesto</label>
-                        <input type="city" class="form-control" id="city"
-                        onChange="" value={details.city}/>
+                        <label for="Mesto" class="form-label">Mesto</label>
+                        <input type="Mesto" class="form-control" id="Mesto"
+                        onChange="" value={details.Mesto}/>
                     </div>
 
 
                     <div class="col-12">
-                        <label for="place" class="form-label">Místo</label>
-                        <input type="place" class="form-control" id="place"
-                        onChange="" value={details.place}/>
+                        <label for="Misto" class="form-label">Místo</label>
+                        <input type="Misto" class="form-control" id="Misto"
+                        onChange="" value={details.Misto}/>
                     </div>
 
                     <div class="col-12">
                         <label class="form-label">Start</label>
-                        <input type="date" class="form-control" id="startDate"
-                        onChange={e => setDetails({...details, startDate: e.target.value})} value={details.startDate}/>
-                        <input type="time" class="form-control" id="startTime"
-                        onChange={e => setDetails({...details, startTime: e.target.value})} value={details.startTime}/>
+                        <input type="date" class="form-control" id="Zacatek_datum"
+                        onChange={e => setDetails({...details, Zacatek_datum: e.target.value})} value={details.Zacatek_datum}/>
+                        <input type="time" class="form-control" id="Zacatek_cas"
+                        onChange={e => setDetails({...details, Zacatek_cas: e.target.value})} value={details.Zacatek_cas}/>
                     </div>
 
                     <div class="col-12">
                         <label class="form-label">End</label>
-                        <input type="date" class="form-control" id="endDate"
-                        onChange={e => setDetails({...details, endDate: e.target.value})} value={details.endtDate}/>
-                        <input type="time" class="form-control" id="endTime"
-                        onChange={e => setDetails({...details, endTime: e.target.value})} value={details.endTime}/>
+                        <input type="date" class="form-control" id="Konec_datum"
+                        onChange={e => setDetails({...details, Konec_datum: e.target.value})} value={details.endtDate}/>
+                        <input type="time" class="form-control" id="Konec_cas"
+                        onChange={e => setDetails({...details, Konec_cas: e.target.value})} value={details.Konec_cas}/>
                     </div>
 
                     <div class="col-12">
-                        <label for="fee" class="form-label">Poplatek</label>
-                        <input type="number" class="form-control" id="fee"
-                        onChange={e => setDetails({...details, fee: e.target.value})} value={details.fee}/>
+                        <label for="Poplatek" class="form-label">Poplatek</label>
+                        <input type="number" class="form-control" id="Poplatek"
+                        onChange={e => setDetails({...details, Poplatek: e.target.value})} value={details.Poplatek}/>
                     </div>
 
                     <div class="col-12">
-                        <label for="ticketPrice" class="form-label">Cena vstupenky</label>
-                        <input type="number" class="form-control" id="ticketPrice"
-                        onChange={e => setDetails({...details, ticketPrice: e.target.value})} value={details.ticketPrice}/>
+                        <label for="Cena_vstup" class="form-label">Cena vstupenky</label>
+                        <input type="number" class="form-control" id="Cena_vstup"
+                        onChange={e => setDetails({...details, Cena_vstup: e.target.value})} value={details.Cena_vstup}/>
                     </div>
 
                     <div class="col-12">
-                        <label for="seating" class="form-label">Kapacita</label>
-                        <input type="number" class="form-control" id="seating"
-                        onChange={e => setDetails({...details, seating: e.target.value})} value={details.seating}/>
+                        <label for="Kapacita" class="form-label">Kapacita</label>
+                        <input type="number" class="form-control" id="Kapacita"
+                        onChange={e => setDetails({...details, Kapacita: e.target.value})} value={details.Kapacita}/>
                     </div>
 
                     <div class="col-12">
-                        <label for="addInfo" class="form-label">Doplňující údaje</label>
-                        <input type="text" class="form-control" id="addInfo"
-                        onChange={e => setDetails({...details, addInfo: e.target.value})} value={details.addInfo}/>
+                        <label for="Doplnujici_udaje" class="form-label">Doplňující údaje</label>
+                        <input type="text" class="form-control" id="Doplnujici_udaje"
+                        onChange={e => setDetails({...details, Doplnujici_udaje: e.target.value})} value={details.Doplnujici_udaje}/>
                     </div>
                 </div>
 

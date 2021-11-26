@@ -2,7 +2,7 @@ import './App.css';
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import {
-  Konference,
+  KonferenceList,
   KonfereceDetail,
   Navigation,
   NewKonference,
@@ -11,7 +11,7 @@ import {
 
 import Auth from './components/Authentificate';
 import ProtectedRoute, {UnprotectedRoute} from './components/AuthRoute';
-import CurrentUserProfile from './components/CurrentUserProfile';
+import CurrentUserProfile from './components/routes/CurrentUserProfile';
 
 function App() {
 
@@ -27,7 +27,7 @@ function App() {
       {!Auth.authentificated &&
         <Route path="/signIn" element={<SignIn/>}/>
       }
-      <Route path="/konference" element={<ProtectedRoute> <Konference /> </ProtectedRoute>}/>
+      <Route path="/konference" element={<ProtectedRoute> <KonferenceList /> </ProtectedRoute>}/>
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
       <Route path="/novaKonference" element={ <ProtectedRoute>  <NewKonference /> </ProtectedRoute> } />

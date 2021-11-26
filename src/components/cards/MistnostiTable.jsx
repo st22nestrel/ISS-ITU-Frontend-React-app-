@@ -7,8 +7,7 @@ import EditableRow from "./components/EditableRow";
 
 function MistnostiTable ({Konference}) {
 
-    //useEffect na nacitanie miestnosti
-
+  //useEffect na nacitanie miestnosti
 
   const [rooms, setRooms] = useState(data);
 

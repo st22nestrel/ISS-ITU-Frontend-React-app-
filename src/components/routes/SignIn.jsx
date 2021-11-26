@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import LoginForm from "./LoginForm";
-import RegistrationForm from "./RegistrationForm";
+import LoginForm from "../LoginForm";
+import RegistrationForm from "../RegistrationForm";
 import PropTypes from 'prop-types';
 import './SignIn.css';
-import Auth from "./Authentificate"
+import Auth from "../Authentificate"
 
 //TODO
 async function registerUser(credentials) {

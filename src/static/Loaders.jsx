@@ -110,19 +110,20 @@ const usePost = (url, token, dataToPost) => {
  * @returns {*} data, pending, error
  */
 async function Post (url, token, dataToPost) {
+
   let dataToReturn = null;
   let pending = true;
   let error = null;
 
-  
-    const abortCont = new AbortController();
+  const abortCont = new AbortController();
 
+  return(
     fetch(url, { 
         signal: abortCont.signal,
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          /* 'Authorization' : window.localStorage.getItem("token") */
+          'Authorization' : window.localStorage.getItem("token")
         },
         body: dataToPost
       })
@@ -136,43 +137,21 @@ async function Post (url, token, dataToPost) {
         pending = false;
         dataToReturn = data;
         error = null
+        return { dataToReturn, pending, error };
       })
     .catch(err => {
         if (err.name === 'AbortError') {
             console.log('post aborted')
+            return { dataToReturn, pending, error };
         } else {
             // auto catches network / connection error
             pending = false;
             error = err.message;
+            return { dataToReturn, pending, error };
         }
       })
-
-    // abort the fetch
-    //return () => abortCont.abort();
-  
-
-  return { dataToReturn, pending, error };
+  )
 }
-
-/**
- * 
- * @param {*} url server url route
- * @param {*} token authorization token
- * @param {*} dataToPost should be stringified json 
- * @returns {*} data, pending, error
- */
-/* async function Put (url, token, dataToPost) {
-  return fetch('http://iisprojekt.fun:8000/uzivatel/registrace', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify( {Jmeno: credentials.name, Prijmeni: credentials.surname,
-        Heslo: credentials.password, Role: "uzivatel", Organizace: credentials.organisation,
-        Obor: credentials.field, Zeme: credentials.country, Datum_narozeni: credentials.birthday,
-        Email: credentials.email, TelCislo: credentials.telNMB, Titul: credentials.degree})
-    })
-} */
 
 /**
  * 
