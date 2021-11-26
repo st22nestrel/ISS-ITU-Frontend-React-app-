@@ -3,9 +3,9 @@ import Authentificate from './Authentificate';
 import ProfileForm from './ProfileForm';
 import {useGet} from './../static/Loaders.jsx'
 
-function CurrentUserProfile(credentials) {
+function CurrentUserProfile(token) {
 
-    const {data: userInfo, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/'+Authentificate.email)
+    const {data: userInfo, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/', token)
 
     const Update = async details => {
         console.log("details");

@@ -31,7 +31,7 @@ function App() {
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
       <Route path="/novaKonference" element={ <ProtectedRoute>  <NewKonference /> </ProtectedRoute> } />
-      <Route path="/profilUzivatele" element={<ProtectedRoute> <CurrentUserProfile/> </ProtectedRoute>}/>
+      <Route path="/profilUzivatele" element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
       <Route path="/konference/id" element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
 
       {/* <Route path="/blog" element={<Blog />}>

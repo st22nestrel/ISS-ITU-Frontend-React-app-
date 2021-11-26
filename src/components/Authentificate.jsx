@@ -2,8 +2,9 @@
 
 class Authentificate{
 
+    //static wit = window.localStorage.setItem("token", null);
     static authentificated = window.localStorage.getItem("token") || false;
-    static token = "";
+    static token = window.localStorage.getItem("token");
     static email = "";
 
     static setEmail(email){
@@ -26,7 +27,8 @@ class Authentificate{
     }
     
     static getToken(){
-        return this.token;
+        return window.localStorage.getItem("token")
+        //return this.token;
     }
 }
 

@@ -18,13 +18,12 @@ const useGet = (url, token) => {
           signal: abortCont.signal,
           method: 'GET',
           headers: {
-              /* "Authorization" : `Bearer ${token}` */
-              "Authorization" : token
+              'Authorization' : window.localStorage.getItem("token")
             }
         })
       .then(res => {
           if (!res.ok) { // error coming back from server
-              throw Error('could not fetch the data for that resource');
+              throw Error('Error: '+res.status+' could not fetch the data for that resource');
           } 
           return res.json();
         })
@@ -70,8 +69,7 @@ const usePost = (url, token, dataToPost) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            /* "Authorization" : `Bearer ${token}` */
-            "Authorization" : token
+            'Authorization' : window.localStorage.getItem("token")
           },
           body: dataToPost
         })
