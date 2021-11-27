@@ -4,7 +4,8 @@ import "./MistnostiTable.css";
 import data from "./mock-data.json";
 import ReadOnlyRow from "./components/MistnostiReadDeleteRow";
 import EditableRow from "./components/MistnostiEditableRow";
-import { Post } from "../../static/Loaders";
+import { Post, Put, useGet } from "../../static/Loaders";
+
 
 async function Add(details){
   console.log("details");
@@ -26,10 +27,10 @@ async function Add(details){
 }
 
 
-const Update = async details => {
+async function Update(details){
   console.log("updating room");
 
-  //let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/'+details.Kod+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/mistnost/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -42,13 +43,13 @@ const Update = async details => {
           setUpdated(false);
           }, 500);
   } */
-  //return error
+  return error
 }
 
 const Delete = async details => {
   console.log("deleting room");
 
-  //let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/'+details.Kod+'/zmazat', null, null);
+  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/mistnost/odstranit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -64,12 +65,9 @@ const Delete = async details => {
   //return error
 }
 
-function MistnostiTable ({Konference}) {
-
-  //useEffect na nacitanie miestnosti
-
+function GenerateHtml({data, Konference}){
   const [opened, setOpened] = useState(false);
-  const [rooms, setRooms] = useState([]);
+  const [rooms, setRooms] = useState(data);
 
   const [addFormData, setAddFormData] = useState({
     Kod: "",
@@ -140,25 +138,33 @@ function MistnostiTable ({Konference}) {
 
   };
 
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
     const editedRoom = {
-        Kod: addFormData.Kod,
-        Popis: addFormData.Popis,
-        Kapacita: addFormData.Kapacita,
-        Vybaveni: addFormData.Vybaveni,
+        Kod: editFormData.Kod,
+        Popis: editFormData.Popis,
+        Kapacita: editFormData.Kapacita,
+        Vybaveni: editFormData.Vybaveni,
         Konference: Konference
     };
 
-    const newRooms = [...rooms];
+    let error = await Update(editedRoom);
+    
+    if(!error){
+      const newRooms = [...rooms];
 
-    const index = rooms.findIndex((room) => room === editRoomKod);
+      const index = rooms.findIndex((room) => room.Kod === editRoomKod);
 
-    newRooms[index] = editedRoom;
+      newRooms[index] = editedRoom;
 
-    setRooms(newRooms);
-    setEditRoomKod(null);
+      setRooms(newRooms);
+      setEditRoomKod(null);
+    }
+    else{
+      //we can display error
+    }
+    
   };
 
   const handleEditClick = (event, room) => {
@@ -179,49 +185,57 @@ function MistnostiTable ({Konference}) {
     setEditRoomKod(null);
   };
 
-  const handleDeleteClick = (roomKod) => {
+  const handleDeleteClick = async (roomKod) => {
     const newRooms = [...rooms];
 
     const index = rooms.findIndex((room) => room.Kod === roomKod);
 
-    newRooms.splice(index, 1);
+    let error = await Delete({Kod:roomKod});
 
-    setRooms(newRooms);
+    if(!error){
+      newRooms.splice(index, 1);
+
+      setRooms(newRooms);
+    }
+
   };
 
   let card = (
+    data &&
     <div className="app-container">
       <form onSubmit={handleEditFormSubmit}>
-        <table>
-          <thead>
-            <tr>
-              <th>Kod</th>
-              <th>Popis</th>
-              <th>Kapacita</th>
-              <th>Vybaveni</th>
-              <th>Tlačidlá</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rooms.map((room) => (
-              <Fragment>
-              {editRoomKod === room.Kod ? (
-                <EditableRow
-                  editFormData={editFormData}
-                  handleEditFormChange={handleEditFormChange}
-                  handleCancelClick={handleCancelClick}
-                />
-              ) : (
-                <ReadOnlyRow
-                  data={room}
-                  handleEditClick={handleEditClick}
-                  handleDeleteClick={handleDeleteClick}
-                />
-              )}
-            </Fragment>
-            ))}
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Kod</th>
+                <th>Popis</th>
+                <th>Vybaveni</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {rooms.map((room) => (
+                <Fragment>
+                {editRoomKod === room.Kod ? (
+                  <EditableRow
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange}
+                    handleCancelClick={handleCancelClick}
+                  />
+                ) : (
+                  <ReadOnlyRow
+                    data={room}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                  />
+                )}
+              </Fragment>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
       </form>
 
       <h4>Přidat místnost</h4>
@@ -245,18 +259,7 @@ function MistnostiTable ({Konference}) {
             placeholder=""
             onChange={handleAddFormChange}
           />
-        </div>
-        <div>
-          <label for="Kapacita" class="form-label">Kapacita</label>
-          <input id="Kapacita" class="form-control"
-            type="number"
-            name="Kapacita"
-            required="required"
-            placeholder=""
-            onChange={handleAddFormChange}
-          />
-        </div>
-        
+        </div>        
         <div>
           <label for="Vybavení" class="form-label">Vybavení</label>
           <input id="Vybavení" class="form-control"
@@ -290,6 +293,19 @@ function MistnostiTable ({Konference}) {
     </div>
 
 );
+};
+
+function MistnostiTable ({Konference}) {
+
+  //useEffect na nacitanie miestnosti
+  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
+
+  return(data && 
+    <div>
+      <GenerateHtml data={data} Konference={Konference}></GenerateHtml>
+    </div>
+    
+    )
 };
 
 export default MistnostiTable;

@@ -93,7 +93,7 @@ import React, { useState } from 'react'
                     </div>
 
                     <div class="col-12">
-                        <label for="Organizace" class="form-label">Organizace</label>
+                        <label for="Organizace" class="form-label">Organizace<span class="text-muted">(Nepovinné)</span></label>
                         <input type="text" class="form-control" id="Organizace" placeholder="VUT FIT"
                         onChange={e => setDetails({...details, Organizace: e.target.value})} value={details.Organizace}/>
                         <div class="invalid-feedback">
@@ -102,7 +102,7 @@ import React, { useState } from 'react'
                     </div>
 
                     <div class="col-12">
-                        <label for="Obor" class="form-label">Obor</label>
+                        <label for="Obor" class="form-label">Obor<span class="text-muted">(Nepovinné)</span></label>
                         <input type="text" class="form-control" id="Obor" placeholder="informatika"
                         onChange={e => setDetails({...details, Obor: e.target.value})} value={details.Obor}/>
                         <div class="invalid-feedback">
@@ -112,7 +112,7 @@ import React, { useState } from 'react'
 
                     {/* <!--                            TODO možno selectbox na zemi--> */}
                     <div class="col-12">
-                        <label for="zeme" class="form-label">Země</label>
+                        <label for="zeme" class="form-label">Země<span class="text-muted">(Nepovinné)</span></label>
                         <input type="text" class="form-control" id="zeme" placeholder="Česko"
                         onChange={e => setDetails({...details, Zeme: e.target.value})} value={details.Zeme}/>
                         <div class="invalid-feedback">
@@ -121,7 +121,7 @@ import React, { useState } from 'react'
                     </div>
 
                     <div class="col-12">
-                        <label for="Datum_narozeni" class="form-label">Datum narození</label>
+                        <label for="Datum_narozeni" class="form-label">Datum narození<span class="text-muted">(Nepovinné)</span></label>
                         <input type="date" class="form-control" id="Datum_narozeni" placeholder=""
                         onChange={e => setDetails({...details, Datum_narozeni: e.target.value})} value={details.Datum_narozeni}/>
                         <div class="invalid-feedback">

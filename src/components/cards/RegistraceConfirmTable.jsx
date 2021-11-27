@@ -16,11 +16,11 @@ function PrezentaceShowTable ({Konference, data}) {
         <table>
           <thead>
             <tr>
-              <th>Nazev</th>
               <th>Konference</th>
-              <th>Prednasajuci</th>
-              <th>Popis</th>
-              <th>Tagy</th>
+              <th>Uzivatel</th>
+              <th>Datum vytvoreni</th>
+              <th>Celkova cena</th>
+              <th>Stav</th>
               <th>Grafika</th>
               <th>Soubor</th>
               <th>Mistnost</th>

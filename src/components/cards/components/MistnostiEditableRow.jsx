@@ -31,16 +31,6 @@ const EditableRow = ({
       </td>
       <td>
         <input
-          type="number"
-          required="required"
-          placeholder=""
-          name="Kapacita"
-          value={editFormData.Kapacita}
-          onChange={handleEditFormChange}
-        ></input>
-      </td>
-      <td>
-        <input
           type="text"
           required=""
           placeholder=""
