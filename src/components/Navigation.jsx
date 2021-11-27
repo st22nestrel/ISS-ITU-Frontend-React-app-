@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Authentificate from "./Authentificate";
 /* import Auth from "./Authentificate"; */
 
 function Navigation() {
@@ -32,6 +33,7 @@ function Navigation() {
                   Přidat konferenci
                 </NavLink>
               </li>
+              <button class="btn btn-outline-success" type="button" onClick={()=>(Authentificate.logout())}>Odhlásit</button>
             </ul>
           </div>
         </div>

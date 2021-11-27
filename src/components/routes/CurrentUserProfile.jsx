@@ -2,7 +2,8 @@ import React, {useEffect, useState} from 'react'
 import Authentificate from '../Authentificate';
 import ProfileForm from '../ProfileForm';
 import PasswordChange from '../cards/PasswordChange';
-import {useGet, Put} from '../../static/Loaders';
+import {useGet, Put, Post} from '../../static/Loaders';
+import DeleteUser from '../cards/DeleteUser';
 
 function CurrentUserProfile(token) {
 
@@ -54,6 +55,17 @@ function CurrentUserProfile(token) {
         }
     }
 
+    const deleteUser = async(e) => {
+
+        let {dataToReturn, pending: _pending, error: _error} = await Post('http://iisprojekt.fun:8000/uzivatel/odstranit', null, null);
+
+        if(_error) {
+            displayErr = _error;
+        }
+        else{
+            Authentificate.logout();
+        }
+    }
 
 
 
@@ -81,10 +93,7 @@ function CurrentUserProfile(token) {
                     <div>
                         <ProfileForm Update={Update} userInfo={userInfo}/>
                         <br/>
-                        <div>
-                            <button class="w-100 btn btn-lg btn-outline-primary" 
-                            onClick={() => setPasswordChange(true)}>Změnit heslo</button>
-                        </div>
+                       
                     </div>
                     }
                     { passwordChange &&    
@@ -94,10 +103,37 @@ function CurrentUserProfile(token) {
                         </div>
                     </div>
                         &&
-                        <PasswordChange Update={UpdatePasword} goBack={setPasswordChange}></PasswordChange>
+                        <div>
+                            <PasswordChange Update={UpdatePasword} goBack={setPasswordChange}></PasswordChange>
+                            
+                        </div>
+                        
+                        
                     }
 
                 </div>
+
+                {userInfo && !passwordChange &&
+                    <div class="col-sm-4 themed-grid-col">
+                        <div>
+                            <button class="w-100 btn btn-lg btn-outline-primary" 
+                            onClick={() => setPasswordChange(true)}>Zobraz mé koference</button>
+                        </div>
+                        <br/>
+                        <div>
+                            <button class="w-100 btn btn-lg btn-outline-primary" 
+                            onClick={() => setPasswordChange(true)}>Zobraz mé příspěvky</button>
+                        </div>
+                        <br/>
+                        <div>
+                            <button class="w-100 btn btn-lg btn-outline-primary" 
+                            onClick={() => setPasswordChange(true)}>Změnit heslo</button>
+                        </div>
+                        <br/>
+                        <DeleteUser Delete={deleteUser}></DeleteUser>
+                    </div>
+                }
+
             </div>
         </div>
     </div>

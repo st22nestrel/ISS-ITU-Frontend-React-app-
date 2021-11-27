@@ -24,7 +24,7 @@ export default function KonferenceNew() {
         else{
             //TODO navigate to created konference
             setMsg(null);
-            navigate('/konference');
+            navigate('/konference/'+details.Nazev);
         }
     }
 

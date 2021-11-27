@@ -19,11 +19,6 @@ function KonferenceCardButton({data}){
         <form onSubmit={null} class="needs-validation" novalidate="">
         <div className="form-inner">
                 <div class="row g-3">
-                    <div class="col-12">
-                        <label for="name" class="form-label">Název <span class="text-muted">(Nemuže být změněn později)</span></label>
-                        <input type="text" class="form-control" id="name"
-                        onChange="" value={details.name}/>
-                    </div>
 
                     <div class="col-12">
                         <label for="description" class="form-label">Popis</label>

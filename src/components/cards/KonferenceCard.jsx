@@ -1,22 +1,17 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import { NavLink } from "react-router-dom";
+
 
 class KonferenceCard extends React.Component{
-
-    /* constructor(props) {
-        super(props);
-        this.state = {
-          open: false
-        };
-      } */
-      state = {
-          open: true
-      }
+    state = {
+        open: false
+    }
 
     konference = this.props.data;
+    
 
     render(){
-
 
         let card;
         let konference = this.props.data;
@@ -43,11 +38,9 @@ class KonferenceCard extends React.Component{
                         </button>
                     </li>
                     <li>
-                        <button class="btn-round btn-fill btn-primary pull-right"
-                                onClick=""
-                        >
-                            Uprav detaily konferenci
-                        </button>
+                        <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev}>
+                            Uprav detaily Konference
+                        </NavLink>
                     </li>
                 </ul>
             </nav>

@@ -1,5 +1,7 @@
 //import React from "react";
 
+import { Navigate } from "react-router";
+
 class Authentificate{
 
     //static wit = window.localStorage.setItem("token", null);
@@ -17,9 +19,11 @@ class Authentificate{
         window.localStorage.setItem("token", token);
     }
 
-    static logout(token){
+    static logout(){
+        window.localStorage.setItem("token", "");
         this.authentificated = false;
         this.token = "";
+        window.location.reload(false);
     }
 
     static isAuth(){

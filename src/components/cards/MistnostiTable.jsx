@@ -2,14 +2,14 @@ import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
 import data from "./mock-data.json";
-import ReadOnlyRow from "./components/ReadOnlyRow";
-import EditableRow from "./components/EditableRow";
+import ReadOnlyRow from "./components/MistnostiReadDeleteRow";
+import EditableRow from "./components/MistnostiEditableRow";
 
 function MistnostiTable ({Konference}) {
 
   //useEffect na nacitanie miestnosti
 
-  const [rooms, setRooms] = useState(data);
+  const [rooms, setRooms] = useState([]);
 
   const [addFormData, setAddFormData] = useState({
     Kod: "",
