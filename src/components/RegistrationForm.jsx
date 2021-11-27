@@ -121,7 +121,7 @@ import React, { useState } from 'react'
                     </div>
 
                     <div class="col-12">
-                        <label for="Datum_narozeni" class="form-label">Datum narození</label>
+                        <label for="Datum_narozeni" class="form-label">Datum narození<span class="text-muted">(Nepovinné)</span></label>
                         <input type="date" class="form-control" id="Datum_narozeni" placeholder=""
                         onChange={e => setDetails({...details, Datum_narozeni: e.target.value})} value={details.Datum_narozeni}/>
                         <div class="invalid-feedback">
@@ -134,7 +134,7 @@ import React, { useState } from 'react'
                 {/* <hr class="my-4"/> */}
                 <br/>
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Zaregistrovat</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Zaregistrovat se</button>
 
             </div>
         </form>
