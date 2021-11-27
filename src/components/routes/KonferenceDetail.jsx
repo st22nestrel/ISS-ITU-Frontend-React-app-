@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import KonferenceFormButton from "./cards/KonferenceFormDetail";
-import MistnostiTable from "./cards/MistnostiTable";
+import KonferenceFormButton from "../cards/KonferenceFormDetail";
+import MistnostiTable from "../cards/MistnostiTable";
 import { useParams } from 'react-router';
-import { useGet } from '../static/Loaders'
+import { useGet } from '../../static/Loaders'
 
 function KonferenceDetail() {
 
@@ -41,13 +41,13 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Místnosti </h3>
 
-                                <MistnostiTable data={data}></MistnostiTable>
+                                <MistnostiTable Konference={data.Nazev}></MistnostiTable>
 
                             </div>
                         </div>
                         <div class="card">
                             <div class="card-header card-header-flex">
-                                <h3 class="card-title text-bold"> TODO </h3>
+                                <h3 class="card-title text-bold"> Prispevky </h3>
 
                                 <KonferenceFormButton data={data}></KonferenceFormButton>
 

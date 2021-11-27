@@ -1,14 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router";
 
 const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
-  const navigate = useNavigate();
   return (
     <tr>
-      <td>{data.Kod}</td>
-      <td>{data.Popis}</td>
-      <td>{data.Kapacita}</td>
-      <td>{data.Vybaveni}</td>
+      <td>{data.Nazev}</td>
+      <td>{data.Konference}</td>
+      <td>{data.Uzivatel}</td>
+      <td>{data.Tagy}</td>
+      <td>{data.Grafika}</td>
+      <td>{data.Soubor}</td>
+      <td>{data.Mistnost}</td>
+      <td>{data.jeSchvalena}</td>
+      <td>{data.Datum}</td>
+      <td>{data.Zacatek_cas}</td>
+      <td>{data.Konec_cas}</td>
+      <td>{data.poznamkyPoradatele}</td>
       <td>
         <button
           type="button" class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
@@ -21,13 +27,6 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
           onClick={() => handleDeleteClick(data.Kod)}
         >
           Zmaž
-        </button>
-
-        <button 
-          type="button" class="btn btn-round btn-fill btn-secondary show-hide-btn-sm"
-          onClick={() => navigate("/konference/"+data.Konference+'/'+data.Kod)}
-        >
-          Zobraz prezentace
         </button>
       </td>
     </tr>

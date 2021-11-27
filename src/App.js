@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-route
 import {
   KonferenceList,
   KonfereceDetail,
+  KonferenceMistnostDetail,
   Navigation,
   NewKonference,
   KonferenceNew,
@@ -34,6 +35,7 @@ function App() {
       <Route path="/novaKonference" element={ <ProtectedRoute>  <KonferenceNew /> </ProtectedRoute> } />
       <Route path="/profilUzivatele" element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
       <Route path="/konference/:id" element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
+      <Route path="/konference/:id/:kod" element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />
 
       {/* <Route path="/blog" element={<Blog />}>
         <Route path="" element={<Posts />} />
