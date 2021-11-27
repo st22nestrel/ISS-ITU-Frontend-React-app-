@@ -4,11 +4,13 @@ import ProfileForm from '../ProfileForm';
 import PasswordChange from '../cards/PasswordChange';
 import {useGet, Put, Post} from '../../static/Loaders';
 import DeleteUser from '../cards/DeleteUser';
+import { useNavigate } from 'react-router';
 
 function CurrentUserProfile(token) {
 
     const [updated, setUpdated] = useState(false);
     const [passwordChange, setPasswordChange] = useState(false);
+    const navigate = useNavigate();
 
     let {data: userInfo, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/', token)
     let displayErr;
@@ -117,12 +119,12 @@ function CurrentUserProfile(token) {
                     <div class="col-sm-4 themed-grid-col">
                         <div>
                             <button class="w-100 btn btn-lg btn-outline-primary" 
-                            onClick={() => setPasswordChange(true)}>Zobraz mé koference</button>
+                            onClick={() => navigate('konference')}>Zobraz mé koference</button>
                         </div>
                         <br/>
                         <div>
                             <button class="w-100 btn btn-lg btn-outline-primary" 
-                            onClick={() => setPasswordChange(true)}>Zobraz mé příspěvky</button>
+                            onClick={() => navigate('prezentace')}>Zobraz mé příspěvky</button>
                         </div>
                         <br/>
                         <div>

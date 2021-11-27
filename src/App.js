@@ -8,7 +8,9 @@ import {
   Navigation,
   NewKonference,
   KonferenceNew,
-  SignIn
+  SignIn,
+  PrezentaceListReadOnly,
+  PrezentaceUserList
 } from "./components";
 
 import Auth from './components/Authentificate';
@@ -29,13 +31,19 @@ function App() {
       {!Auth.authentificated &&
         <Route path="/signIn" element={<SignIn/>}/>
       }
-      <Route path="/konference" element={<ProtectedRoute> <KonferenceList /> </ProtectedRoute>}/>
+      <Route path="/konference" element={<ProtectedRoute> <KonferenceList url={'http://iisprojekt.fun:8000/konference/'} /> </ProtectedRoute>}/>
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
       <Route path="/novaKonference" element={ <ProtectedRoute>  <KonferenceNew /> </ProtectedRoute> } />
-      <Route path="/profilUzivatele" element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
+      <Route path="/uzivatel" element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
+
+      <Route path="/uzivatel/prezentace" element={<ProtectedRoute> <PrezentaceUserList token={Auth.token}/> </ProtectedRoute>}/>
+      <Route path="/uzivatel/konference" element={<ProtectedRoute> <KonferenceList url={'http://iisprojekt.fun:8000/uzivatel/konference'}/> </ProtectedRoute>}/>
+
       <Route path="/konference/:id" element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
       <Route path="/konference/:id/:kod" element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />
+
+      <Route path="/konference/:id/prispevkySchvalene" element={ <ProtectedRoute> <PrezentaceListReadOnly/> </ProtectedRoute> } />
 
       {/* <Route path="/blog" element={<Blog />}>
         <Route path="" element={<Posts />} />

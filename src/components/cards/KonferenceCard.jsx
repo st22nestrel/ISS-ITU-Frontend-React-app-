@@ -24,11 +24,9 @@ class KonferenceCard extends React.Component{
                 <a class="navbar-brand"></a>
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <button class="btn-round btn-fill btn-primary pull-right"
-                                onClick=""
-                        >
-                            Zobraz prezentace
-                        </button>
+                        <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev+"/prispevkySchvalene"}>
+                            Uprav detaily Konference
+                        </NavLink>
                     </li>
                     <li class="nav-item">
                         <button class="btn-round btn-fill btn-primary pull-right"

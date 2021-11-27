@@ -1,21 +1,21 @@
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
-import data from "./mock-prezentace.json";
-import ReadRow from "./components/ReadRow";
+import ReadRow from "./components/PrezentaceReadRow";
+import {useGet} from '../../static/Loaders'
 
-function PrezentaceShowTable ({Konference}) {
+function PrezentaceShowTable ({Konference, data}) {
 
   //useEffect na nacitanie miestnosti
-  const [prezentace, setPrezentace] = useState(data);
 
   return (
+    data &&
     <div className="app-container">
-      <form onSubmit={handleEditFormSubmit}>
+      <form onSubmit="">
         <table>
           <thead>
             <tr>
               <th>Nazev</th>
+              <th>Konference</th>
               <th>Prednasajuci</th>
               <th>Popis</th>
               <th>Tagy</th>
@@ -30,9 +30,9 @@ function PrezentaceShowTable ({Konference}) {
             </tr>
           </thead>
           <tbody>
-            {prezentace.map((room) => (
+            {data.map((room) => (
               <Fragment>
-                <ReadRow data={data}/>
+                <ReadRow data={room}/>
             </Fragment>
             ))}
           </tbody>
