@@ -29,13 +29,14 @@ const EditableRow = ({
           type="text"
           required="required"
           placeholder=""
-          name="Prednasajuci"
+          name="Konference"
           value={editFormData.Konference}
           onChange={handleEditFormChange}
         ></input>
       </td>
 
-    { //TODO make rendering of this conditional :)
+     {//TODO make rendering of this conditional :)
+     true &&
       <td>
         <input
           type="text"
@@ -62,7 +63,7 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="Tagy"
           value={editFormData.Tagy}
@@ -73,7 +74,7 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="Grafika"
           value={editFormData.Grafika}
@@ -84,7 +85,7 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="Soubor"
           value={editFormData.Soubor}
@@ -95,7 +96,7 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="Mistnost"
           value={editFormData.Mistnost}
@@ -106,7 +107,7 @@ const EditableRow = ({
       <td>
         <select
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="Schvalena"
           value={editFormData.jeSchvalena}
@@ -154,7 +155,7 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="poznamkyPoradatele"
           value={editFormData.poznamkyPoradatele}

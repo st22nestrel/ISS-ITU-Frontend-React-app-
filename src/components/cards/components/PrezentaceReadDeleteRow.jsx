@@ -6,6 +6,7 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
       <td>{data.Nazev}</td>
       <td>{data.Konference}</td>
       <td>{data.Uzivatel}</td>
+      <td>{data.Popis}</td>
       <td>{data.Tagy}</td>
       <td>{data.Grafika}</td>
       <td>{data.Soubor}</td>

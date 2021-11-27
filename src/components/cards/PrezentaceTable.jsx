@@ -2,8 +2,8 @@ import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
 import data from "./mock-data.json";
-import ReadDeleteRow from "./components/MistnostiReadDeleteRow";
-import EditableRow from "./components/MistnostiEditableRow";
+import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
+import EditableRow from "./components/PrezentaceEditableRow";
 import { Post } from "../../static/Loaders";
 import Authentificate from "../Authentificate";
 
@@ -71,9 +71,10 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
 
 
   data = [{
-    Nazev: "hell",
-    Konference: "is",
-    Uzivatel: "this",
+    Nazev: "hellojsaddddd \
+    ddddddddddddddddd ddddddddddddddddddddddddddddddddd",
+    Konference: "Excel@FIT",
+    Uzivatel: 1,
     Tagy: "projex",
     Grafika: "s",
     Soubor: "s",
@@ -92,11 +93,12 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
     Nazev: "",
     Konference: Konference,
     Uzivatel: Authentificate.email,
+    Popis: "",
     Tagy: "",
     Grafika: "",
     Soubor: "",
     Mistnost: Mistnost,
-    jeSchvalena: "",
+    jeSchvalena: 0,
     Datum: "",
     Zacatek_cas: "",
     Konec_cas: "",
@@ -107,6 +109,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
     Nazev: "",
     Konference: Konference,
     Uzivatel: Authentificate.email,
+    Popis: "",
     Tagy: "",
     Grafika: "",
     Soubor: "",
@@ -153,15 +156,16 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
     const newPrezentace = {
       Nazev: addFormData.Nazev,
       Konference: Konference,
-      Uzivatel: Authentificate.email,
+      Uzivatel: null, //todo-store email in localstorage :D
+      Popis: addFormData.Popis,
       Tagy: addFormData.Tagy,
       Grafika: addFormData.Grafika,
       Soubor: addFormData.Soubor,
       Mistnost: addFormData.Mistnost,
       jeSchvalena: addFormData.jeSchvalena,
-      Datum: addFormData.Datum,
-      Zacatek_cas: addFormData.Zacatek_cas,
-      Konec_cas: addFormData.Konec_cas,
+      Datum: addFormData.Datum === "" ? null : addFormData.Datum,
+      Zacatek_cas: addFormData.Zacatek_cas === "" ? null : addFormData.Zacatek_cas,
+      Konec_cas: addFormData.Konec_cas === "" ? null : addFormData.Konec_cas,
       poznamkyPoradatele: addFormData.poznamkyPoradatele
     };
 
@@ -184,15 +188,16 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
     const newPrezentace = {
       Nazev: addFormData.Nazev,
       Konference: Konference,
-      Uzivatel: Authentificate.email,
+      Uzivatel: null, //todo-store email in localstorage :D
+      Popis: addFormData.Popis,
       Tagy: addFormData.Tagy,
       Grafika: addFormData.Grafika,
       Soubor: addFormData.Soubor,
       Mistnost: addFormData.Mistnost,
       jeSchvalena: addFormData.jeSchvalena,
-      Datum: addFormData.Datum,
-      Zacatek_cas: addFormData.Zacatek_cas,
-      Konec_cas: addFormData.Konec_cas,
+      Datum: addFormData.Datum === "" ? null : addFormData.Datum,
+      Zacatek_cas: addFormData.Zacatek_cas === "" ? null : addFormData.Zacatek_cas,
+      Konec_cas: addFormData.Konec_cas === "" ? null : addFormData.Konec_cas,
       poznamkyPoradatele: addFormData.poznamkyPoradatele
     };
 
@@ -213,15 +218,16 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
     const formValues = {
       Nazev: room.Nazev,
       Konference: Konference,
-      Uzivatel: Authentificate.email,
+      Uzivatel: "placeholder Email", //todo-store email in localstorage :D
+      Popis: addFormData.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
       Soubor: room.Soubor,
       Mistnost: room.Mistnost,
       jeSchvalena: room.jeSchvalena,
-      Datum: room.Datum,
-      Zacatek_cas: room.Zacatek_cas,
-      Konec_cas: room.Konec_cas,
+      Datum: room.Datum === "" ? null : room.Datum,
+      Zacatek_cas: room.Zacatek_cas === "" ? null : room.Zacatek_cas,
+      Konec_cas: room.Konec_cas === "" ? null : room.Konec_cas,
       poznamkyPoradatele: room.poznamkyPoradatele
     };
 
@@ -245,50 +251,54 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
   let card = (
     <div className="app-container">
       <form onSubmit={handleEditFormSubmit}>
-        <table>
-          <thead>
-            <tr>
-              <td>Nazev</td>
-              <td>Konference</td>
-              <td>Uzivatel</td>
-              <td>Tagy</td>
-              <td>Grafika</td>
-              <td>Soubor</td>
-              <td>Mistnost</td>
-              <td>Schvalena</td>
-              <td>Datum</td>
-              <td>Zacatek cas</td>
-              <td>Konec cas</td>
-              <td>poznamkyPoradatele</td>
-            </tr>
-          </thead>
-          <tbody>
-            {prezentace.map((room) => (
-              <Fragment>
-              { //by this we make even nazev unique -> at least for room, which is ???
-              editRoomNazev === room.Nazev ? (
-                <EditableRow
-                  editFormData={editFormData}
-                  handleEditFormChange={handleEditFormChange}
-                  handleCancelClick={handleCancelClick}
-                />
-              ) : (
-                <ReadDeleteRow
-                  data={room}
-                  handleEditClick={handleEditClick}
-                  handleDeleteClick={handleDeleteClick}
-                />
-              )}
-            </Fragment>
-            ))}
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <td>Nazev</td>
+                <td>Konference</td>
+                <td>Uzivatel</td>
+                <td>Popis</td>
+                <td>Tagy</td>
+                <td>Grafika</td>
+                <td>Soubor</td>
+                <td>Mistnost</td>
+                <td>Schvalena</td>
+                <td>Datum</td>
+                <td>Zacatek cas</td>
+                <td>Konec cas</td>
+                <td>poznamkyPoradatele</td>
+              </tr>
+            </thead>
+            <tbody>
+              {prezentace.map((room) => (
+                <Fragment>
+                { //by this we make even nazev unique -> at least for room, which is ???
+                editRoomNazev === room.Nazev ? (
+                  <EditableRow
+                    editFormData={editFormData}
+                    handleEditFormChange={handleEditFormChange}
+                    handleCancelClick={handleCancelClick}
+                  />
+                ) : (
+                  <ReadDeleteRow
+                    data={room}
+                    handleEditClick={handleEditClick}
+                    handleDeleteClick={handleDeleteClick}
+                  />
+                )}
+              </Fragment>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
       </form>
 
-      <h4>Přidat Prezentaci k místnosti</h4>
+      <h4>Přidat prezentaci k místnosti</h4>
       <form onSubmit={handleAddFormSubmit}>
         <div >
-          <label for="Nazev" class="form-label">Název prezentace</label>
+          <label for="Nazev" class="form-label">Název</label>
           <input id="Nazev" class="form-control"
             type="text"
             name="Nazev"
@@ -304,14 +314,14 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
             name="Konference"
             required=""
             placeholder=""
-            value="Konf"
+            value={Konference}
             /* onChange={handleAddFormChange} */
           />
         </div>
         <div>
           <label for="Uzivatel" class="form-label">Uzivatel</label>
           <input id="Uzivatel" class="form-control"
-            type="email"
+            type="number"
             name="Uzivatel"
             required=""
             placeholder="zadaj svôj email"
@@ -321,7 +331,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
         <div>
           <label for="Popis" class="form-label">Popis</label>
           <input id="Popis" class="form-control"
-            type="number"
+            type="text"
             name="Popis"
             required="required"
             placeholder=""
@@ -375,13 +385,17 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
 
         <div>
           <label for="jeSchvalena" class="form-label">Schvalena</label>
-          <input id="jeSchvalena" class="form-control"
+          <select id="jeSchvalena" class="form-control"
             type="text"
             name="jeSchvalena"
             required=""
             placeholder=""
             onChange={handleAddFormChange}
-          />
+          >
+          <option value={editFormData.jeSchvalena}></option>
+            <option value={1}>ano</option>
+            <option value={0}>ne</option>
+          </select>
         </div>
 
         <div>
@@ -418,7 +432,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
         </div>
 
         <div>
-          <label for="poznamkyPoradatele" class="form-label">poznamky poradatele cas</label>
+          <label for="poznamkyPoradatele" class="form-label">poznamky poradatele</label>
           <input id="Mistnost" class="form-control"
             type="text"
             name="poznamkyPoradatele"
