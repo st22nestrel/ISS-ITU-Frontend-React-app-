@@ -7,7 +7,7 @@ import React, { useState } from 'react'
  */
 function LoginForm({Login, error}) {
 
-    const [details, setDetails] = useState({email: "", password: ""});
+    const [details, setDetails] = useState({Email: "", Heslo: ""});
 
     const submitHandler = e => {
         e.preventDefault();
@@ -22,13 +22,13 @@ function LoginForm({Login, error}) {
                 <div className="form-group">
                     <div class="form-floating">
                         <label htmlFor="floatingInput">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="smth@example.com"
-                        onChange={e => setDetails({...details, email: e.target.value})} value={details.email}/>
+                        <input type="email" class="form-control" id="Email" placeholder="smth@example.com"
+                        onChange={e => setDetails({...details, Email: e.target.value})} value={details.Email}/>
                     </div>
                     <div class="form-floating">
-                        <label htmlFor="password">Heslo</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password"
-                        onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
+                        <label htmlFor="Heslo">Heslo</label>
+                        <input type="password" class="form-control" id="Heslo" placeholder="Password"
+                        onChange={e => setDetails({...details, Heslo: e.target.value})} value={details.Heslo}/>
                     </div>
                 </div>
 

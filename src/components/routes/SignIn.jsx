@@ -13,13 +13,9 @@ async function registerUser(credentials) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify( {Jmeno: credentials.name, Prijmeni: credentials.surname,
-        Heslo: credentials.password, Role: "uzivatel", Organizace: credentials.organisation,
-        Obor: credentials.field, Zeme: credentials.country, Datum_narozeni: credentials.birthday,
-        Email: credentials.email, TelCislo: credentials.telNMB, Titul: credentials.degree})
+      body: JSON.stringify(credentials)
     })
    }
-
 
 async function loginUser(credentials) {
     return fetch('http://iisprojekt.fun:8000/uzivatel/prihlaseni', {
@@ -27,7 +23,7 @@ async function loginUser(credentials) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({Email: credentials.email, Heslo: credentials.password, Logon: credentials.Email})
+      body: JSON.stringify(credentials)
     })
     .then(data => data.json())
    }
@@ -41,7 +37,7 @@ function SignIn() {
         console.log("details");
 
         //TODO validate email lil
-        if(details.email && details.password){
+        if(details.Email && details.Heslo){
             
             //send to server
             let answer = await loginUser(details);
@@ -49,7 +45,7 @@ function SignIn() {
             //validate if user exist/ answer from server
             if(answer.data){
                 Auth.login(answer.data);
-                Auth.setEmail(details.email);
+                Auth.setEmail(details.Email);
                 console.log("redirected");
                 navigate('/konference');
             }
@@ -66,7 +62,7 @@ function SignIn() {
         console.log("details");
 
         //TODO validate email lil
-        if(details.email && details.password && details.name && details.surname){
+        if(details.Email && details.Heslo && details.Jmeno && details.Prijmeni){
             //send to server
             let answer = await registerUser(details);
 
@@ -77,7 +73,7 @@ function SignIn() {
 
               if(answer.data){
                 Auth.login(answer.data);
-                Auth.setEmail(details.email);
+                Auth.setEmail(details.Email);
                 console.log("redirected");
                 navigate('/konference');
               }

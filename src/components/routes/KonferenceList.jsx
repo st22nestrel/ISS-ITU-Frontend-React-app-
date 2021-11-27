@@ -7,10 +7,13 @@ import {useGet} from '../../static/Loaders';
 function KonferenceList({url}) {
 
 //    let {data, pending, error} = {data: null, pending: null, error: null};
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/', null)
+    let {data, pending, error} = useGet(url, null)
     let displayErr;
 
 
+    if(data && data.length == 0){
+        data = null;
+    }
 
     return (
     <div className="konference">
@@ -26,11 +29,18 @@ function KonferenceList({url}) {
                         </div>
                       </div> }
                     
-                    { data && data.map((konference)=>(
-                        <div className="konference-card" key={konference.Nazev}>
-                            <KonferenceCard data={konference}/>
-                        </div>
+                    { 
+                        data && data.map((konference)=>(
+                            <div className="konference-card" key={konference.Nazev}>
+                                <KonferenceCard data={konference}/>
+                            </div>
                     ))}
+                    {
+                        !data  &&
+                        <div className="">
+                            <h2>Žádné konference v systému, zadejte nejaké</h2>
+                        </div>
+                    }
 
                 </div>
             </div>
