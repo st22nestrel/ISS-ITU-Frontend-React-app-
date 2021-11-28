@@ -134,7 +134,7 @@ import React, { useState } from 'react'
                 {/* <hr class="my-4"/> */}
                 <br/>
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Zaregistrovat</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Zaregistrovat se</button>
 
             </div>
         </form>

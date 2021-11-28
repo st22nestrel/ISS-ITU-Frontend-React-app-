@@ -10,8 +10,7 @@ function Navigation() {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
           <NavLink className="navbar-brand" to="/uzivatel">
-            Profil
-          </NavLink>
+	  </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
               {signInLink &&
@@ -31,6 +30,11 @@ function Navigation() {
               <li className="nav-item">
                 <NavLink className="nav-link" to="/novaKonference">
                   Přidat konferenci
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/uzivatel">
+                  Profil
                 </NavLink>
               </li>
               <button class="btn btn-outline-success" type="button" onClick={()=>(Authentificate.logout())}>Odhlásit</button>
