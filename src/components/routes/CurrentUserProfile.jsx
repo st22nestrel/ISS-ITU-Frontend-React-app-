@@ -69,6 +69,9 @@ function CurrentUserProfile(token) {
         }
     }
 
+    const redirectToUpload = () => {
+	window.location.href = 'http://www.iisprojekt.fun/upload/';
+    }
 
 
     return (
@@ -125,6 +128,11 @@ function CurrentUserProfile(token) {
                         <div>
                             <button class="w-100 btn btn-lg btn-outline-primary" 
                             onClick={() => navigate('prezentace')}>Zobraz mé příspěvky</button>
+                        </div>
+                        <br/>
+                        <div>
+                            <button class="w-100 btn btn-lg btn-outline-primary" 
+                            onClick={redirectToUpload}>Upload server</button>
                         </div>
                         <br/>
                         <div>

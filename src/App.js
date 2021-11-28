@@ -19,11 +19,19 @@ import Auth from './components/Authentificate';
 import ProtectedRoute, {UnprotectedRoute} from './components/AuthRoute';
 import CurrentUserProfile from './components/routes/CurrentUserProfile';
 
+import React from 'react';
+import { Helmet } from 'react-helmet';
+
 function App() {
 
   /* const navigate = useNavigate() */
 
   return (
+  <div>
+      <Helmet>
+        <title>Moje Konference</title>
+      </Helmet>
+
   <Router>
     <Navigation />
     <Routes>
@@ -56,6 +64,7 @@ function App() {
       </Route> */}
     </Routes>
   </Router>
+  </div>
   );
 }
 
