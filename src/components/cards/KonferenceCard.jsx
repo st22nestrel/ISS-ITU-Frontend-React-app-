@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 class KonferenceCard extends React.Component{
     state = {
-        open: false
+        open: true
     }
 
     konference = this.props.data;
@@ -29,11 +29,9 @@ class KonferenceCard extends React.Component{
                         </NavLink>
                     </li>
                     <li class="nav-item">
-                        <button class="btn-round nav-link  tn-fill btn-primary pull-right"
-                                onClick=""
-                        >
+                        <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev+"/novyPrispevek"}>
                             Přidej příspěvek
-                        </button>
+                        </NavLink>
                     </li>
                     <li>
                         <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev}>

@@ -5,6 +5,7 @@ import MistnostiTable from "../cards/MistnostiTable";
 import MistnostiTableReadOnly from "../cards/MistnostiTableReadOnly";
 import PrezentaceTable from "../cards/PrezentaceTable";
 import PrezentaceTableReadOnly from "../cards/PrezentaceTableReadOnly";
+import PrezentaceTableUserEdit from "../cards/PrezentaceTableUserEdit";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'
 
@@ -106,8 +107,10 @@ return (
                             :
                             <div class="card">
                                 <div class="card-header card-header-flex">
-                                    <h3 class="card-title text-bold"> Prispevky </h3>
-                                    <PrezentaceTableReadOnly Konference={data.Nazev}></PrezentaceTableReadOnly>
+                                    <h3 class="card-title text-bold"> Mé prispevky ke schválení </h3>
+                                    <PrezentaceTableUserEdit Konference={data.Nazev}
+                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    ></PrezentaceTableUserEdit>
                                 </div>
                             </div>
                         }

@@ -4,8 +4,9 @@ import "./MistnostiTable.css";
 import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRowUser";
-import { Post } from "../../static/Loaders";
+import { useGet, Post } from "../../static/Loaders";
 import Authentificate from "../Authentificate";
+import { useParams } from "react-router";
 
 async function Add(details){
   console.log("details");
@@ -30,7 +31,7 @@ async function Add(details){
 const Update = async details => {
   console.log("updating room");
 
-  //let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/'+details.Nazev+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -43,13 +44,13 @@ const Update = async details => {
           setUpdated(false);
           }, 500);
   } */
-  //return error
+  return error
 }
 
 const Delete = async details => {
   console.log("deleting room");
 
-  //let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/'+details.Nazev+'/zmazat', null, null);
+  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/odstranit', null, null);
   
   /* if(_error) {
       //reload get user info again
@@ -62,30 +63,10 @@ const Delete = async details => {
           setUpdated(false);
           }, 500);
   } */
-  //return error
+  return error
 }
 
-function PrezentaceUserEdit ({Konference, Mistnost, data}) {
-
-  //useEffect na nacitanie miestnosti
-
-
-  data = [{
-    Nazev: "hellojsaddddd \
-    ddddddddddddddddd ddddddddddddddddddddddddddddddddd",
-    Konference: "Excel@FIT",
-    Uzivatel: 1,
-    Tagy: "projex",
-    Grafika: "s",
-    Soubor: "s",
-    Mistnost: "CO90",
-    jeSchvalena: "ne",
-    Datum: "2022-01-20",
-    Zacatek_cas: "10:00",
-    Konec_cas: "20:00",
-    poznamkyPoradatele: "nic vic"
-  }]
-
+function GenerateHtml({Konference, Mistnost, data}){
   const [opened, setOpened] = useState(false);
   const [prezentace, setPrezentace] = useState(data);
 
@@ -264,7 +245,7 @@ function PrezentaceUserEdit ({Konference, Mistnost, data}) {
                 <td>Soubor</td>
                 <td>Mistnost</td>
                 <td>Schvalena</td>
-                <td>Datum</td>
+                {/* <td>Datum</td> */}
                 <td>Zacatek cas</td>
                 <td>Konec cas</td>
                 <td>poznamkyPoradatele</td>
@@ -306,6 +287,32 @@ function PrezentaceUserEdit ({Konference, Mistnost, data}) {
     </div>
 
 );
+}
+
+function PrezentaceUserEdit ({Konference, Mistnost, url}) {
+
+  let {id, kod} = useParams();
+
+  let {data, pending, error} = useGet(url, null)
+
+
+  const userID = window.localStorage.getItem("userID");
+
+
+  if(data){
+    let filteredData = data.filter(e => e.Uzivatel == userID );
+
+    data = filteredData;
+  }
+    
+
+  return(data && 
+    <div>
+      <GenerateHtml data={data} Konference={id} Mistnost={kod}></GenerateHtml>
+    </div>
+    
+    )
+
 };
 
 export default PrezentaceUserEdit;

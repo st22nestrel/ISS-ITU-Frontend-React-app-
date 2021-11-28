@@ -7,6 +7,7 @@ import {
   KonferenceMistnostDetail,
   Navigation,
   NewKonference,
+  PrispevekNew,
   KonferenceNew,
   SignIn,
   PrezentaceListReadOnly,
@@ -41,9 +42,11 @@ function App() {
       <Route path="/uzivatel/prezentace" element={<ProtectedRoute> <PrezentaceUserList token={Auth.token}/> </ProtectedRoute>}/>
       <Route path="/uzivatel/konference" element={<ProtectedRoute> <KonferenceList url={'http://iisprojekt.fun:8000/uzivatel/poradatel'}/> </ProtectedRoute>}/>
 
-      <Route path="/konference/:id" element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
+      <Route path="/konference/:id" exact element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
       <Route path="/konference/notRegistered/:id" element={ <KonferenceDetailNotRegistered /> } />
-      <Route path="/konference/:id/:kod" element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />
+
+      <Route path="/konference/:id/:kod" exact exact element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />
+      <Route path="/konference/:id/novyPrispevek" element={ <ProtectedRoute> <PrispevekNew/> </ProtectedRoute> } />
 
       <Route path="/konference/:id/prispevkySchvalene" element={ <ProtectedRoute> <PrezentaceListReadOnly/> </ProtectedRoute> } />
 

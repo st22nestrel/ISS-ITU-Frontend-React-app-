@@ -12,7 +12,7 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
       <td>{data.Soubor}</td>
       <td>{data.Mistnost}</td>
       <td>{data.jeSchvalena}</td>
-      <td>{data.Datum}</td>
+      {/* <td>{data.Datum}</td> */}
       <td>{data.Zacatek_cas}</td>
       <td>{data.Konec_cas}</td>
       <td>{data.poznamkyPoradatele}</td>

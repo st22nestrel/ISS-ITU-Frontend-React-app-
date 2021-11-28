@@ -5,6 +5,7 @@ export { default as SignIn } from "./routes/SignIn";
 export { default as KonferenceNew } from "./routes/KonferenceNew";
 export { default as KonfereceDetail } from "./routes/KonferenceDetail";
 export { default as KonferenceDetailNotRegistered } from "./routes/KonferenceDetailNotRegistered";
+export { default as PrispevekNew } from "./routes/PrispevekNew";
 
 export { default as PrezentaceListReadOnly } from "./routes/PrezentaceListReadOnly";
 export { default as PrezentaceUserList } from "./routes/PrezentaceUserList";

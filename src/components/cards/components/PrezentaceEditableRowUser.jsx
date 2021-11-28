@@ -25,31 +25,33 @@ const EditableRow = ({
       </td>
 
       <td>
-        <input
+        {editFormData.Konference}
+        {/* <input
           type="text"
           required="required"
           placeholder=""
           name="Konference"
           value={editFormData.Konference}
           onChange={handleEditFormChange}
-        ></input>
-      </td>
+        ></input> */}
+      </td> 
 
-     {//TODO make rendering of this conditional :)
-     true &&
+     
       <td>
-        <input
+        {editFormData.Uzivatel}
+        {/* <input
           type="text"
           required="required"
           placeholder=""
           name="Prednasajuci"
           value={editFormData.Uzivatel}
           onChange={handleEditFormChange}
-        ></input>
+        ></input> */}
       </td>
-    }
+
 
       <td>
+        
         <input
           type="text"
           required="required"
@@ -61,6 +63,7 @@ const EditableRow = ({
       </td>
 
       <td>
+        
         <input
           type="text"
           required=""
@@ -94,18 +97,19 @@ const EditableRow = ({
       </td>
 
       <td>
-        <input
+        {editFormData.Mistnost}
+        {/* <input
           type="text"
           required=""
           placeholder=""
           name="Mistnost"
           value={editFormData.Mistnost}
-          
-        ></input>
+        ></input> */}
       </td>
 
       <td>
-        <select
+        {editFormData.jeSchvalena? "ano" : "ne"}
+        {/* <select
           type="text"
           required=""
           placeholder=""
@@ -116,10 +120,10 @@ const EditableRow = ({
             <option value={editFormData.jeSchvalena}></option>
             <option value="true">ano</option>
             <option value="false">ne</option>
-        </select>
+        </select> */}
       </td>
       
-      <td>
+{/*       <td>
         <input
           type="date"
           required="required"
@@ -128,39 +132,40 @@ const EditableRow = ({
           value={editFormData.Datum}
 
         ></input>
-      </td>
+      </td> */}
 
       <td>
-        <input
+        {editFormData.Zacatek_cas}
+        {/* <input
           type="time"
           required="required"
           placeholder=""
           name="Zacatek cas"
           value={editFormData.Zacatek_cas}
-          
-        ></input>
+        ></input> */}
       </td>
 
       <td>
-        <input
+        {editFormData.Konec_cas}
+        {/* <input
           type="time"
           required="required"
           placeholder=""
           name="Konec cas"
           value={editFormData.Konec_cas}
-          
-        ></input>
+        ></input> */}
       </td>
 
       <td>
-        <input
+        {editFormData.poznamkyPoradatele}
+        {/* <input
           type="text"
           required=""
           placeholder=""
           name="poznamkyPoradatele"
           value={editFormData.poznamkyPoradatele}
           onChange={handleEditFormChange}
-        ></input>
+        ></input> */}
       </td>
 
       <td>

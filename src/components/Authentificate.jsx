@@ -38,6 +38,10 @@ class Authentificate{
     static getToken(){
         return window.localStorage.getItem("token")
     }
+
+    static getUserId(){
+        return window.localStorage.getItem("userID")
+    }
 }
 
 export default Authentificate;
