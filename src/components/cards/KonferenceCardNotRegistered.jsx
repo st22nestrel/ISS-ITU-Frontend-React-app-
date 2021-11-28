@@ -25,7 +25,7 @@ class KonferenceCard extends React.Component{
                 <ul class="nav nav-pills">
                     <li class="nav-item">
                         <NavLink className="nav-link btn-warning" to={"/konference/"+konference.Nazev+"/prispevkySchvalene"}>
-                            Registrovat se
+                            Rezervovat vstupenku
                         </NavLink>
                     </li>
                     <li class="nav-item">

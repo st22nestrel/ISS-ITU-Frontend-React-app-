@@ -33,7 +33,9 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Prezentace v místnosti + {kod} v konferenci {id} </h3>
 
-                                <PrezentaceTable Konference={id} Mistnost={kod}></PrezentaceTable>
+                                <PrezentaceTable Konference={id} Mistnost={kod} 
+                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky'}
+                                ></PrezentaceTable>
 
                             </div>
                         </div>

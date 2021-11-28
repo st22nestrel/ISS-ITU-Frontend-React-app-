@@ -146,8 +146,8 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       Tagy: addFormData.Tagy,
       Grafika: addFormData.Grafika,
       Soubor: addFormData.Soubor,
-      Mistnost: addFormData.Mistnost,
-      jeSchvalena: null,//addFormData.jeSchvalena,
+      Mistnost: Mistnost,
+      jeSchvalena: addFormData.jeSchvalena,
       Datum: addFormData.Datum === "" ? null : addFormData.Datum,
       Zacatek_cas: addFormData.Zacatek_cas === "" ? null : addFormData.Zacatek_cas,
       Konec_cas: addFormData.Konec_cas === "" ? null : addFormData.Konec_cas,
@@ -174,7 +174,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       ID: editFormData.ID,
       Nazev: editFormData.Nazev,
       Konference: Konference,
-      Uzivatel: editFormData.Uzivatel, //todo-store email in localstorage :D
+      Uzivatel: null, //todo-store email in localstorage :D
       Popis: editFormData.Popis,
       Tagy: editFormData.Tagy,
       Grafika: editFormData.Grafika,
@@ -298,7 +298,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       </form>
 
       <h4>Přidat prezentaci k místnosti</h4>
-      <form onSubmit={handleAddFormSubmit} class="table-striped">
+      <form onSubmit={handleAddFormSubmit}>
         <div >
           <label for="Nazev" class="form-label">Název</label>
           <input id="Nazev" class="form-control"
@@ -400,7 +400,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
           </select>
         </div>
 
-        {/* <div>
+        <div>
           <label for="Datum" class="form-label">Datum</label>
           <input id="Datum" class="form-control"
             type="date"
@@ -409,7 +409,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
             placeholder=""
             onChange={handleAddFormChange}
           />
-        </div> */}
+        </div>
 
         <div>
           <label for="Zacatek_cas" class="form-label">Zacatek cas</label>
@@ -465,13 +465,13 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       {opened && card}
     </div>
 
-  );
+);
 };
 
-function PrezentaceTable({Konference, url}){
+function PrezentaceTable(){
   let {id, kod} = useParams();
 
-  let {data, pending, error} = useGet(url, null)
+  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+id+'/'+kod+'/prispevky', null)
 
   return(data && 
     <div>

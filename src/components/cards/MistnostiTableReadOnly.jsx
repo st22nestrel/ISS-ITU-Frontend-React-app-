@@ -46,8 +46,8 @@ function GenerateHtml({data, Konference}){
             </button>
             {opened && card}
     </div>
-
-);
+  );
+  
 };
 
 function MistnostiTable ({Konference}) {

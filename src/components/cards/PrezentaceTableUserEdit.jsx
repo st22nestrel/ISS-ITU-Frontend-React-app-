@@ -65,7 +65,7 @@ const Delete = async details => {
   //return error
 }
 
-function PrezentaceTable ({Konference, Mistnost, data}) {
+function PrezentaceUserEdit ({Konference, Mistnost, data}) {
 
   //useEffect na nacitanie miestnosti
 
@@ -308,4 +308,4 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
 );
 };
 
-export default PrezentaceTable;
+export default PrezentaceUserEdit;

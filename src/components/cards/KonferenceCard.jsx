@@ -25,24 +25,19 @@ class KonferenceCard extends React.Component{
                 <ul class="nav nav-pills">
                     <li class="nav-item">
                         <NavLink className="nav-link btn-warning" to={"/konference/"+konference.Nazev+"/prispevkySchvalene"}>
-                            Registrovat se
+                            Rezervovat vstupenku
                         </NavLink>
                     </li>
                     <li class="nav-item">
-                        <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev+"/prispevkySchvalene"}>
-                            Zobraz prispevky
-                        </NavLink>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn-round btn-fill btn-primary pull-right"
+                        <button class="btn-round nav-link  tn-fill btn-primary pull-right"
                                 onClick=""
                         >
-                            Uprav harmonogram
+                            Přidej příspěvek
                         </button>
                     </li>
                     <li>
                         <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev}>
-                            Uprav detaily Konference
+                            Zobraz mistnosti a příspěvky
                         </NavLink>
                     </li>
                 </ul>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import KoferenceDetailsReadOnly from "../cards/KoferenceDetailsReadOnly";
+import KonferenceDetailsReadOnly from "../cards/KonferenceDetailsReadOnly";
 import MistnostiTableReadOnly from "../cards/MistnostiTableReadOnly";
 import PrezentaceTableReadOnly from "../cards/PrezentaceTableReadOnly";
 import { useParams } from 'react-router';
@@ -33,7 +33,7 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Detaily konference: {data.Nazev} </h3>
 
-                                <KoferenceDetailsReadOnly data={data}></KoferenceDetailsReadOnly>
+                                <KonferenceDetailsReadOnly data={data}></KonferenceDetailsReadOnly>
 
                             </div>
                         </div>
@@ -49,7 +49,7 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Prispevky </h3>
 
-                                <PrezentaceTableReadOnly></PrezentaceTableReadOnly>
+                                <PrezentaceTableReadOnly Konference={id}></PrezentaceTableReadOnly>
 
                             </div>
                         </div>

@@ -4,13 +4,15 @@ import ReadRow from "./components/PrezentaceReadRow";
 import {useGet} from '../../static/Loaders'
 
 
-function GenerateHtml(data){
-  return(
+function GenerateHtml({data}){
+  const [opened, setOpened] = useState(false);
+
+  let card = (
     <div className="app-container">
       <form onSubmit="">
-        <div>
+        <div class="table-responsive">
 
-        <table>
+        <table class="table table-striped">
           <thead>
             <tr>
               <th>Nazev</th>
@@ -41,18 +43,35 @@ function GenerateHtml(data){
       </form>
     </div>
   )
+
+  return(
+
+    <div>
+      <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
+              onClick={(() => setOpened(!opened))}>
+          <i class="nc-icon nc-stre-up"></i>
+      </button>
+      {opened && card}
+    </div>
+  );
 }
 
 function PrezentaceTableReadOnly ({Konference}) {
 
 
-  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
+  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/prispevky', null)
 
   //useEffect na nacitanie miestnosti
 
   return (
-    data && 
+    data ?
     <GenerateHtml data={data}/>
+    :
+    (
+    <div>
+      Zadne prispevky :(
+    </div>
+    )
     
   );
 };

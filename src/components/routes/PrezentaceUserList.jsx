@@ -3,7 +3,7 @@ import KonferenceFormButton from "../cards/KonferenceDetailsEditable";
 import MistnostiTable from "../cards/MistnostiTable";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'
-import PrezentaceUserEdit from "../cards/PrezentaceUserEdit";
+import PrezentaceUserEdit from "../cards/PrezentaceTableUserEdit";
 
 function PrezentaceUserList() {
 

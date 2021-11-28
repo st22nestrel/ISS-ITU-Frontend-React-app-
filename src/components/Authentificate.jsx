@@ -20,12 +20,12 @@ class Authentificate{
     
     }
     static setId(details){
-        window.localStorage.setItem("UserID", details.ID)
+        window.localStorage.setItem("userID", details.ID)
     }
 
     static logout(){
         window.localStorage.setItem("token", "");
-        window.localStorage.setItem("UserID", "")
+        window.localStorage.setItem("userID", "")
         this.authentificated = false;
         this.token = "";
         window.location.reload(false);
