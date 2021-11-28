@@ -9,6 +9,7 @@ const EditableRow = ({
   handleCancelClick,
 }) => {
 
+  const ID = window.localStorage.getItem("ID");
     //TODO maybe make selectbox for rooms?? :/
 
   return (
@@ -40,11 +41,11 @@ const EditableRow = ({
       <td>
         <input
           type="text"
-          required="required"
+          required=""
           placeholder=""
           name="Prednasajuci"
-          value={editFormData.Uzivatel}
-          onChange={handleEditFormChange}
+          value="Nejde měnit"
+          onChange=""
         ></input>
       </td>
     }
@@ -114,41 +115,41 @@ const EditableRow = ({
           onChange={handleEditFormChange}
         >
             <option value={editFormData.jeSchvalena}></option>
-            <option value="true">ano</option>
-            <option value="false">ne</option>
+            {/* <option value="true">ano</option>
+            <option value="false">ne</option> */}
         </select>
       </td>
       
       <td>
         <input
           type="date"
-          required="required"
+          required=""
           placeholder=""
           name="Datum"
           value={editFormData.Datum}
-          onChange={handleEditFormChange}
+          onChange=""
         ></input>
       </td>
 
       <td>
         <input
           type="time"
-          required="required"
+          required=""
           placeholder=""
           name="Zacatek cas"
           value={editFormData.Zacatek_cas}
-          onChange={handleEditFormChange}
+          onChange=""
         ></input>
       </td>
 
       <td>
         <input
           type="time"
-          required="required"
+          required=""
           placeholder=""
           name="Konec cas"
           value={editFormData.Konec_cas}
-          onChange={handleEditFormChange}
+          onChange=""
         ></input>
       </td>
 
@@ -158,8 +159,8 @@ const EditableRow = ({
           required=""
           placeholder=""
           name="poznamkyPoradatele"
-          value={editFormData.poznamkyPoradatele}
-          onChange={handleEditFormChange}
+          value=""
+          onChange=""
         ></input>
       </td>
 

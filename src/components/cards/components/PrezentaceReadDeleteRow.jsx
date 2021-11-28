@@ -25,7 +25,7 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
         </button>
         <button 
           type="button" class="btn btn-round btn-fill btn-danger show-hide-btn-sm"
-          onClick={() => handleDeleteClick(data.Kod)}
+          onClick={() => handleDeleteClick(data.ID)}
         >
           Zmaž
         </button>

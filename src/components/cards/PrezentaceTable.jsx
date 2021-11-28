@@ -4,8 +4,9 @@ import "./MistnostiTable.css";
 import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRow";
-import { Post } from "../../static/Loaders";
+import { useGet, Post } from "../../static/Loaders";
 import Authentificate from "../Authentificate";
+import { useParams } from "react-router";
 
 async function Add(details){
   console.log("details");
@@ -30,7 +31,7 @@ async function Add(details){
 const Update = async details => {
   console.log("updating room");
 
-  //let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/'+details.Nazev+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -49,7 +50,7 @@ const Update = async details => {
 const Delete = async details => {
   console.log("deleting room");
 
-  //let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/'+details.Nazev+'/zmazat', null, null);
+  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/odstranit', null, null);
   
   /* if(_error) {
       //reload get user info again
@@ -62,62 +63,46 @@ const Delete = async details => {
           setUpdated(false);
           }, 500);
   } */
-  //return error
+  return error
 }
 
-function PrezentaceTable ({Konference, Mistnost, data}) {
+function GenerateHtml ({Konference, Mistnost, data}) {
 
-  //useEffect na nacitanie miestnosti
-
-
-  data = [{
-    Nazev: "hellojsaddddd \
-    ddddddddddddddddd ddddddddddddddddddddddddddddddddd",
-    Konference: "Excel@FIT",
-    Uzivatel: 1,
-    Tagy: "projex",
-    Grafika: "s",
-    Soubor: "s",
-    Mistnost: "CO90",
-    jeSchvalena: "ne",
-    Datum: "2022-01-20",
-    Zacatek_cas: "10:00",
-    Konec_cas: "20:00",
-    poznamkyPoradatele: "nic vic"
-  }]
 
   const [opened, setOpened] = useState(false);
   const [prezentace, setPrezentace] = useState(data);
 
   const [addFormData, setAddFormData] = useState({
+    ID: null,
     Nazev: "",
     Konference: Konference,
-    Uzivatel: Authentificate.email,
+    Uzivatel: null,
     Popis: "",
     Tagy: "",
     Grafika: "",
     Soubor: "",
     Mistnost: Mistnost,
     jeSchvalena: 0,
-    Datum: "",
-    Zacatek_cas: "",
-    Konec_cas: "",
+    Datum: null,
+    Zacatek_cas: null,
+    Konec_cas: null,
     poznamkyPoradatele: ""
   });
 
   const [editFormData, setEditFormData] = useState({
+    ID: null,
     Nazev: "",
     Konference: Konference,
-    Uzivatel: Authentificate.email,
+    Uzivatel: null,
     Popis: "",
     Tagy: "",
     Grafika: "",
     Soubor: "",
     Mistnost: Mistnost,
     jeSchvalena: "",
-    Datum: "",
-    Zacatek_cas: "",
-    Konec_cas: "",
+    Datum: null,
+    Zacatek_cas: null,
+    Konec_cas: null,
     poznamkyPoradatele: ""
   });
 
@@ -161,7 +146,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
       Tagy: addFormData.Tagy,
       Grafika: addFormData.Grafika,
       Soubor: addFormData.Soubor,
-      Mistnost: addFormData.Mistnost,
+      Mistnost: Mistnost,
       jeSchvalena: addFormData.jeSchvalena,
       Datum: addFormData.Datum === "" ? null : addFormData.Datum,
       Zacatek_cas: addFormData.Zacatek_cas === "" ? null : addFormData.Zacatek_cas,
@@ -182,44 +167,54 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
 
   };
 
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
-    const newPrezentace = {
-      Nazev: addFormData.Nazev,
+    const editPrezentace = {
+      ID: editFormData.ID,
+      Nazev: editFormData.Nazev,
       Konference: Konference,
       Uzivatel: null, //todo-store email in localstorage :D
-      Popis: addFormData.Popis,
-      Tagy: addFormData.Tagy,
-      Grafika: addFormData.Grafika,
-      Soubor: addFormData.Soubor,
-      Mistnost: addFormData.Mistnost,
-      jeSchvalena: addFormData.jeSchvalena,
-      Datum: addFormData.Datum === "" ? null : addFormData.Datum,
-      Zacatek_cas: addFormData.Zacatek_cas === "" ? null : addFormData.Zacatek_cas,
-      Konec_cas: addFormData.Konec_cas === "" ? null : addFormData.Konec_cas,
-      poznamkyPoradatele: addFormData.poznamkyPoradatele
+      Popis: editFormData.Popis,
+      Tagy: editFormData.Tagy,
+      Grafika: editFormData.Grafika,
+      Soubor: editFormData.Soubor,
+      Mistnost: editFormData.Mistnost,
+      jeSchvalena: editFormData.jeSchvalena,
+      Datum: editFormData.Datum === "" ? null : editFormData.Datum,
+      Zacatek_cas: editFormData.Zacatek_cas === "" ? null : editFormData.Zacatek_cas,
+      Konec_cas: editFormData.Konec_cas === "" ? null : editFormData.Konec_cas,
+      poznamkyPoradatele: editFormData.poznamkyPoradatele
     };
 
-    const newDatas = [...prezentace];
+    let error = await Update(editPrezentace)
 
-    const index = prezentace.findIndex((room) => room === editRoomNazev);
+    if(!error){
+      const newDatas = [...prezentace];
 
-    newDatas[index] = newPrezentace;
+      const index = prezentace.findIndex((room) => room === editRoomNazev);
+  
+      newDatas[index] = editPrezentace;
+  
+      setPrezentace(newDatas);
+      setEditRoomNazev(null);
+    }
+    else{
+      //we can display error
+    }
 
-    setPrezentace(newDatas);
-    setEditRoomNazev(null);
   };
 
   const handleEditClick = (event, room) => {
     event.preventDefault();
-    setEditRoomNazev(room.Nazev);
+    setEditRoomNazev(room.ID);
 
     const formValues = {
+      ID: room.Kod,
       Nazev: room.Nazev,
       Konference: Konference,
-      Uzivatel: "placeholder Email", //todo-store email in localstorage :D
-      Popis: addFormData.Popis,
+      Uzivatel: null, //todo-store email in localstorage :D
+      Popis: room.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
       Soubor: room.Soubor,
@@ -238,14 +233,21 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
     setEditRoomNazev(null);
   };
 
-  const handleDeleteClick = (roomNazev) => {
+  const handleDeleteClick = async (prezentKod) => {
     const newDatas = [...prezentace];
 
-    const index = prezentace.findIndex((room) => room.Nazev === roomNazev);
+    const index = prezentace.findIndex((prez) => prez.Kod === prezentKod);
 
-    newDatas.splice(index, 1);
+    let details = newDatas[index];
 
-    setPrezentace(newDatas);
+    let error = await Delete({ID: prezentKod});
+
+    if(!error){
+      newDatas.splice(index, 1);
+
+      setPrezentace(newDatas);
+    }
+    
   };
 
   let card = (
@@ -274,7 +276,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
               {prezentace.map((room) => (
                 <Fragment>
                 { //by this we make even nazev unique -> at least for room, which is ???
-                editRoomNazev === room.Nazev ? (
+                editRoomNazev === room.ID ? (
                   <EditableRow
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
@@ -318,7 +320,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
             /* onChange={handleAddFormChange} */
           />
         </div>
-        <div>
+        {/* <div>
           <label for="Uzivatel" class="form-label">Uzivatel</label>
           <input id="Uzivatel" class="form-control"
             type="number"
@@ -327,7 +329,7 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
             placeholder="zadaj svôj email"
             onChange={handleAddFormChange}
           />
-        </div>
+        </div> */}
         <div>
           <label for="Popis" class="form-label">Popis</label>
           <input id="Popis" class="form-control"
@@ -465,5 +467,19 @@ function PrezentaceTable ({Konference, Mistnost, data}) {
 
 );
 };
+
+function PrezentaceTable(){
+  let {id, kod} = useParams();
+
+  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+id+'/'+kod+'/prispevky', null)
+
+  return(data && 
+    <div>
+      <GenerateHtml data={data} Konference={id} Mistnost={kod}></GenerateHtml>
+    </div>
+    
+    )
+
+}
 
 export default PrezentaceTable;

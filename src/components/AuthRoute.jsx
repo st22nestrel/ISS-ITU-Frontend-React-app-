@@ -4,7 +4,7 @@ import Auth from "./Authentificate"
 
 function ProtectedRoute({ children }) {
     const isAuth = Auth.authentificated;
-    return isAuth ? children : <Navigate to="/signIn" />;
+    return isAuth ? children : <Navigate to="../signIn" />;
 }
 
 function UnprotectedRoute({ children }) {

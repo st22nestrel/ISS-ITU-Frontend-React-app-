@@ -17,10 +17,15 @@ class Authentificate{
         this.authentificated = true;
         this.token = token;
         window.localStorage.setItem("token", token);
+    
+    }
+    static setId(details){
+        window.localStorage.setItem("UserID", details.ID)
     }
 
     static logout(){
         window.localStorage.setItem("token", "");
+        window.localStorage.setItem("UserID", "")
         this.authentificated = false;
         this.token = "";
         window.location.reload(false);
@@ -32,7 +37,6 @@ class Authentificate{
     
     static getToken(){
         return window.localStorage.getItem("token")
-        //return this.token;
     }
 }
 

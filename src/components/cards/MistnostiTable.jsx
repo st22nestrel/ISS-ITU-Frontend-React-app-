@@ -62,7 +62,7 @@ const Delete = async details => {
           setUpdated(false);
           }, 500);
   } */
-  //return error
+  return error
 }
 
 function GenerateHtml({data, Konference}){

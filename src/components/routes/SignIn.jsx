@@ -5,6 +5,7 @@ import RegistrationForm from "../RegistrationForm";
 import PropTypes from 'prop-types';
 import './SignIn.css';
 import Auth from "../Authentificate"
+import {Get} from "../../static/Loaders"
 
 //TODO
 async function registerUser(credentials) {
@@ -44,7 +45,11 @@ function SignIn() {
 
             //validate if user exist/ answer from server
             if(answer.data){
+                //we assume this does not throw error
+                let { dataToReturn, pending, error } = Get('http://iisprojekt.fun:8000/uzivatel/', null);
+
                 Auth.login(answer.data);
+                Auth.setId(dataToReturn);
                 Auth.setEmail(details.Email);
                 console.log("redirected");
                 navigate('/konference');

@@ -10,7 +10,7 @@ function Navigation() {
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
           <NavLink className="navbar-brand" to="/uzivatel">
-	  </NavLink>
+	        </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
               {signInLink &&

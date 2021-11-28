@@ -109,6 +109,55 @@ const usePost = (url, token, dataToPost) => {
  * @param {*} dataToPost should be stringified json 
  * @returns {*} data, pending, error
  */
+async function Get (url, token) {
+
+  let dataToReturn = null;
+  let pending = true;
+  let error = null;
+
+  const abortCont = new AbortController();
+
+  return(
+    fetch(url, { 
+        signal: abortCont.signal,
+        method: 'GET',
+        headers: {
+          'Authorization' : window.localStorage.getItem("token")
+        },
+      })
+    .then(res => {
+        if (!res.ok) { // error coming back from server
+          throw Error('Error: '+res.status+' could not fetch the data for that resource');
+        } 
+        return res.json();
+      })
+    .then(data => {
+        pending = false;
+        dataToReturn = data;
+        error = null
+        return { dataToReturn, pending, error };
+      })
+    .catch(err => {
+        if (err.name === 'AbortError') {
+            console.log('post aborted')
+            return { dataToReturn, pending, error };
+        } else {
+            // auto catches network / connection error
+            pending = false;
+            error = err.message;
+            return { dataToReturn, pending, error };
+        }
+      })
+  )
+}
+
+/**
+ * 
+ * @param {*} url server url route
+ * @param {*} token authorization token
+ * @param {*} dataToPost should be stringified json 
+ * @returns {*} data, pending, error
+ */
 async function Post (url, token, dataToPost) {
 
   let dataToReturn = null;
@@ -206,4 +255,4 @@ async function Post (url, token, dataToPost) {
 }
 
 
-export {useGet, usePost, Post, Put};
+export {useGet, usePost, Get, Post, Put};
