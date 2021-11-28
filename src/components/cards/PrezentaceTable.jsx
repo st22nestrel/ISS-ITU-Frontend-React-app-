@@ -4,7 +4,7 @@ import "./MistnostiTable.css";
 import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRow";
-import { useGet, Post } from "../../static/Loaders";
+import { useGet, Post, Put } from "../../static/Loaders";
 import Authentificate from "../Authentificate";
 import { useParams } from "react-router";
 
@@ -31,7 +31,7 @@ async function Add(details){
 const Update = async details => {
   console.log("updating room");
 
-  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -192,7 +192,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
     if(!error){
       const newDatas = [...prezentace];
 
-      const index = prezentace.findIndex((room) => room === editRoomNazev);
+      const index = prezentace.findIndex((room) => room.ID === editRoomNazev);
   
       newDatas[index] = editPrezentace;
   
@@ -210,7 +210,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
     setEditRoomNazev(room.ID);
 
     const formValues = {
-      ID: room.Kod,
+      ID: room.ID,
       Nazev: room.Nazev,
       Konference: Konference,
       Uzivatel: null, //todo-store email in localstorage :D

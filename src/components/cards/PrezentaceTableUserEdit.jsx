@@ -4,7 +4,7 @@ import "./MistnostiTable.css";
 import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRowUser";
-import { useGet, Post } from "../../static/Loaders";
+import { useGet, Post, Put } from "../../static/Loaders";
 import Authentificate from "../Authentificate";
 import { useParams } from "react-router";
 
@@ -31,7 +31,7 @@ async function Add(details){
 const Update = async details => {
   console.log("updating room");
 
-  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -71,6 +71,7 @@ function GenerateHtml({Konference, Mistnost, data}){
   const [prezentace, setPrezentace] = useState(data);
 
   const [addFormData, setAddFormData] = useState({
+    ID: null,
     Nazev: "",
     Konference: "",
     Uzivatel: "",
@@ -87,6 +88,7 @@ function GenerateHtml({Konference, Mistnost, data}){
   });
 
   const [editFormData, setEditFormData] = useState({
+    ID: null,
     Nazev: "",
     Konference: "",
     Uzivatel: "",
@@ -163,44 +165,54 @@ function GenerateHtml({Konference, Mistnost, data}){
 
   };
 
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
-    const newPrezentace = {
-      Nazev: addFormData.Nazev,
+    const editPrezentace = {
+      ID: editFormData.ID,
+      Nazev: editFormData.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
-      Popis: addFormData.Popis,
-      Tagy: addFormData.Tagy,
-      Grafika: addFormData.Grafika,
-      Soubor: addFormData.Soubor,
-      Mistnost: addFormData.Mistnost,
-      jeSchvalena: addFormData.jeSchvalena,
-      Datum: addFormData.Datum === "" ? null : addFormData.Datum,
-      Zacatek_cas: addFormData.Zacatek_cas === "" ? null : addFormData.Zacatek_cas,
-      Konec_cas: addFormData.Konec_cas === "" ? null : addFormData.Konec_cas,
-      poznamkyPoradatele: addFormData.poznamkyPoradatele
+      Uzivatel: editFormData.Uzivatel, //todo-store email in localstorage :D
+      Popis: editFormData.Popis,
+      Tagy: editFormData.Tagy,
+      Grafika: editFormData.Grafika,
+      Soubor: editFormData.Soubor,
+      Mistnost: editFormData.Mistnost,
+      jeSchvalena: editFormData.jeSchvalena,
+      Datum: editFormData.Datum === "" ? null : editFormData.Datum,
+      Zacatek_cas: editFormData.Zacatek_cas === "" ? null : editFormData.Zacatek_cas,
+      Konec_cas: editFormData.Konec_cas === "" ? null : editFormData.Konec_cas,
+      poznamkyPoradatele: editFormData.poznamkyPoradatele
     };
 
-    const newDatas = [...prezentace];
 
-    const index = prezentace.findIndex((room) => room === editRoomNazev);
+    let error = await Update(editPrezentace)
 
-    newDatas[index] = newPrezentace;
+    if(!error){
+      const newDatas = [...prezentace];
 
-    setPrezentace(newDatas);
-    setEditRoomNazev(null);
+      const index = prezentace.findIndex((room) => room.ID === editRoomNazev);
+  
+      newDatas[index] = editPrezentace;
+  
+      setPrezentace(newDatas);
+      setEditRoomNazev(null);
+    }
+    else{
+      //we can display error
+    }
   };
 
   const handleEditClick = (event, room) => {
     event.preventDefault();
-    setEditRoomNazev(room.Nazev);
+    setEditRoomNazev(room.ID);
 
     const formValues = {
+      ID: room.ID,
       Nazev: room.Nazev,
-      Konference: Konference,
-      Uzivatel: "placeholder Email", //todo-store email in localstorage :D
-      Popis: addFormData.Popis,
+      Konference: room.Konference,
+      Uzivatel: room.Uzivatel, //todo-store email in localstorage :D
+      Popis: room.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
       Soubor: room.Soubor,
@@ -219,14 +231,21 @@ function GenerateHtml({Konference, Mistnost, data}){
     setEditRoomNazev(null);
   };
 
-  const handleDeleteClick = (roomNazev) => {
+  const handleDeleteClick = async (prezentKod) => {
     const newDatas = [...prezentace];
 
-    const index = prezentace.findIndex((room) => room.Nazev === roomNazev);
+    const index = prezentace.findIndex((prez) => prez.Kod === prezentKod);
 
-    newDatas.splice(index, 1);
+    let details = newDatas[index];
 
-    setPrezentace(newDatas);
+    let error = await Delete({ID: prezentKod});
+
+    if(!error){
+      newDatas.splice(index, 1);
+
+      setPrezentace(newDatas);
+    }
+
   };
 
   let card = (
@@ -255,7 +274,7 @@ function GenerateHtml({Konference, Mistnost, data}){
               {prezentace.map((room) => (
                 <Fragment>
                 { //by this we make even nazev unique -> at least for room, which is ???
-                editRoomNazev === room.Nazev ? (
+                editRoomNazev === room.ID ? (
                   <EditableRow
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
