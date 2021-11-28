@@ -4,6 +4,8 @@ export { default as NewKonference } from "./KonferenceForm";
 export { default as SignIn } from "./routes/SignIn";
 export { default as KonferenceNew } from "./routes/KonferenceNew";
 export { default as KonfereceDetail } from "./routes/KonferenceDetail";
+export { default as KonferenceDetailNotRegistered } from "./routes/KonferenceDetailNotRegistered";
+
 export { default as PrezentaceListReadOnly } from "./routes/PrezentaceListReadOnly";
 export { default as PrezentaceUserList } from "./routes/PrezentaceUserList";
 export { default as KonferenceMistnostDetail } from "./KonferenceMistnostDetail";

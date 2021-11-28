@@ -45,12 +45,14 @@ function SignIn() {
 
             //validate if user exist/ answer from server
             if(answer.data){
-                //we assume this does not throw error
-                let { dataToReturn, pending, error } = Get('http://iisprojekt.fun:8000/uzivatel/', null);
-
                 Auth.login(answer.data);
-                Auth.setId(dataToReturn);
                 Auth.setEmail(details.Email);
+
+                //we assume this does not throw
+                let { dataToReturn, pending, error } = await Get('http://iisprojekt.fun:8000/uzivatel/', null);
+
+                Auth.setId(dataToReturn);
+                
                 console.log("redirected");
                 navigate('/konference');
             }

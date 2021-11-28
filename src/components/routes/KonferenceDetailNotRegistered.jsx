@@ -1,6 +1,7 @@
 import React, {useState} from "react";
-import KonferenceDetailsEditable from "../cards/KonferenceDetailsEditable";
-import MistnostiTable from "../cards/MistnostiTable";
+import KoferenceDetailsReadOnly from "../cards/KoferenceDetailsReadOnly";
+import MistnostiTableReadOnly from "../cards/MistnostiTableReadOnly";
+import PrezentaceTableReadOnly from "../cards/PrezentaceTableReadOnly";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'
 
@@ -16,7 +17,6 @@ function KonferenceDetail() {
     const submitHandler = e => {
         e.preventDefault();
 
-        
     }
 
 return (
@@ -33,7 +33,7 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Detaily konference: {data.Nazev} </h3>
 
-                                <KonferenceDetailsEditable data={data}></KonferenceDetailsEditable>
+                                <KoferenceDetailsReadOnly data={data}></KoferenceDetailsReadOnly>
 
                             </div>
                         </div>
@@ -41,7 +41,7 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Místnosti </h3>
 
-                                <MistnostiTable Konference={data.Nazev}></MistnostiTable>
+                                <MistnostiTableReadOnly Konference={data.Nazev}></MistnostiTableReadOnly>
 
                             </div>
                         </div>
@@ -49,7 +49,7 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Prispevky </h3>
 
-                                <KonferenceDetailsEditable data={data}></KonferenceDetailsEditable>
+                                <PrezentaceTableReadOnly></PrezentaceTableReadOnly>
 
                             </div>
                         </div>

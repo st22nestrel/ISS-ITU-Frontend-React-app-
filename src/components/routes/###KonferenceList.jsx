@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 /* import hide from "./../static/index.js"; */
 import KonferenceCard from "../cards/KonferenceCard.jsx";
-import KonferenceCardNotRegistered from "../cards/KonferenceCardNotRegistered.jsx";
 /* import hideShowCardBody from './../static/index.js'; */
 import {useGet} from '../../static/Loaders';
-import Authentificate from "../Authentificate.jsx";
 
 function KonferenceList({url}) {
 
+//    let {data, pending, error} = {data: null, pending: null, error: null};
     let {data, pending, error} = useGet(url, null)
     let displayErr;
-    const isAuth = Authentificate.isAuth();
 
 
     if(data && data.length == 0){
@@ -32,19 +30,11 @@ function KonferenceList({url}) {
                       </div> }
                     
                     { 
-                        data && isAuth && data.map((konference)=>(
+                        data && data.map((konference)=>(
                             <div className="konference-card" key={konference.Nazev}>
                                 <KonferenceCard data={konference}/>
                             </div>
                     ))}
-
-                    { 
-                        data && !isAuth && data.map((konference)=>(
-                            <div className="konference-card" key={konference.Nazev}>
-                                <KonferenceCardNotRegistered data={konference}/>
-                            </div>
-                    ))}
-
                     {
                         !data  &&
                         <div className="">

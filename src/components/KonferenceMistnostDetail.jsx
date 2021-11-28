@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import KonferenceFormButton from "./cards/KonferenceFormDetail";
 import PrezentaceTable from "./cards/PrezentaceTable";
 import { useParams } from 'react-router';
 import { useGet } from '../static/Loaders'

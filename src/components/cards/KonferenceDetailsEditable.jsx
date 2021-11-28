@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import reactDom from 'react-dom';
 
-function KonferenceCardButton({data}){
+function KonferenceDetailsEditable({data}){
 
     const [opened, setOpened] = useState(false);
 
@@ -132,4 +132,4 @@ function KonferenceCardButton({data}){
 
 }
 
-export default KonferenceCardButton;
+export default KonferenceDetailsEditable;

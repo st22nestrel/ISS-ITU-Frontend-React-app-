@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import KonferenceFormButton from "../cards/KonferenceFormDetail";
+import KonferenceFormButton from "../cards/KonferenceDetailsEditable";
 import MistnostiTable from "../cards/MistnostiTable";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'

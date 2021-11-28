@@ -3,12 +3,9 @@ import "./MistnostiTable.css";
 import ReadRow from "./components/PrezentaceReadRow";
 import {useGet} from '../../static/Loaders'
 
-function PrezentaceShowTable ({Konference, data}) {
 
-  //useEffect na nacitanie miestnosti
-
-  return (
-    data &&
+function GenerateHtml(data){
+  return(
     <div className="app-container">
       <form onSubmit="">
         <div>
@@ -43,7 +40,21 @@ function PrezentaceShowTable ({Konference, data}) {
         </div>
       </form>
     </div>
+  )
+}
+
+function PrezentaceTableReadOnly ({Konference}) {
+
+
+  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
+
+  //useEffect na nacitanie miestnosti
+
+  return (
+    data && 
+    <GenerateHtml data={data}/>
+    
   );
 };
 
-export default PrezentaceShowTable;
+export default PrezentaceTableReadOnly;
