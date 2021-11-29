@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
 
-function ProfileForm({Update, userInfo}) {
+function ProfileForm({Update, userInfo, adminUpdate}) {
 
+    const [role, setRole] = useState('uzivatel');
     const [details, setDetails] = useState({
-        name: userInfo.Jmeno, surname: userInfo.Prijmeni, degree: userInfo.Titul, email: userInfo.Email,
+        ID: userInfo.ID, name: userInfo.Jmeno, surname: userInfo.Prijmeni, degree: userInfo.Titul, email: userInfo.Email,
         telNmb: userInfo.TelCislo, organisation: userInfo.Organizace, field: userInfo.Obor,
         country: userInfo.Zeme, birthday: userInfo.Datum_narozeni
     });
@@ -12,7 +13,7 @@ function ProfileForm({Update, userInfo}) {
         e.preventDefault();
 
         if(details.name !== "" && details.surname !== ""){
-            Update(details);
+            Update(details, role);
         }
     }
 
@@ -66,6 +67,20 @@ function ProfileForm({Update, userInfo}) {
                             Zadejte prosím validní email
                         </div>
                     </div> */}
+
+                    {adminUpdate && (
+                      <div className="col-12">
+                        <label htmlFor="role" className="form-label">Role</label>
+                        <select name="role" className="form-control" id="role"
+                               onChange={e => setRole(e.target.value)} value={role}>
+                          <option value="uzivatel">Uzivatel</option>
+                          <option value="administrator">Administrator</option>
+                        </select>
+                        <div className="invalid-feedback">
+                          Zadejte prosím validní roli
+                        </div>
+                      </div>
+                    )}
 
                     <div class="col-12">
                         <label for="email" class="form-label">Email</label>
