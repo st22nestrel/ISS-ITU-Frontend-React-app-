@@ -7,31 +7,39 @@ import YesAdmin from "../cards/YesAdmin";
 function Admin() {
 
     const { id } = useParams();
-    let { data, pending, error } = useGet('http://iisprojekt.fun:8000/admin/' + id, null)
 
-    let jeAdmin = data.admin;
+    let { data, pending, error } = useGet('http://iisprojekt.fun:8000/admin', null)
+
+    let jeAdmin;
+
+    if (error || data){
+        jeAdmin = false;
+    }
+    else if (data)
+        jeAdmin = data.admin;
 
     const submitHandler = e => {
         e.preventDefault();
     }
 
     return (
+        !pending &&
         <div>
             {
                 jeAdmin ?
                     <div class="card">
                         <div class="card-header card-header-flex">
-                            <h3 class="card-title text-bold"> Detaily konference: {data.Nazev} </h3>
+                            <h3 class="card-title text-bold"> Admin page </h3>
 
-                            <YesAdmin data={data}></YesAdmin>
+                            {/* <YesAdmin data={jeAdmin}></YesAdmin> */}
 
                         </div>
                     </div> :
                     <div class="card">
                         <div class="card-header card-header-flex">
-                            <h3 class="card-title text-bold"> Detaily konference: {data.Nazev} </h3>
+                            <h3 class="card-title text-bold"> Not admin page </h3>
 
-                            <NotAdmin data={data}></NotAdmin>
+                            {/* <NotAdmin data={jeAdmin}></NotAdmin> */}
 
                         </div>
                     </div>
