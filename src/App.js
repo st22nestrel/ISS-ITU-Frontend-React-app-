@@ -14,7 +14,8 @@ import {
   PrezentaceUserList,
   KonferenceDetailNotRegistered,
   RezervaceFind,
-  UserProfile
+  UserProfile,
+  Harmonogram
 } from "./components";
 
 import Auth from './components/Authentificate';
@@ -59,9 +60,11 @@ function App() {
 
       <Route path="/konference/:id" exact element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
       <Route path="/konference/notRegistered/:id" element={ <KonferenceDetailNotRegistered /> } />
+      <Route path="/konference/:id/harmonogram" exact element={ <Harmonogram /> } />
       
       <Route path="/konference/:id/rezervace" exact element={ <Rezervace /> } />
       <Route path="/rezervaceFind" exact element={ <RezervaceFind /> } />
+      
       {/* <Route path="/konference/:id/rezervace/uzivatel" exact element={<ProtectedRoute> <Rezervace /> } /> */}
 
       <Route path="/konference/:id/:kod" exact exact element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />

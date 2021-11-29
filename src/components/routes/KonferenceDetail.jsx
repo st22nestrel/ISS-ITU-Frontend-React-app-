@@ -106,9 +106,9 @@ return (
                             <div class="card">
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Příspevky ke schválení </h3>
-                                    <PrezentaceTable Konference={data.Nazev}
+                                    <PrezentaceTableAdmin Konference={data.Nazev}
                                     url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
-                                    ></PrezentaceTable>
+                                    ></PrezentaceTableAdmin>
                                 </div>
                             </div>
                             :

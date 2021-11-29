@@ -50,17 +50,6 @@ bez nich nelze vytvorit konferenci")
                         <label for="Obor" class="form-label">Obor</label>
                         <input type="text" class="form-control" id="Obor"
                         onChange={e => setDetails({...details, Obor: e.target.value})} value={details.Obor}/>
-
-                        {/* <br />
-                        <select class="form-select" id="degree" 
-                        onChange={e => setDetails({...details, degree: e.target.value})} value={details.degree}>
-                            <option value="">Vybrat...</option>
-                            <option>-</option>
-                            <option>Bc.</option>
-                            <option>Ing.</option>
-                            <option>Mgr.</option>
-                            <option>Phd.</option>
-                        </select> */}
                     </div>
 
                     <div class="col-12">
@@ -95,8 +84,8 @@ bez nich nelze vytvorit konferenci")
 
                     <div class="col-12">
                         <label class="form-label">End</label>
-                        <input type="date" class="form-control" id="Konec_datum"
-                        onChange={e => setDetails({...details, Konec_datum: e.target.value})} value={details.endtDate}/>
+                        {/* <input type="date" class="form-control" id="Konec_datum"
+                        onChange={e => setDetails({...details, Konec_datum: e.target.value})} value={details.endtDate}/> */}
                         <input type="time" class="form-control" id="Konec_cas"
                         onChange={e => setDetails({...details, Konec_cas: e.target.value})} value={details.Konec_cas}/>
                     </div>

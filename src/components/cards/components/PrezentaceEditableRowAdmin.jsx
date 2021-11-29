@@ -126,7 +126,7 @@ const EditableRow = ({
         </select>
       </td>
       
-      <td>
+{/*       <td>
         <input
           type="date"
           required=""
@@ -135,7 +135,7 @@ const EditableRow = ({
           value={editFormData.Datum}
           onChange={handleEditFormChange}
         ></input>
-      </td>
+      </td> */}
 
       <td>
         <input
@@ -148,7 +148,7 @@ const EditableRow = ({
         ></input>
       </td>
 
-      {/* <td>
+      <td>
         <input
           type="time"
           required=""
@@ -157,7 +157,7 @@ const EditableRow = ({
           value={editFormData.Konec_cas}
           onChange={handleEditFormChange}
         ></input>
-      </td> */}
+      </td>
 
       <td>
         <input

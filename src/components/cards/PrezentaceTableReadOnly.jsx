@@ -56,20 +56,28 @@ function GenerateHtml({data}){
   );
 }
 
-function PrezentaceTableReadOnly ({Konference, url, userID}) {
+function PrezentaceTableReadOnly ({Konference, url, userID, Harmonogram}) {
 
   if(url){
 
   }
   else
-    url = 'http://iisprojekt.fun:8000/konference/'+Konference+'/prispevky';
+      url = 'http://iisprojekt.fun:8000/konference/'+Konference+'/prispevky';
+
 
   let {data, pending, error} = useGet(url, null)
 
-  if(data && userID){
-    let filteredData = data.filter(e => e.Uzivatel == userID );
+  if(data){
+    if(userID){
+      let filteredData = data.filter(e => e.Uzivatel == userID );
 
-    data = filteredData;
+      data = filteredData;
+    }
+    if(Harmonogram){
+      let filteredData = data.sort((e1, e2) => (e1.Zacatek_cas < e1.Zacatek_cas) && (e1.Mistnost < e2.Mistnost));
+
+      data = filteredData;
+    }
   }
 
   //useEffect na nacitanie miestnosti

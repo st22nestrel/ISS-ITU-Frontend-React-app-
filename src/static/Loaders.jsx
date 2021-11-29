@@ -75,14 +75,16 @@ const usePost = (url, token, dataToPost) => {
         })
       .then(res => {
           if (!res.ok) { // error coming back from server
-              throw Error('could not fetch the data for that resource');
+              setError('could not fetch the data for that resource')
           } 
           return res.json();
         })
       .then(data => {
           setPending(false);
           setData(data);
-          setError(null);
+          if(error){
+            alert(data)
+          }
         })
       .catch(err => {
           if (err.name === 'AbortError') {
@@ -233,14 +235,17 @@ async function Post (url, token, dataToPost) {
         body: dataToPost
       })
     .then(res => {
-        if (!res.ok) { // error coming back from server
-            throw Error('could not fetch the data for that resource');
+        if (!res.ok) {
+            error = 'could not fetch the data for that resource'
         } 
         return res.json();
       })
     .then(data => {
         pending = false;
         dataToReturn = data;
+        if(error){
+          alert(data)
+        }
         error = null
         return { dataToReturn, pending, error };
       })

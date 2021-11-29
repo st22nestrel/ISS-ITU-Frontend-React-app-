@@ -3,25 +3,17 @@ import KonferenceFormButton from "../cards/KonferenceDetailsEditable";
 import MistnostiTable from "../cards/MistnostiTable";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'
-import PrezentaceUserEdit from "../cards/PrezentaceTableUserEdit";
+import PrezentaceShowTable from "../cards/PrezentaceTableReadOnly";
 
-function PrezentaceUserList() {
+function PrezentaceListReadOnly() {
 
     const { id } = useParams();
 
-
     //+id
-    //let {data, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/prispevky', null)
+    let url = 'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/schvalene';
 
-
-    const submitHandler = e => {
-        e.preventDefault();
-
-        
-    }
 
 return (
-
     <div className="Konference">
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
@@ -29,13 +21,12 @@ return (
                 <div class="col-12 themed-grid-col">
                     
                 {
-                    
                     <div>
                         <div class="card">
                             <div class="card-header card-header-flex">
-                                <h3 class="card-title text-bold"> Prispevky v konferenciach: </h3>
+                                <h3 class="card-title text-bold"> Prispevky v konferenci: </h3>
 
-                                <PrezentaceUserEdit url={'http://iisprojekt.fun:8000/uzivatel/prispevky'}/>
+                                <PrezentaceShowTable Konference={id} url={url}  Harmonogram={true}/>
 
                             </div>
                         </div>
@@ -51,4 +42,4 @@ return (
   );
 }
 
-export default PrezentaceUserList;
+export default PrezentaceListReadOnly;

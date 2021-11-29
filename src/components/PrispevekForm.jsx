@@ -53,12 +53,12 @@ function PrispevekForm({Update, setErr}) {
                         <input type="text" class="form-control" id="Grafika"
                         onChange={e => setDetails({...details, Grafika: e.target.value})} value={details.Grafika}/>
                     </div>
-{/* 
+
                     <div class="col-12">
                         <label for="Soubor" class="form-label">Soubor </label>
-                        <input type="text" class="form-control" id="Soubor"
+                        <textarea type="text" class="form-control" id="Soubor"
                         onChange={e => setDetails({...details, Soubor: e.target.value})} value={details.Soubor}/>
-                    </div> */}
+                    </div>
 
                     {/* <div class="col-12">
                         <label class="form-label">Start</label>
