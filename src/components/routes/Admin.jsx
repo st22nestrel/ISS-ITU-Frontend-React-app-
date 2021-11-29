@@ -8,41 +8,65 @@ function Admin() {
     let id = window.localStorage.getItem("userID");
 
     let { data, pending, error } = useGet('http://iisprojekt.fun:8000/admin/check/' + id, null)
+    let { allUsers, pending2, error2 } = useGet('http://iisprojekt.fun:8000/uzivatel/seznam', null)
 
     let jeAdmin;
 
-    if (error){
+    if (error) {
         jeAdmin = false;
     }
     else if (data)
         jeAdmin = data.admin;
+
+    if (error2) {
+        allUsers = null;
+    }
+
+    if (allUsers && allUsers.length == 0) {
+        allUsers = null;
+    }
 
     const submitHandler = e => {
         e.preventDefault();
     }
 
     return (
-        !pending &&
-        <div>
-            {
-                jeAdmin ?
-                    <div class="card">
-                        <div class="card-header card-header-flex">
-                            <h3 class="card-title text-bold"> Vitaj Administr√°tor! </h3>
-
-                            {/* <YesAdmin data={jeAdmin}></YesAdmin> */}
-
-                        </div>
-                    </div> :
-                    <div class="card">
-                        <div class="card-header card-header-flex">
-                            <h3 class="card-title text-bold"> Nejste administr√°tor! </h3>
-                        </div>
+        <div className="uzivatelia">
+            <div class="container-fluid content">
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-12">
+                        {(pending || pending2) &&
+                            <div>Loading...
+                                <div class="spinner-border text-secondary" role="status">
+                                </div>
+                            </div>
+                        }
+                        {
+                            jeAdmin ?
+                                <div class="card">
+                                    <div class="card-header card-header-flex">
+                                        <h3 class="card-title text-bold"> Spr·va uûivatelu: </h3>
+                                        {
+                                            allUsers && allUsers.map((uzivatelia) => (
+                                                <div className="uzivatelia" key={allUsers.ID}>
+                                                    <YesAdmin allUsers={uzivatelia} />
+                                                </div>
+                                            ))}
+                                    </div>
+                                </div>
+                                :
+                                <div class="card">
+                                    <div class="card-header card-header-flex">
+                                        <h3 class="card-title text-bold"> Nejste administr·tor! </h3>
+                                    </div>
+                                </div>
+                        }
                     </div>
-            }
+                </div>
+            </div>
         </div>
-
     );
+
 }
 
 export default Admin;
