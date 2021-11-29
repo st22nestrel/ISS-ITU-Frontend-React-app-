@@ -1,70 +1,24 @@
-# Getting Started with Create React App
+# VUT-IIS PROJEKT
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Instalace:
 
-## Available Scripts
+Pre správne fungovanie aplikácie je potrebné mať na serveri nainštalovaný Apache HTTP server, MySQL server (používali sme MariaDB), PHP, inštalačný balík pre Node.js aplikácie (pre zobrazenie aktuálnej verzie spustíme príkaz "node -v"), webové rozhranie phpMyAdmin
+- Súbory zo zložky "src" nahráme na Apache HTTP server (štandardne /var/www/html)
+FRONTEND:
+- Prejdeme do zložky "frontend" kde pomocou príkazu "sudo npm install" spustíme stiahnutie potrebných závislostí pre React aplikáciu (závislosti sa stiahnú do zložky "node_modules")
+- Po úspešnom nainštalovaní všetkých závislosti spustíme vytvorenie HTML súboru príkazom "sudo npm run build"
+- Po úspešnom vytvorení obsahu stránok vznikne zložka "build" v zložke frontend
+- Následne stačí obsah zložky "build" prekopírovať do adresáru webového priestoru (štandardne /var/www/html)
+- Na záver je potebné nastaviť prístupové práva (najmä pre novovytvorenú zložku /upload/files/) pre možnosť zápisu (odporúčam použiť príkaz "chmod -R 755 /var/www/html/frontend/")
 
-In the project directory, you can run:
+DATABÁZA:
+- Pre vytvorenie databázy môžeme použiť rozhranie phpMyAdmin
+- databázu vytvoríme potomocu voľby "import zo súboru" a vyberieme odovzdaný súbor "/databaza/iisproject.sql", tým sa nám vytvorí nová databáza s názvom "iisproject" spolu s prednastavenými testovacími údajmi
 
-### `npm start`
+BACKEND:
+- Prejdeme do zložky "backend" kde pomocou príkazu "sudo npm install" spustíme stiahnutie potrebných závislostí pre Express.js aplikáciu (závislosti sa stiahnú do zložky "node_modules")
+- Po úspešnom nainštalovaní všetkých závislosti je potrebné nastaviť prístupové údaje k databáze priloženom v súbore ".env" (zložka /databaza/.env)
+- Následne tento konfiguračný súbor umiestnime do serverovej zložky "backend"
+- Server spustíme pomocou príkazu "npm run start"
+Po úspešnom absolvovaní všetkých krokov a spustenom procese pre backendovú aplikáciu je aplikácia plne funkčná a môžeme ju spustiť pomocou adresy nášho servera cez webový prehliadač.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
