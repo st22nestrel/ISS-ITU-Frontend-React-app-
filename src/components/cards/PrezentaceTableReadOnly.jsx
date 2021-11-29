@@ -24,7 +24,7 @@ function GenerateHtml({data}){
               <th>Soubor</th>
               <th>Mistnost</th>
               <th>Schavalena</th>
-              <th>Datum</th>
+              {/* <th>Datum</th> */}
               <th>Zacatek cas</th>
               <th>Konec cas</th>
               <th>Poznamky poradatele</th>
@@ -56,10 +56,21 @@ function GenerateHtml({data}){
   );
 }
 
-function PrezentaceTableReadOnly ({Konference}) {
+function PrezentaceTableReadOnly ({Konference, url, userID}) {
 
+  if(url){
 
-  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/prispevky', null)
+  }
+  else
+    url = 'http://iisprojekt.fun:8000/konference/'+Konference+'/prispevky';
+
+  let {data, pending, error} = useGet(url, null)
+
+  if(data && userID){
+    let filteredData = data.filter(e => e.Uzivatel == userID );
+
+    data = filteredData;
+  }
 
   //useEffect na nacitanie miestnosti
 

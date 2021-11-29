@@ -1,7 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
-import data from "./mock-data.json";
 import ReadOnlyRow from "./components/MistnostiReadDeleteRow";
 import EditableRow from "./components/MistnostiEditableRow";
 import { Post, Put, useGet } from "../../static/Loaders";

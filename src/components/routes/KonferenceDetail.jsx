@@ -4,6 +4,7 @@ import KonferenceDetailsReadOnly from "../cards/KonferenceDetailsReadOnly";
 import MistnostiTable from "../cards/MistnostiTable";
 import MistnostiTableReadOnly from "../cards/MistnostiTableReadOnly";
 import PrezentaceTable from "../cards/PrezentaceTable";
+import PrezentaceTableAdmin from "../cards/PrezentaceTableAdmin";
 import PrezentaceTableReadOnly from "../cards/PrezentaceTableReadOnly";
 import PrezentaceTableUserEdit from "../cards/PrezentaceTableUserEdit";
 import { useParams } from 'react-router';
@@ -79,17 +80,19 @@ return (
                             jePoradatel ?
                             <div class="card">
                                 <div class="card-header card-header-flex">
-                                    <h3 class="card-title text-bold"> Prispevky </h3>
-                                    <PrezentaceTable Konference={data.Nazev}
+                                    <h3 class="card-title text-bold"> Všetky príspevky </h3>
+                                    <PrezentaceTableAdmin Konference={data.Nazev}
                                     url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky'}
-                                    ></PrezentaceTable>
+                                    ></PrezentaceTableAdmin>
                                 </div>
                             </div>
                             :
                             <div class="card">
                                 <div class="card-header card-header-flex">
-                                    <h3 class="card-title text-bold"> Prispevky </h3>
-                                    <PrezentaceTableReadOnly Konference={data.Nazev}></PrezentaceTableReadOnly>
+                                    <h3 class="card-title text-bold"> Všetky schválené príspevky </h3>
+                                    <PrezentaceTableReadOnly Konference={data.Nazev} 
+                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/schvalene'}>
+                                    </PrezentaceTableReadOnly>
                                 </div>
                             </div>
                         }
@@ -98,7 +101,7 @@ return (
                             jePoradatel ?
                             <div class="card">
                                 <div class="card-header card-header-flex">
-                                    <h3 class="card-title text-bold"> Prispevky </h3>
+                                    <h3 class="card-title text-bold"> Příspevky ke schválení </h3>
                                     <PrezentaceTable Konference={data.Nazev}
                                     url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
                                     ></PrezentaceTable>
@@ -115,7 +118,27 @@ return (
                             </div>
                         }
 
-                        
+                        {  //Prezentace mePrispevky
+                            jePoradatel ?
+                            <div class="card">
+                                <div class="card-header card-header-flex">
+                                    <h3 class="card-title text-bold"> Mé prispevky v konferenci </h3>
+                                    <PrezentaceTable Konference={data.Nazev} userID={window.localStorage.getItem("userID")}
+                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    ></PrezentaceTable>
+                                </div>
+                            </div>
+                            :
+                            <div class="card">
+                                <div class="card-header card-header-flex">
+                                    <h3 class="card-title text-bold"> Všechny mé prispevky v konferenci </h3>
+                                    <PrezentaceTableReadOnly Konference={data.Nazev} userID={window.localStorage.getItem("userID")}
+                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    ></PrezentaceTableReadOnly>
+                                </div>
+                            </div>
+                        }
+
                     </div>
                     )
                     

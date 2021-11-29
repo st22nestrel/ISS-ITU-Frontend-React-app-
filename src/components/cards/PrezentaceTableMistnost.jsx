@@ -1,7 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
-import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRow";
 import { useGet, Post } from "../../static/Loaders";
@@ -24,7 +22,7 @@ async function Add(details){
           setUpdated(false);
           }, 500);
   } */
-  return error
+  return error;
 }
 
 
@@ -44,7 +42,7 @@ const Update = async details => {
           setUpdated(false);
           }, 500);
   } */
-  //return error
+  return error;
 }
 
 const Delete = async details => {
@@ -63,7 +61,7 @@ const Delete = async details => {
           setUpdated(false);
           }, 500);
   } */
-  return error
+  return error;
 }
 
 function GenerateHtml ({Konference, Mistnost, data}) {

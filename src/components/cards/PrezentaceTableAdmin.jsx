@@ -1,9 +1,7 @@
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
-import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
-import EditableRow from "./components/PrezentaceEditableRow";
+import EditableRow from "./components/PrezentaceEditableRowAdmin";
 import { useGet, Post, Put } from "../../static/Loaders";
 import Authentificate from "../Authentificate";
 import { useParams } from "react-router";
@@ -31,7 +29,7 @@ async function Add(details){
 const Update = async details => {
   console.log("updating room");
 
-  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/schvalit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -468,16 +466,10 @@ function GenerateHtml ({Konference, Mistnost, data}) {
   );
 };
 
-function PrezentaceTable({Konference, url, userID}){
+function PrezentaceTable({Konference, url}){
   let {id, kod} = useParams();
 
   let {data, pending, error} = useGet(url, null)
-
-  if(data && userID){
-    let filteredData = data.filter(e => e.Uzivatel == userID );
-
-    data = filteredData;
-  }
 
   return(data && 
     <div>
