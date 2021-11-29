@@ -4,6 +4,7 @@ Instalace:
 
 Pre správne fungovanie aplikácie je potrebné mať na serveri nainštalovaný Apache HTTP server, MySQL server (používali sme MariaDB), PHP, inštalačný balík pre Node.js aplikácie (pre zobrazenie aktuálnej verzie spustíme príkaz "node -v"), webové rozhranie phpMyAdmin
 - Súbory zo zložky "src" nahráme na Apache HTTP server (štandardne /var/www/html)
+
 FRONTEND:
 - Prejdeme do zložky "frontend" kde pomocou príkazu "sudo npm install" spustíme stiahnutie potrebných závislostí pre React aplikáciu (závislosti sa stiahnú do zložky "node_modules")
 - Po úspešnom nainštalovaní všetkých závislosti spustíme vytvorenie HTML súboru príkazom "sudo npm run build"
