@@ -24,11 +24,15 @@ class KonferenceCard extends React.Component{
                 <a class="navbar-brand"></a>
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <NavLink className="nav-link btn-warning" to={{
-                            pathname: "/konference/"+konference.Nazev+"/rezervace",
-                            state: konference
-                        }}>
+                        <NavLink className="nav-link btn-warning" to={
+                            "/konference/"+konference.Nazev+"/rezervace"}>
                             Rezervovat vstupenku
+                        </NavLink>
+                    </li>
+                    <li class="nav-item">
+                        <NavLink className="nav-link btn-outline-primary" to={
+                            "/konference/"+konference.Nazev+"/harmonogram"}>
+                            Harmonogram
                         </NavLink>
                     </li>
                     <li class="nav-item">

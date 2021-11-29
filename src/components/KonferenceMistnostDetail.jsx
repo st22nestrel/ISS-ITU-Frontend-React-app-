@@ -7,7 +7,6 @@ function KonferenceMistnostDetail() {
 
     const { id, kod } = useParams();
 
-
     //+id
     //let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+id +'/'+'kod', null)
 
@@ -34,7 +33,7 @@ return (
                                 <h3 class="card-title text-bold"> Prezentace v místnosti + {kod} v konferenci {id} </h3>
 
                                 <PrezentaceTable Konference={id} Mistnost={kod} 
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky'}
+                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/'+kod+'/prispevky'}
                                 ></PrezentaceTable>
 
                             </div>
