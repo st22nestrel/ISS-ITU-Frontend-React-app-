@@ -74,7 +74,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
     ID: null,
     Nazev: "",
     Konference: Konference,
-    Uzivatel: null,
+    Uzivatel: "",
     Popis: "",
     Tagy: "",
     Grafika: "",
@@ -91,7 +91,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
     ID: null,
     Nazev: "",
     Konference: Konference,
-    Uzivatel: null,
+    Uzivatel: "",
     Popis: "",
     Tagy: "",
     Grafika: "",
@@ -211,7 +211,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       ID: room.ID,
       Nazev: room.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
+      Uzivatel: room.Uzivatel, //todo-store email in localstorage :D
       Popis: room.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
