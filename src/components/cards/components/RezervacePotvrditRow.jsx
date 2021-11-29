@@ -13,6 +13,7 @@ const RezervacePotvrditRow = ({ data, handleEditClick, handleDeleteClick, porada
       <td>{data.Pocet_vstupenek}</td>
       <td>{data.Celkova_cena}</td>
       <td>{data.Stav}</td>
+      {poradatel &&
       <td>
         <button
           type="button" class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
@@ -27,6 +28,7 @@ const RezervacePotvrditRow = ({ data, handleEditClick, handleDeleteClick, porada
           Zrušit
         </button>
       </td>
+        }
     </tr>
   );
 };

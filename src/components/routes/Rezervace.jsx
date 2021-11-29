@@ -4,6 +4,7 @@ import {Post} from '../../static/Loaders';
 import { useParams } from 'react-router';
 import PrispevekForm from '../PrispevekForm';
 import RezervaceFormNotRegistered from '../RezervaceFormNotRegistered';
+import RezervaceFormRegistered from '../RezervaceFormRegistered';
 import { useGet } from '../../static/Loaders';
 import Authentificate from '../Authentificate';
 
@@ -51,7 +52,7 @@ export default function KonferenceNew() {
                         {
                             !isAuth ?
                             <RezervaceFormNotRegistered konfData={data}/> :
-                            null
+                            <RezervaceFormRegistered konfData={data}/>
 
                         }
 

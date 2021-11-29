@@ -5,10 +5,10 @@ import { useLocation} from "react-router-dom"
 
 async function Rezervace(details, id, setTransakce){
 
-    if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni)
+    if(details.Pocet_vstupenek < 1)
         return;
 
-    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace/nereg', null, JSON.stringify(details));
+    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace', null, JSON.stringify(details));
 
     /* if(error) {
         //reload get user info again
@@ -79,17 +79,16 @@ function RezervaceFormNotRegistered({Update, setErr, konfData}) {
 
 
                     {/* {() => /* await  RezervaceARegistrovat(details, konfData.Nazev)} */}
-                <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_RezervaceARegistrovat}>Potvrdit rezervaci</button>
+                <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_Rezervace}>Potvrdit rezervaci</button>
             </div>
         </form>
     )
 
     let dokoncenaMsg = transakce ? (
         <div class="fa fa-transgender" aria-hidden="true" >
-            Uchovajte si nasledujúce údaje:  <br/>
             id transakcie: {transakce.ID} <br/>
             Stav svojej transakcie môžte sledovať na (TODO tlačítko s linkom) <br/>
-            Ak ste sa registrovali, stav svojej trasakcie môžte sledovať aj cez svoj profil
+            stav svojej trasakcie môžte sledovať aj cez svoj profil
         </div>
     ) : null;
 

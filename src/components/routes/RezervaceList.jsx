@@ -6,7 +6,7 @@ import { useGet } from '../../static/Loaders'
 
 //bude iba pre poradatele
 
-function RezervaceList({poradatel}) {
+function RezervaceList({poradatel, nofilter}) {
 
     const { id } = useParams();
 
@@ -21,7 +21,7 @@ return (
                 {/* <!--<main class="form-signin">--> */}
                 <div class="col-12 themed-grid-col">
                     
-                <RezervaceTable Konference={id} poradatel={poradatel} ></RezervaceTable>
+                <RezervaceTable Konference={id} poradatel={poradatel} nofilter={nofilter} ></RezervaceTable>
 
                 </div>
             </div>

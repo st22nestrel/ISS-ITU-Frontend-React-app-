@@ -12,7 +12,6 @@ export { default as PrezentaceUserList } from "./routes/PrezentaceUserList";
 export { default as KonferenceMistnostDetail } from "./KonferenceMistnostDetail";
 
 export { default as Rezervace } from "./routes/Rezervace";
-/* export { default as Contact } from "./Contact";
-export { default as Blog } from "./blog/Blog";
-export { default as Posts } from "./blog/Posts";
-export { default as Post } from "./blog/Post"; */
+export { default as RezervaceFind } from "./routes/RezervaceFind";
+
+export { default as UserProfile } from "./routes/UserProfile";

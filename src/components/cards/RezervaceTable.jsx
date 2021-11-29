@@ -109,7 +109,7 @@ function GenerateHtml({Konference, data, poradatel}){
       );
 }
 
-function RezervaceTable ({Konference, _data, poradatel}) {
+function RezervaceTable ({Konference, _data, nofilter = false, poradatel}) {
 
     //let {data, pending, error};
     let dataToUse
@@ -119,9 +119,9 @@ function RezervaceTable ({Konference, _data, poradatel}) {
 
     let {data, pending, error} = useGet(url, null);
 
-    dataToUse = data
+    dataToUse = data;
 
-    if(data && !poradatel){
+    if(data && !poradatel && !nofilter){
         data = dataToUse.filter(e => e.Konference == Konference );
 
         dataToUse = data;
@@ -129,7 +129,7 @@ function RezervaceTable ({Konference, _data, poradatel}) {
 
     return(data && 
         <div>
-            <GenerateHtml data={dataToUse} Konference={Konference} poradatel={true}></GenerateHtml>
+            <GenerateHtml data={dataToUse} Konference={Konference} poradatel={poradatel}></GenerateHtml>
         </div>
         
         )

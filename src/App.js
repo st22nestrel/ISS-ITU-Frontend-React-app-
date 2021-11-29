@@ -7,13 +7,14 @@ import {
   KonferenceMistnostDetail,
   Navigation,
   Rezervace,
-  NewKonference,
   PrispevekNew,
   KonferenceNew,
   SignIn,
   PrezentaceListReadOnly,
   PrezentaceUserList,
-  KonferenceDetailNotRegistered
+  KonferenceDetailNotRegistered,
+  RezervaceFind,
+  UserProfile
 } from "./components";
 
 import Auth from './components/Authentificate';
@@ -49,15 +50,18 @@ function App() {
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
       <Route path="/novaKonference" element={ <ProtectedRoute>  <KonferenceNew /> </ProtectedRoute> } />
-      <Route path="/uzivatel" element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
+      <Route path="/uzivatel" exact element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
 
-      <Route path="/uzivatel/prezentace" element={<ProtectedRoute> <PrezentaceUserList token={Auth.token}/> </ProtectedRoute>}/>
-      <Route path="/uzivatel/konference" element={<ProtectedRoute> <KonferenceList url={'http://iisprojekt.fun:8000/uzivatel/poradatel'}/> </ProtectedRoute>}/>
+      <Route path="/uzivatel/prezentace" exact element={<ProtectedRoute> <PrezentaceUserList token={Auth.token}/> </ProtectedRoute>}/>
+      <Route path="/uzivatel/konference" exact element={<ProtectedRoute> <KonferenceList url={'http://iisprojekt.fun:8000/uzivatel/poradatel'}/> </ProtectedRoute>}/>
+
+      <Route path="/uzivatel/:id" exact element={<ProtectedRoute> <UserProfile/> </ProtectedRoute>}/>
 
       <Route path="/konference/:id" exact element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
       <Route path="/konference/notRegistered/:id" element={ <KonferenceDetailNotRegistered /> } />
       
       <Route path="/konference/:id/rezervace" exact element={ <Rezervace /> } />
+      <Route path="/rezervaceFind" exact element={ <RezervaceFind /> } />
       {/* <Route path="/konference/:id/rezervace/uzivatel" exact element={<ProtectedRoute> <Rezervace /> } /> */}
 
       <Route path="/konference/:id/:kod" exact exact element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />
