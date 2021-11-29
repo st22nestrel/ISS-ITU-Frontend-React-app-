@@ -6,7 +6,7 @@ function KonferenceForm({Update, setErr}) {
     const [details, setDetails] = useState({
         Nazev: "", Popis: "", Obor: "", Zeme: "", 
         Mesto: "", Misto: "" ,
-        Zacatek_datum: "", Konec_datum: "", Zacatek_cas: "", Konec_cas: "",
+        Zacatek_datum: "", Konec_datum: null, Zacatek_cas: "", Konec_cas: "",
         Poplatek: "", Cena_vstup: "", Kapacita: "", Doplnujici_udaje: ""
     });
 

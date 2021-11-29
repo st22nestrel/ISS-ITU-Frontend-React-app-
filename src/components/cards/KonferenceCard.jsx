@@ -55,7 +55,7 @@ class KonferenceCard extends React.Component{
                 <p>Mesto: {konference.Mesto}</p>
                 <p>Misto: {konference.Misto}</p>
                 <p>Zacatek: {konference.Zacatek_datum}, {konference.Zacatek_cas}</p>
-                <p>Konec: {konference.Konec_datum}, {konference.Konec_cas}</p>
+                <p>Konec:  {konference.Konec_cas}</p>
                 <p>Poplatek: {konference.Poplatek}</p>
                 <p>Vstupné: {konference.Cena_vstup}</p>
                 <p>Kapacita: {konference.Kapacita}</p>

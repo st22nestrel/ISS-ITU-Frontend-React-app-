@@ -211,7 +211,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       ID: room.ID,
       Nazev: room.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
+      Uzivatel: room.Uzivatel, //todo-store email in localstorage :D
       Popis: room.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
@@ -295,7 +295,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
         
       </form>
 
-      <h4>Přidat prezentaci k místnosti</h4>
+      <h4>Přidat nový příspěvek</h4>
       <form onSubmit={handleAddFormSubmit} class="table-striped">
         <div >
           <label for="Nazev" class="form-label">Název</label>

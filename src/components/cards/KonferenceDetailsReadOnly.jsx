@@ -15,7 +15,7 @@ function KonferenceDetailsReadOnly({data}){
                 <p>Mesto: {data.Mesto}</p>
                 <p>Misto: {data.Misto}</p>
                 <p>Zacatek: {data.Zacatek_datum}, {data.Zacatek_cas}</p>
-                <p>Konec: {data.Konec_datum}, {data.Konec_cas}</p>
+                <p>Konec: {data.Konec_cas}</p>
                 <p>Poplatek: {data.Poplatek}</p>
                 <p>Vstupné: {data.Cena_vstup}</p>
                 <p>Kapacita: {data.Kapacita}</p>

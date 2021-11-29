@@ -43,8 +43,8 @@ const EditableRow = ({
           type="text"
           required=""
           placeholder=""
-          name="Prednasajuci"
-          value="Nejde měnit"
+          name="Uzivatel"
+          value="Vy"
           onChange=""
         ></input>
       </td>
@@ -135,9 +135,9 @@ const EditableRow = ({
           type="time"
           required=""
           placeholder=""
-          name="Zacatek cas"
+          name="Zacatek_cas"
           value={editFormData.Zacatek_cas}
-          onChange=""
+          onChange={handleEditFormChange}
         ></input>
       </td>
 
@@ -146,9 +146,9 @@ const EditableRow = ({
           type="time"
           required=""
           placeholder=""
-          name="Konec cas"
+          name="Konec_cas"
           value={editFormData.Konec_cas}
-          onChange=""
+          onChange={handleEditFormChange}
         ></input>
       </td>
 
@@ -158,8 +158,8 @@ const EditableRow = ({
           required=""
           placeholder=""
           name="poznamkyPoradatele"
-          value=""
-          onChange=""
+          value={editFormData.poznamkyPoradatele}
+          onChange={handleEditFormChange}
         ></input>
       </td>
 
