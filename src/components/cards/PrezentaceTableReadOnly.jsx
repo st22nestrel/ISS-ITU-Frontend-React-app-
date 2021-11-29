@@ -74,7 +74,7 @@ function PrezentaceTableReadOnly ({Konference, url, userID, Harmonogram}) {
       data = filteredData;
     }
     if(Harmonogram){
-      let filteredData = data.sort((e1, e2) => (e1.Zacatek_cas < e2.Zacatek_cas));
+      let filteredData = data.sort((e1, e2) => ( e2.Zacatek_cas < e1.Zacatek_cas ));
 
       data = filteredData;
     }

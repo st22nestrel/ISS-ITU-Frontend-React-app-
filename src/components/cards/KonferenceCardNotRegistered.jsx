@@ -34,8 +34,9 @@ class KonferenceCard extends React.Component{
                     </li>
                     </li>
                     <li class="nav-item">
-                        <NavLink className="nav-link btn-primary" to={"/konference/"+konference.Nazev+"/prispevkySchvalene"}>
-                            Zobraz harmonogram
+                        <NavLink className="nav-link btn-outline-primary" to={
+                            "/konference/"+konference.Nazev+"/harmonogram"}>
+                            Harmonogram
                         </NavLink>
                     </li>
                     <li>
