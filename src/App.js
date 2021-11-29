@@ -19,6 +19,7 @@ import {
 import Auth from './components/Authentificate';
 import ProtectedRoute, {UnprotectedRoute} from './components/AuthRoute';
 import CurrentUserProfile from './components/routes/CurrentUserProfile';
+import Admin from './components/routes/Admin';
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -43,6 +44,8 @@ function App() {
         <Route path="/signIn" element={<SignIn/>}/>
       }
       <Route path="/konference" element={<KonferenceList url={'http://iisprojekt.fun:8000/konference/'} />}/>
+
+      <Route path ="/admin" exact exact element={ <ProtectedRoute> <Admin /> </ProtectedRoute> } />
 
       {/* <ProtectedRoute path="/konference" component={<Konference />} /> */}
       <Route path="/novaKonference" element={ <ProtectedRoute>  <KonferenceNew /> </ProtectedRoute> } />

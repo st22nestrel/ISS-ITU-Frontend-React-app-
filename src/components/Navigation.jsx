@@ -21,6 +21,12 @@ function Navigation() {
                 </NavLink>
               </li>
               }
+
+ 	      <li className="nav-item">
+                <NavLink className="nav-link" to="/admin">
+                 Správa uživatelů 
+                </NavLink>
+              </li>
               
               <li className="nav-item">
                 <NavLink className="nav-link" to="/konference">
