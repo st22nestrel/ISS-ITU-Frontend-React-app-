@@ -8,7 +8,7 @@ function Admin() {
     let id = window.localStorage.getItem("userID");
 
     let { data, pending, error } = useGet('http://iisprojekt.fun:8000/admin/check/' + id, null)
-    let { allUsers, pending2, error2 } = useGet('http://iisprojekt.fun:8000/uzivatel/seznam', null)
+    let { data: allUsers, pending2, error2 } = useGet('http://iisprojekt.fun:8000/uzivatel/seznam', null)
 
     let jeAdmin;
 
@@ -45,10 +45,10 @@ function Admin() {
                             jeAdmin ?
                                 <div class="card">
                                     <div class="card-header card-header-flex">
-                                        <h3 class="card-title text-bold"> Správa uživatelu: </h3>
+                                        <h3 class="card-title text-bold"> Sprï¿½va uï¿½ivatelu: </h3>
                                         {
                                             allUsers && allUsers.map((uzivatelia) => (
-                                                <div className="uzivatelia" key={allUsers.ID}>
+                                                <div className="uzivatelia" key={uzivatelia.ID}>
                                                     <YesAdmin allUsers={uzivatelia} />
                                                 </div>
                                             ))}
@@ -57,7 +57,7 @@ function Admin() {
                                 :
                                 <div class="card">
                                     <div class="card-header card-header-flex">
-                                        <h3 class="card-title text-bold"> Nejste administrátor! </h3>
+                                        <h3 class="card-title text-bold"> Nejste administrï¿½tor! </h3>
                                     </div>
                                 </div>
                         }
