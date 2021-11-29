@@ -12,7 +12,7 @@ function Admin() {
 
     let jeAdmin;
 
-    if (error || data){
+    if (error){
         jeAdmin = false;
     }
     else if (data)
