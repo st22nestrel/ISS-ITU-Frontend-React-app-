@@ -127,16 +127,18 @@ async function Get (url, token) {
           'Authorization' : window.localStorage.getItem("token")
         },
       })
-    .then(res => {
-        if (!res.ok) { // error coming back from server
-          throw Error('Error: '+res.status+' could not fetch the data for that resource');
+      .then(res => {
+        if (!res.ok) {
+            error = 'could not fetch the data for that resource'
         } 
         return res.json();
       })
     .then(data => {
         pending = false;
         dataToReturn = data;
-        error = null
+        if(error){
+          alert(data.message)
+        }
         return { dataToReturn, pending, error };
       })
     .catch(err => {
@@ -178,21 +180,18 @@ async function Post (url, token, dataToPost) {
         },
         body: dataToPost
       })
-    .then(res => {
-        if (!res.ok) { // error coming back from server
-            if (res.status == 500)
-              throw Error('could not fetch the data for that resource');
-            else{
-              throw Error(res.statusText);
-              //res.json().then(data => {throw Error(data);})
-            }             
+      .then(res => {
+        if (!res.ok) {
+            error = 'could not fetch the data for that resource'
         } 
         return res.json();
       })
     .then(data => {
         pending = false;
         dataToReturn = data;
-        error = null
+        if(error){
+          alert(data.message)
+        }
         return { dataToReturn, pending, error };
       })
     .catch(err => {
@@ -244,9 +243,8 @@ async function Post (url, token, dataToPost) {
         pending = false;
         dataToReturn = data;
         if(error){
-          alert(data)
+          alert(data.message)
         }
-        error = null
         return { dataToReturn, pending, error };
       })
     .catch(err => {

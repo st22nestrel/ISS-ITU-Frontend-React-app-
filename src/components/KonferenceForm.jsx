@@ -16,7 +16,7 @@ function KonferenceForm({Update, setErr}) {
         console.log(details)
 
         if(!details.Nazev || !details.Obor || !details.Zeme || !details.Mesto || !details.Misto
-            || !details.Zacatek_datum || !details.Konec_datum || !details.Zacatek_cas || !details.Konec_cas
+            || !details.Zacatek_datum || !details.Zacatek_cas || !details.Konec_cas
             || !details.Poplatek || !details.Cena_vstup || !details.Kapacita)
         {
             setErr("Zkontrolujte zda máte vyplneno Nazev, Obor, Zeme, Mesto, Zacatek,\
