@@ -8,7 +8,6 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
       <td>{data.Konference}</td>
       <td>
         <UserButton id={data.Uzivatel}>
-
         </UserButton>
       </td>
       <td>{data.Popis}</td>
