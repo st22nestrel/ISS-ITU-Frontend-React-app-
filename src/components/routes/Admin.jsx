@@ -45,7 +45,7 @@ function Admin() {
                             jeAdmin ?
                                 <div class="card">
                                     <div class="card-header card-header-flex">
-                                        <h3 class="card-title text-bold"> Spr�va u�ivatelu: </h3>
+                                        <h3 class="card-title text-bold"> Správa uživatelů: </h3>
                                         {
                                             allUsers && allUsers.map((uzivatelia) => (
                                                 <div className="uzivatelia" key={uzivatelia.ID}>
@@ -57,7 +57,7 @@ function Admin() {
                                 :
                                 <div class="card">
                                     <div class="card-header card-header-flex">
-                                        <h3 class="card-title text-bold"> Nejste administr�tor! </h3>
+                                        <h3 class="card-title text-bold"> Nejste administrátor! </h3>
                                     </div>
                                 </div>
                         }
