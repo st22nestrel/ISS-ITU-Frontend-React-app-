@@ -178,7 +178,12 @@ async function Post (url, token, dataToPost) {
       })
     .then(res => {
         if (!res.ok) { // error coming back from server
-            throw Error('could not fetch the data for that resource');
+            if (res.status == 500)
+              throw Error('could not fetch the data for that resource');
+            else{
+              throw Error(res.statusText);
+              //res.json().then(data => {throw Error(data);})
+            }             
         } 
         return res.json();
       })

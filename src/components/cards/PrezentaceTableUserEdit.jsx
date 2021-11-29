@@ -249,6 +249,7 @@ function GenerateHtml({Konference, Mistnost, data}){
   };
 
   let card = (
+    data &&
     <div className="app-container">
       <form onSubmit={handleEditFormSubmit}>
         <div class="table-responsive">

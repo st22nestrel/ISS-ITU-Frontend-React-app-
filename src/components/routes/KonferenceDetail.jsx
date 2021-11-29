@@ -1,12 +1,16 @@
 import React, {useState} from "react";
 import KonferenceDetailsEditable from "../cards/KonferenceDetailsEditable";
 import KonferenceDetailsReadOnly from "../cards/KonferenceDetailsReadOnly";
+
 import MistnostiTable from "../cards/MistnostiTable";
 import MistnostiTableReadOnly from "../cards/MistnostiTableReadOnly";
+
 import PrezentaceTable from "../cards/PrezentaceTable";
 import PrezentaceTableAdmin from "../cards/PrezentaceTableAdmin";
 import PrezentaceTableReadOnly from "../cards/PrezentaceTableReadOnly";
 import PrezentaceTableUserEdit from "../cards/PrezentaceTableUserEdit";
+
+import RezervaceTable from "../cards/RezervaceTable";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'
 
@@ -138,6 +142,15 @@ return (
                                 </div>
                             </div>
                         }
+
+
+                            <div class="card">
+                                <div class="card-header card-header-flex">
+                                    <h3 class="card-title text-bold"> { jePoradatel ? "Rezervace vstupenek na konferenci" : "Moje rezervace vstupenek na konferenci"} </h3>
+                                    <RezervaceTable Konference={data.Nazev} poradatel={jePoradatel}>
+                                    </RezervaceTable>
+                                </div>
+                            </div>
 
                     </div>
                     )

@@ -6,6 +6,7 @@ import {
   KonfereceDetail,
   KonferenceMistnostDetail,
   Navigation,
+  Rezervace,
   NewKonference,
   PrispevekNew,
   KonferenceNew,
@@ -52,6 +53,9 @@ function App() {
 
       <Route path="/konference/:id" exact element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
       <Route path="/konference/notRegistered/:id" element={ <KonferenceDetailNotRegistered /> } />
+      
+      <Route path="/konference/:id/rezervace" exact element={ <Rezervace /> } />
+      {/* <Route path="/konference/:id/rezervace/uzivatel" exact element={<ProtectedRoute> <Rezervace /> } /> */}
 
       <Route path="/konference/:id/:kod" exact exact element={ <ProtectedRoute> <KonferenceMistnostDetail /> </ProtectedRoute> } />
       <Route path="/konference/:id/novyPrispevek" element={ <ProtectedRoute> <PrispevekNew/> </ProtectedRoute> } />

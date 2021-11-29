@@ -4,12 +4,15 @@ import {Post} from '../../static/Loaders';
 import { useParams } from 'react-router';
 import PrispevekForm from '../PrispevekForm';
 import RezervaceFormNotRegistered from '../RezervaceFormNotRegistered';
+import { useGet } from '../../static/Loaders';
 import Authentificate from '../Authentificate';
 
 
 export default function KonferenceNew() {
 
     let {id} = useParams()
+
+    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/' + id, null);
 
     const navigate = useNavigate();
     const [msg, setMsg] = useState(null);
@@ -36,7 +39,9 @@ export default function KonferenceNew() {
     }
 
     return (
-        <div className="KonferenceNew">
+
+        data &&
+        <div className="KonferenceRezervace">
             <div class="content container-fluid">
                 <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
                     {/* <!--<main class="form-signin">--> */}
@@ -44,12 +49,11 @@ export default function KonferenceNew() {
                         
 
                         {
-                            isAuth ?
-                            <RezervaceFormNotRegistered/> :
-                            
+                            !isAuth ?
+                            <RezervaceFormNotRegistered konfData={data}/> :
+                            null
 
                         }
-                        <PrispevekForm Update={NewKonf} setErr={setMsg}/>
 
                         { msg && 
                         <div>

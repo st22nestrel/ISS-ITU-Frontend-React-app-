@@ -1,14 +1,16 @@
 import React, {useState} from "react";
+import { Post } from "../static/Loaders";
+import { useLocation} from "react-router-dom"
 
 
-async function Rezervace(details){
+async function Rezervace(details, id, setTransakce){
 
-    if(details.Pocet_vstupenek < 1)
+    if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni)
         return;
 
     let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace/nereg', null, JSON.stringify(details));
 
-    if(error) {
+    /* if(error) {
         //reload get user info again
         setMsg(error);
     }
@@ -16,18 +18,21 @@ async function Rezervace(details){
         //TODO navigate to created konference
         setMsg(null);
         navigate('/konference/'+id);
+    } */
+    if(!error){
+        setTransakce(dataToReturn);
     }
-
+    return {error, dataToReturn}
 }
 
-async function RezervaceARegistrovat({details, id}){
+async function RezervaceARegistrovat(details, id, setTransakce){
 
-    if(details.Pocet_vstupenek < 1)
+    if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni || !details.Heslo)
         return;
 
     let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace/reg', null, JSON.stringify(details));
 
-    if(error) {
+    /* if(error) {
         //reload get user info again
         setMsg(error);
     }
@@ -35,59 +40,75 @@ async function RezervaceARegistrovat({details, id}){
         //TODO navigate to created konference
         setMsg(null);
         navigate('/konference/'+id);
+    } */
+    if(!error){
+        setTransakce(dataToReturn);
     }
-
+    return {error, dataToReturn}
 }
 
-function PrispevekForm({Update, setErr}) {
+function RezervaceFormNotRegistered({Update, setErr, konfData}) {
+
+    //const [dokoncena, setDokokoncena] = useState(false);
+    const [transakce, setTransakce] = useState(null);
+
+    let locationData = useLocation();
 
     const [details, setDetails] = useState({
         Konfenerce: "",  Uzivatel: "", Jmeno: "", Prijmeni: "",
         Email: "", Pocet_vstupenek: "", Celkova_cena: "", Stav: ""
     });
 
-    const submitHandler = e => {
-        e.preventDefault();
+    //const [transakce, setTransakce] = useState(null)
+    //let transakce;
 
-        console.log(details)
+    const _Rezervace = async () =>{
+        let {error, dataToReturn: transakce} = await Rezervace(details, konfData.Nazev, setTransakce)
 
-        if(!details.Nazev )
-        {
-            setErr("Zadejte název prezentace")
-        }
-        else{
-            Update(details)
-        }
+        /* if(!error){
+            setDokokoncena(true);
+        } */
+    }
+
+    const _RezervaceARegistrovat = async () =>{
+        let {error, dataToReturn: transakce} = await RezervaceARegistrovat(details, konfData.Nazev, setTransakce)
+
+        /* if(!error){
+            setDokokoncena(true);
+        } */
     }
 
     let form = (
-        <form onSubmit={submitHandler} class="needs-validation" novalidate="">
+        <form onSubmit="" class="needs-validation" novalidate="">
         <div className="form-inner">
-            <h1 class="h3 mb-3 fw-normal">Nový prispevek do konference</h1>
+            <h1 class="h3 mb-3 fw-normal">Rezervace vstupenek</h1>
 
                 <div class="row g-3">
                     <div class="col-12">
-                        {Konfenerce}
+                        Konference: {konfData.Nazev}
                         <br/>
-                        Cena vstupenky: {cena}
-                        Zbývající kapacita: {kapacita}
+                        Cena vstupenky: {konfData.Cena_vstup}
+                        <br/>
+                        Zbývající kapacita: {konfData.ZbyvajiciKapacita ? konfData.ZbyvajiciKapacita : konfData.Kapacita }
+                        <br/>
+                        <br/>
                     </div>
 
                     <div class="col-12">
-                        <label for="Popis" class="form-label">Cena vstupenky</label>
-                        <input type="number" class="form-control" id="Popis"
-                        onChange={e => setDetails({...details, Popis: e.target.value > 0 ? e.target.value : 0})} value={details.Popis}/>
+                        <label for="Pocet_vstupenek" class="form-label">Počet vstupenek</label>
+                        <input type="number" class="form-control" id="Pocet vstupenek" required=""
+                        onChange={e => setDetails({...details, Pocet_vstupenek: e.target.value > 0 ? e.target.value : 0})} value={details.Pocet_vstupenek}/>
                     </div>
 
                     <div class="col-12">
                         <label for="Jmeno" class="form-label">Jmeno </label>
-                        <input type="text" class="form-control" id="Jmeno"
+                        <input type="text" class="form-control" id="Jmeno" required=""
                         onChange={e => setDetails({...details, Jmeno: e.target.value})} value={details.Jmeno}/>
                     </div>
 
                     <div class="col-12">
                         <label for="Prijmeni" class="form-label">Prijmeni </label>
-                        <input type="text" class="form-control" id="Prijmeni"
+                        <input type="text" class="form-control" id="Prijmeni" required=""
                         onChange={e => setDetails({...details, Prijmeni: e.target.value})} value={details.Prijmeni}/>
                     </div>
 
@@ -99,7 +120,7 @@ function PrispevekForm({Update, setErr}) {
 
                     <div class="col-12">
                         <label for="Heslo" class="form-label">Heslo <span class="text-muted">(Jenom v případe registrace)</span> </label>
-                        <input type="text" class="form-control" id="Heslo"
+                        <input type="password" class="form-control" id="Heslo"
                         onChange={e => setDetails({...details, Heslo: e.target.value})} value={details.Heslo}/>
                     </div>
 {/* 
@@ -128,17 +149,28 @@ function PrispevekForm({Update, setErr}) {
                 <br/>
 
 
-                <button class="w-10 btn btn-lg btn-primary" onClick={() => await RezervaceARegistrovat(details)}>Potvrdit a registrovat</button>
-                <button class="w-10 btn btn-lg btn-primary" onClick={() => await Rezervace(details)}>Potvrdit bez registrace</button>
+                    {/* {() => /* await  RezervaceARegistrovat(details, konfData.Nazev)} */}
+                <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_RezervaceARegistrovat}>Potvrdit a registrovat</button>
+                <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_Rezervace}>Potvrdit bez registrace</button>
             </div>
         </form>
     )
 
+    let dokoncenaMsg = transakce ? (
+        <div class="fa fa-transgender" aria-hidden="true" >
+            Uchovajte si nasledujúce údaje:  <br/>
+            id transakcie: {transakce.ID} <br/>
+            Stav svojej transakcie môžte sledovať na (TODO tlačítko s linkom) <br/>
+            Ak ste sa registrovali, stav svojej trasakcie môžte sledovať aj cez svoj profil
+        </div>
+    ) : null;
+
 return (
-   
+        transakce ?
+        dokoncenaMsg : 
         form
     
   );
 }
 
-export default PrispevekForm;
+export default RezervaceFormNotRegistered;

@@ -1,0 +1,138 @@
+import React, { useState, Fragment } from "react";
+import "./MistnostiTable.css";
+import RezervacePotvrditRow from "./components/RezervacePotvrditRow";
+import {useGet, Put, Post} from '../../static/Loaders'
+
+
+const Update = async details => {
+    console.log("updating room");
+
+    let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/rezervace/'+details.ID+'/potvrdit', null, JSON.stringify(details));
+
+    return error
+  }
+  
+const Delete = async details => {
+    console.log("deleting room");
+
+    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/rezervace/'+details.ID+'/odstranit', null, null);
+
+    return error
+  }
+  
+
+
+function GenerateHtml({Konference, data, poradatel}){
+
+    const [opened, setOpened] = useState(false);
+    const [prezentace, setPrezentace] = useState(data);
+
+    const handlePotvrditClick = async (event, prezentKod) => {
+        event.preventDefault();
+        const newDatas = [...prezentace];
+    
+        const index = prezentace.findIndex((prez) => prez.ID === prezentKod);
+    
+        let details = newDatas[index];
+
+        details.Stav = "zaplaceno"
+    
+        let error = await Update(details);
+    
+        if(!error){
+          newDatas[index] = details;
+
+          setPrezentace(newDatas);
+        }
+    }
+
+    const handleDeleteClick = async (prezentKod) => {
+        const newDatas = [...prezentace];
+    
+        const index = prezentace.findIndex((prez) => prez.ID === prezentKod);
+    
+        let details = newDatas[index];
+    
+        let error = await Delete(details);
+    
+        if(!error){
+          newDatas.splice(index, 1);
+    
+          setPrezentace(newDatas);
+        }
+    }
+
+
+    let card = (
+        data &&
+        <div className="app-container">
+          <form onSubmit="">
+            <div>
+    
+            <table>
+              <thead>
+                <tr>
+                  {poradatel && <th>Konference</th>}
+                  <th>Uzivatel</th>
+                  <th>Jmeno</th>
+                  <th>Prijmeni</th>
+                  <th>Email</th>
+                  <th>Datum vytvoreni</th>
+                  <th>Pocet vstupenek</th>
+                  <th>Celkova cena</th>
+                  <th>Stav</th>
+                </tr>
+              </thead>
+              <tbody>
+                {prezentace.map((room) => (
+                  <Fragment>
+                    <RezervacePotvrditRow data={room} handleEditClick={handlePotvrditClick} 
+                    handleDeleteClick={handleDeleteClick} poradatel={poradatel}/>
+                </Fragment>
+                ))}
+              </tbody>
+            </table>
+    
+            </div>
+          </form>
+        </div>
+      );
+
+      return(
+        <div>
+            <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
+                    onClick={(() => setOpened(!opened))}>
+                <i class="nc-icon nc-stre-up"></i>
+            </button>
+            {opened && card}
+        </div>
+      );
+}
+
+function RezervaceTable ({Konference, _data, poradatel}) {
+
+    //let {data, pending, error};
+    let dataToUse
+    let url = poradatel ? 
+        'http://iisprojekt.fun:8000/konference/' + Konference+ '/rezervace' :
+        'http://iisprojekt.fun:8000/uzivatel/rezervace';
+
+    let {data, pending, error} = useGet(url, null);
+
+    dataToUse = data
+
+    if(data && !poradatel){
+        data = dataToUse.filter(e => e.Konference == Konference );
+
+        dataToUse = data;
+    }
+
+    return(data && 
+        <div>
+            <GenerateHtml data={dataToUse} Konference={Konference} poradatel={true}></GenerateHtml>
+        </div>
+        
+        )
+};
+
+export default RezervaceTable;

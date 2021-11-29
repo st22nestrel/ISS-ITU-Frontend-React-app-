@@ -20,7 +20,8 @@ class Authentificate{
     
     }
     static setId(details){
-        window.localStorage.setItem("userID", details.ID)
+        window.localStorage.setItem("userID", details.ID);
+        window.localStorage.setItem("isAdmin", details.Role === "admin");
     }
 
     static logout(){
@@ -40,6 +41,10 @@ class Authentificate{
     }
 
     static getUserId(){
+        return window.localStorage.getItem("userID")
+    }
+
+    static getIsAdmin(){
         return window.localStorage.getItem("userID")
     }
 }

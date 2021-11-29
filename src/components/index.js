@@ -10,6 +10,8 @@ export { default as PrispevekNew } from "./routes/PrispevekNew";
 export { default as PrezentaceListReadOnly } from "./routes/PrezentaceListReadOnly";
 export { default as PrezentaceUserList } from "./routes/PrezentaceUserList";
 export { default as KonferenceMistnostDetail } from "./KonferenceMistnostDetail";
+
+export { default as Rezervace } from "./routes/Rezervace";
 /* export { default as Contact } from "./Contact";
 export { default as Blog } from "./blog/Blog";
 export { default as Posts } from "./blog/Posts";

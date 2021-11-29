@@ -17,12 +17,12 @@ function DeleteUser({Delete}) {
     return (
         <div>
             <button class="w-100 btn btn-lg btn-outline-danger"
-            onClick={() => {
+            onClick={(event) => {
                 const confirmBox = window.confirm(
                     'Jste si jist že chcete odstranit účet?'
                 )
                 if (confirmBox === true) {
-                    submitHandler();
+                    submitHandler(event);
                 }
               }}
             >Zmazat účet</button>
