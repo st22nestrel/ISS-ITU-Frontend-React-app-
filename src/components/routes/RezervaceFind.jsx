@@ -10,7 +10,7 @@ import Authentificate from '../Authentificate';
 
 async function GetRezervace(id){
 
-    let {dataToReturn, pending, error} = await Get('http://iisprojekt.fun:8000/konference/rezervace/'+id, null);
+    let {dataToReturn, pending, error} = await Get('http://ituprojekt.fun:8000/konference/rezervace/'+id, null);
 
     return dataToReturn;
 

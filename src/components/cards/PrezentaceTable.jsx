@@ -9,7 +9,7 @@ import { useParams } from "react-router";
 async function Add(details){
   console.log("details");
 
-  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/novyPrispevek', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/novyPrispevek', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -29,7 +29,7 @@ async function Add(details){
 const Update = async details => {
   console.log("updating room");
 
-  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -48,7 +48,7 @@ const Update = async details => {
 const Delete = async details => {
   console.log("deleting room");
 
-  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/odstranit', null, null);
+  let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/odstranit', null, null);
   
   /* if(_error) {
       //reload get user info again

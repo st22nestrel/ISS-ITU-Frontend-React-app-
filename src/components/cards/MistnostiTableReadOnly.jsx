@@ -53,7 +53,7 @@ function GenerateHtml({data, Konference}){
 function MistnostiTable ({Konference}) {
 
   //useEffect na nacitanie miestnosti
-  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
+  let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
 
   return(data && 
     <div>

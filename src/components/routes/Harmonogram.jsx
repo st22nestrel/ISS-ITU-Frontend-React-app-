@@ -10,7 +10,7 @@ function PrezentaceListReadOnly() {
     const { id } = useParams();
 
     //+id
-    let url = 'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/schvalene';
+    let url = 'http://ituprojekt.fun:8000/konference/'+id+'/prispevky/schvalene';
 
 
 return (

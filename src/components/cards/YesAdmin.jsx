@@ -35,7 +35,7 @@ function YesAdmin({ allUsers }) {
         Obor: details.field, Zeme: details.country, Datum_narozeni: details.birthday,
         Email: details.email, TelCislo: details.telNMB, Titul: details.degree});
 
-      let {dataToReturn, pending: _pending, error: _error} = await Put(`http://iisprojekt.fun:8000/admin/upravit/${details.ID}`, null, dataToPut);
+      let {dataToReturn, pending: _pending, error: _error} = await Put(`http://ituprojekt.fun:8000/admin/upravit/${details.ID}`, null, dataToPut);
       //userInfo = data;
       let pending = _pending; //this wont show saddly :/
       let error = _error;
@@ -55,7 +55,7 @@ function YesAdmin({ allUsers }) {
 
     const UpdatePasword = async heslo => {
 
-      let {dataToReturn, pending: _pending, error: _error} = await Put(`http://iisprojekt.fun:8000/admin/upravit/heslo/${uzivatelia.ID}`, null, JSON.stringify({ Heslo: heslo }));
+      let {dataToReturn, pending: _pending, error: _error} = await Put(`http://ituprojekt.fun:8000/admin/upravit/heslo/${uzivatelia.ID}`, null, JSON.stringify({ Heslo: heslo }));
 
       if(_error) {
         displayErr = _error;
@@ -71,7 +71,7 @@ function YesAdmin({ allUsers }) {
 
     const deleteUser = async(e) => {
 
-      let {dataToReturn, pending: _pending, error: _error} = await Post(`http://iisprojekt.fun:8000/admin/odstranit/${uzivatelia.ID}`, null, null);
+      let {dataToReturn, pending: _pending, error: _error} = await Post(`http://ituprojekt.fun:8000/admin/odstranit/${uzivatelia.ID}`, null, null);
 
       window.location.reload();
     }

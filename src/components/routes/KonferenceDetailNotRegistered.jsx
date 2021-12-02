@@ -11,7 +11,7 @@ function KonferenceDetail() {
 
 
     //+id
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/' + id, null)
+    let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/' + id, null)
 
 
     const submitHandler = e => {

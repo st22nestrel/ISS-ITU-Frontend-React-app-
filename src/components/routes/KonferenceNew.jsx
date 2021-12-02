@@ -15,7 +15,7 @@ export default function KonferenceNew() {
 
     const NewKonf = async details => {
 
-        let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/vytvorit', null, JSON.stringify(details));
+        let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/vytvorit', null, JSON.stringify(details));
     
         if(error) {
             //reload get user info again

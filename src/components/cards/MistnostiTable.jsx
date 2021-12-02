@@ -8,7 +8,7 @@ import { Post, Put, useGet } from "../../static/Loaders";
 async function Add(details){
   console.log("details");
 
-  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/novaMistnost', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/novaMistnost', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -28,7 +28,7 @@ async function Add(details){
 async function Update(details){
   console.log("updating room");
 
-  let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/mistnost/upravit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Konference+'/mistnost/upravit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -47,7 +47,7 @@ async function Update(details){
 const Delete = async details => {
   console.log("deleting room");
 
-  let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/mistnost/odstranit', null, JSON.stringify(details));
+  let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/mistnost/odstranit', null, JSON.stringify(details));
   
   /* if(_error) {
       //reload get user info again
@@ -296,7 +296,7 @@ function GenerateHtml({data, Konference}){
 function MistnostiTable ({Konference}) {
 
   //useEffect na nacitanie miestnosti
-  let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
+  let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
 
   return(data && 
     <div>

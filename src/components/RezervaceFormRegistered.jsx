@@ -8,7 +8,7 @@ async function Rezervace(details, id, setTransakce){
     if(details.Pocet_vstupenek < 1)
         return;
 
-    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace', null, JSON.stringify(details));
+    let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novaRezervace', null, JSON.stringify(details));
 
     /* if(error) {
         //reload get user info again

@@ -1,3 +1,4 @@
+
 import './App.css';
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
@@ -45,7 +46,7 @@ function App() {
       {!Auth.authentificated &&
         <Route path="/signIn" element={<SignIn/>}/>
       }
-      <Route path="/konference" element={<KonferenceList url={'http://iisprojekt.fun:8000/konference/'} />}/>
+      <Route path="/konference" element={<KonferenceList url={'http://ituprojekt.fun:8000/konference/'} />}/>
 
       <Route path ="/admin" exact exact element={ <ProtectedRoute> <Admin /> </ProtectedRoute> } />
 
@@ -54,7 +55,7 @@ function App() {
       <Route path="/uzivatel" exact element={<ProtectedRoute> <CurrentUserProfile token={Auth.token}/> </ProtectedRoute>}/>
 
       <Route path="/uzivatel/prezentace" exact element={<ProtectedRoute> <PrezentaceUserList token={Auth.token}/> </ProtectedRoute>}/>
-      <Route path="/uzivatel/konference" exact element={<ProtectedRoute> <KonferenceList url={'http://iisprojekt.fun:8000/uzivatel/poradatel'}/> </ProtectedRoute>}/>
+      <Route path="/uzivatel/konference" exact element={<ProtectedRoute> <KonferenceList url={'http://ituprojekt.fun:8000/uzivatel/poradatel'}/> </ProtectedRoute>}/>
 
       <Route path="/uzivatel/:id" exact element={<ProtectedRoute> <UserProfile/> </ProtectedRoute>}/>
 

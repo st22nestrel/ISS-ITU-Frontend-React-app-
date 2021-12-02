@@ -9,7 +9,7 @@ import {Get} from "../../static/Loaders"
 
 //TODO
 async function registerUser(credentials) {
-    return fetch('http://iisprojekt.fun:8000/uzivatel/registrace', {
+    return fetch('http://ituprojekt.fun:8000/uzivatel/registrace', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ async function registerUser(credentials) {
    }
 
 async function loginUser(credentials) {
-    return fetch('http://iisprojekt.fun:8000/uzivatel/prihlaseni', {
+    return fetch('http://ituprojekt.fun:8000/uzivatel/prihlaseni', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -49,7 +49,7 @@ function SignIn() {
                 Auth.setEmail(details.Email);
 
                 //we assume this does not throw
-                let { dataToReturn, pending, error } = await Get('http://iisprojekt.fun:8000/uzivatel/', null);
+                let { dataToReturn, pending, error } = await Get('http://ituprojekt.fun:8000/uzivatel/', null);
 
                 Auth.setId(dataToReturn);
                 
