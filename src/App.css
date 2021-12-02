@@ -28,6 +28,32 @@
   color: #61dafb;
 }
 
+.Footer {
+    display: inline-block;
+    margin-top: 50px;
+
+    color: white;
+    background-color: #282c34;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+
+.lightText{
+    color: #626c80;
+}
+
+.lightText2{
+    color: #c3d7ff;
+}
+
+a.mailwhite{
+  color:white;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

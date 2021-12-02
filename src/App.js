@@ -1,4 +1,3 @@
-
 import './App.css';
 import "./index.css";
 import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
@@ -23,6 +22,7 @@ import Auth from './components/Authentificate';
 import ProtectedRoute, {UnprotectedRoute} from './components/AuthRoute';
 import CurrentUserProfile from './components/routes/CurrentUserProfile';
 import Admin from './components/routes/Admin';
+import Footer from './components/Footer';
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -79,6 +79,7 @@ function App() {
       </Route> */}
     </Routes>
   </Router>
+  <Footer/>
   </div>
   );
 }
