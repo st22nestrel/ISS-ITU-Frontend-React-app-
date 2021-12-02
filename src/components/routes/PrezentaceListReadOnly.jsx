@@ -11,7 +11,7 @@ function PrezentaceListReadOnly() {
 
 
     //+id
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+id+'/prispevky/schvalene', null)
+    let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+id+'/prispevky/schvalene', null)
 
 
     const submitHandler = e => {

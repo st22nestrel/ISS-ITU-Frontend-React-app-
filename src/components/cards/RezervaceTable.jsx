@@ -7,7 +7,7 @@ import {useGet, Put, Post} from '../../static/Loaders'
 const Update = async details => {
     console.log("updating room");
 
-    let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Konference+'/rezervace/'+details.ID+'/potvrdit', null, JSON.stringify(details));
+    let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Konference+'/rezervace/'+details.ID+'/potvrdit', null, JSON.stringify(details));
 
     return error
   }
@@ -15,7 +15,7 @@ const Update = async details => {
 const Delete = async details => {
     console.log("deleting room");
 
-    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+details.Konference+'/rezervace/'+details.ID+'/odstranit', null, null);
+    let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/rezervace/'+details.ID+'/odstranit', null, null);
 
     return error
   }
@@ -114,8 +114,8 @@ function RezervaceTable ({Konference, _data, nofilter = false, poradatel}) {
     //let {data, pending, error};
     let dataToUse
     let url = poradatel ? 
-        'http://iisprojekt.fun:8000/konference/' + Konference+ '/rezervace' :
-        'http://iisprojekt.fun:8000/uzivatel/rezervace';
+        'http://ituprojekt.fun:8000/konference/' + Konference+ '/rezervace' :
+        'http://ituprojekt.fun:8000/uzivatel/rezervace';
 
     let {data, pending, error} = useGet(url, null);
 

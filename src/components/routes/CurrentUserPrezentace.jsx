@@ -9,7 +9,7 @@ function KonferenceDetail() {
 
     const { id } = useParams();
 
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/'+id+'/prispevky', token)
+    let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+id+'/prispevky', token)
 
     const submitHandler = e => {
         e.preventDefault();        

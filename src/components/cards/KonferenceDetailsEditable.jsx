@@ -4,7 +4,7 @@ import { Put } from '../../static/Loaders';
 
 const UpravKonf = async details => {
 
-    let {dataToReturn, pending, error} = await Put('http://iisprojekt.fun:8000/konference/'+details.Nazev+'/upravit', null, JSON.stringify(details));
+    let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Nazev+'/upravit', null, JSON.stringify(details));
 
     if(error) {
         //reload get user info again

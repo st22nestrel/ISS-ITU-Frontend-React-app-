@@ -12,7 +12,7 @@ function CurrentUserProfile(token) {
     const [passwordChange, setPasswordChange] = useState(false);
     const navigate = useNavigate();
 
-    let {data: userInfo, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/', token)
+    let {data: userInfo, pending, error} = useGet('http://ituprojekt.fun:8000/uzivatel/', token)
     let displayErr;
 
     const Update = async details => {
@@ -23,7 +23,7 @@ function CurrentUserProfile(token) {
             Obor: details.field, Zeme: details.country, Datum_narozeni: details.birthday,
             Email: details.email, TelCislo: details.telNMB, Titul: details.degree});
     
-        let {dataToReturn, pending: _pending, error: _error} = await Put('http://iisprojekt.fun:8000/uzivatel/upravit', null, dataToPut);
+        let {dataToReturn, pending: _pending, error: _error} = await Put('http://ituprojekt.fun:8000/uzivatel/upravit', null, dataToPut);
         //userInfo = data;
         pending = _pending; //this wont show saddly :/
         error = _error;
@@ -43,7 +43,7 @@ function CurrentUserProfile(token) {
 
     const UpdatePasword = async details => {
 
-        let {dataToReturn, pending: _pending, error: _error} = await Put('http://iisprojekt.fun:8000/uzivatel/upravit/heslo', null, JSON.stringify(details));
+        let {dataToReturn, pending: _pending, error: _error} = await Put('http://ituprojekt.fun:8000/uzivatel/upravit/heslo', null, JSON.stringify(details));
 
         if(_error) {
             displayErr = _error;
@@ -59,7 +59,7 @@ function CurrentUserProfile(token) {
 
     const deleteUser = async(e) => {
 
-        let {dataToReturn, pending: _pending, error: _error} = await Post('http://iisprojekt.fun:8000/uzivatel/odstranit', null, null);
+        let {dataToReturn, pending: _pending, error: _error} = await Post('http://ituprojekt.fun:8000/uzivatel/odstranit', null, null);
 
         if(_error) {
             displayErr = _error;
@@ -70,7 +70,7 @@ function CurrentUserProfile(token) {
     }
 
     const redirectToUpload = () => {
-	window.location.href = 'http://www.iisprojekt.fun/upload/';
+	window.location.href = 'http://www.ituprojekt.fun/upload/';
     }
 
 

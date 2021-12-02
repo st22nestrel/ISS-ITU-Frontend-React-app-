@@ -62,7 +62,7 @@ function PrezentaceTableReadOnly ({Konference, url, userID, Harmonogram}) {
 
   }
   else
-      url = 'http://iisprojekt.fun:8000/konference/'+Konference+'/prispevky';
+      url = 'http://ituprojekt.fun:8000/konference/'+Konference+'/prispevky';
 
 
   let {data, pending, error} = useGet(url, null)

@@ -11,7 +11,7 @@ function PrezentaceUserList() {
 
 
     //+id
-    //let {data, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/prispevky', null)
+    //let {data, pending, error} = useGet('http://ituprojekt.fun:8000/uzivatel/prispevky', null)
 
 
     const submitHandler = e => {
@@ -35,7 +35,7 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Prispevky v konferenciach: </h3>
 
-                                <PrezentaceUserEdit url={'http://iisprojekt.fun:8000/uzivatel/prispevky'}/>
+                                <PrezentaceUserEdit url={'http://ituprojekt.fun:8000/uzivatel/prispevky'}/>
 
                             </div>
                         </div>

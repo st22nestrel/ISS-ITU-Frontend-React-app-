@@ -86,7 +86,7 @@ function UserProfile() {
 
     let {id} =  useParams()
 
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/uzivatel/'+id, null);
+    let {data, pending, error} = useGet('http://ituprojekt.fun:8000/uzivatel/'+id, null);
 
     return(
         data && 

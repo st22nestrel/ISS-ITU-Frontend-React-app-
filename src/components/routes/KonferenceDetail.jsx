@@ -21,7 +21,7 @@ function KonferenceDetail() {
 
 
     //+id
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/' + id, null)
+    let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/' + id, null)
 
     let jePoradatel = data ? window.localStorage.getItem("userID") == data.Poradatel : null
 
@@ -86,7 +86,7 @@ return (
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Všetky príspevky </h3>
                                     <PrezentaceTableAdmin Konference={data.Nazev}
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky'}
+                                    url={'http://ituprojekt.fun:8000/konference/'+id+'/prispevky'}
                                     ></PrezentaceTableAdmin>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ return (
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Všetky schválené príspevky </h3>
                                     <PrezentaceTableReadOnly Konference={data.Nazev} 
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/schvalene'}>
+                                    url={'http://ituprojekt.fun:8000/konference/'+id+'/prispevky/schvalene'}>
                                     </PrezentaceTableReadOnly>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@ return (
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Příspevky ke schválení </h3>
                                     <PrezentaceTableAdmin Konference={data.Nazev}
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    url={'http://ituprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
                                     ></PrezentaceTableAdmin>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@ return (
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Mé prispevky ke schválení </h3>
                                     <PrezentaceTableUserEdit Konference={data.Nazev}
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    url={'http://ituprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
                                     ></PrezentaceTableUserEdit>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ return (
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Mé prispevky v konferenci </h3>
                                     <PrezentaceTable Konference={data.Nazev} userID={window.localStorage.getItem("userID")}
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    url={'http://ituprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
                                     ></PrezentaceTable>
                                 </div>
                             </div>
@@ -137,7 +137,7 @@ return (
                                 <div class="card-header card-header-flex">
                                     <h3 class="card-title text-bold"> Všechny mé prispevky v konferenci </h3>
                                     <PrezentaceTableReadOnly Konference={data.Nazev} userID={window.localStorage.getItem("userID")}
-                                    url={'http://iisprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
+                                    url={'http://ituprojekt.fun:8000/konference/'+id+'/prispevky/neschvalene'}
                                     ></PrezentaceTableReadOnly>
                                 </div>
                             </div>

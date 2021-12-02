@@ -8,7 +8,7 @@ async function Rezervace(details, id, setTransakce){
     if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni)
         return;
 
-    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace/nereg', null, JSON.stringify(details));
+    let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novaRezervace/nereg', null, JSON.stringify(details));
 
     /* if(error) {
         //reload get user info again
@@ -30,7 +30,7 @@ async function RezervaceARegistrovat(details, id, setTransakce){
     if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni || !details.Heslo)
         return;
 
-    let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novaRezervace/reg', null, JSON.stringify(details));
+    let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novaRezervace/reg', null, JSON.stringify(details));
 
     /* if(error) {
         //reload get user info again

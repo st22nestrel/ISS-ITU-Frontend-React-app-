@@ -13,7 +13,7 @@ export default function KonferenceNew() {
 
     let {id} = useParams()
 
-    let {data, pending, error} = useGet('http://iisprojekt.fun:8000/konference/' + id, null);
+    let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/' + id, null);
 
     const navigate = useNavigate();
     const [msg, setMsg] = useState(null);
@@ -26,7 +26,7 @@ export default function KonferenceNew() {
         details.Konference = id;
         details.Uzivatel = userID;
 
-        let {dataToReturn, pending, error} = await Post('http://iisprojekt.fun:8000/konference/'+id+'/novyPrispevek', null, JSON.stringify(details));
+        let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novyPrispevek', null, JSON.stringify(details));
     
         if(error) {
             //reload get user info again
