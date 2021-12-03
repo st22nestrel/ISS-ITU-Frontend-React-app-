@@ -23,6 +23,7 @@ import ProtectedRoute, {UnprotectedRoute} from './components/AuthRoute';
 import CurrentUserProfile from './components/routes/CurrentUserProfile';
 import Admin from './components/routes/Admin';
 import Footer from './components/Footer';
+import Map from './components/Map';
 
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -47,6 +48,8 @@ function App() {
         <Route path="/signIn" element={<SignIn/>}/>
       }
       <Route path="/konference" element={<KonferenceList url={'http://ituprojekt.fun:8000/konference/'} />}/>
+
+      <Route path="/map" exact exact element={ <Map/> } />
 
       <Route path ="/admin" exact exact element={ <ProtectedRoute> <Admin /> </ProtectedRoute> } />
 

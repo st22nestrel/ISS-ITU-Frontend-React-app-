@@ -25,6 +25,13 @@ function Navigation() {
                   </NavLink>
                 </li>
               }
+
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/map">
+                  Mapa
+                </NavLink>
+              </li>
+
               <li className="nav-item">
                 <NavLink className="nav-link" to="/rezervaceFind">
                   Rezervace
