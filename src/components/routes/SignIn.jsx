@@ -55,6 +55,7 @@ function SignIn() {
                 
                 console.log("redirected");
                 navigate('/konference');
+                window.location.reload(false);
             }
             //we cannot login, user does not exist
             else{

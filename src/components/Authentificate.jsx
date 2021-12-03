@@ -16,9 +16,7 @@ class Authentificate{
     static login(token){
         this.authentificated = true;
         this.token = token;
-        window.localStorage.setItem("token", token);
-        window.location.reload(false);
-    
+        window.localStorage.setItem("token", token);    
     }
     static setId(details){
         window.localStorage.setItem("userID", details.ID);
