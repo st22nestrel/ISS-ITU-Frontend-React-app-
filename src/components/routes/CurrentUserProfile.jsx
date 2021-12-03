@@ -17,7 +17,8 @@ function CurrentUserProfile(token) {
 
 
     let id3 = window.localStorage.getItem("userID");
-    let { data3, pending3, error3 } = useGet('http://ituprojekt.fun:8000/admin/check/' + id3, null)
+    //data, pending, error
+    let { data: data3, pending: pending3, error: error3 } = useGet('http://ituprojekt.fun:8000/admin/check/' + id3, null)
     let jeAdmin3;
     if (error3) {
         jeAdmin3 = false;

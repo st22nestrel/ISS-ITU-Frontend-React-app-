@@ -5,9 +5,6 @@ const RezervacePotvrditRow = ({ data, handleEditClick, handleDeleteClick, porada
     <tr>
         {poradatel &&
       <td>{data.Konference}</td>}
-      <td>{data.Uzivatel}</td>
-      <td>{data.Jmeno}</td>
-      <td>{data.Prijmeni}</td>
       <td>{data.Email}</td>
       <td>{data.Datum_vytvoreni}</td>
       <td>{data.Pocet_vstupenek}</td>

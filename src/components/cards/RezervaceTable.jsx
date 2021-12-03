@@ -73,9 +73,6 @@ function GenerateHtml({Konference, data, poradatel}){
               <thead>
                 <tr>
                   {poradatel && <th>Konference</th>}
-                  <th>Uzivatel</th>
-                  <th>Jmeno</th>
-                  <th>Prijmeni</th>
                   <th>Email</th>
                   <th>Datum vytvoreni</th>
                   <th>Pocet vstupenek</th>
