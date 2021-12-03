@@ -34,7 +34,7 @@ class Authentificate{
     }
 
     static isAuth(){
-        return (window.localStorage.getItem("token") || false)
+        return this.authentificated;
     }
     
     static getToken(){
