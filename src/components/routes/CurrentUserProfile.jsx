@@ -19,12 +19,12 @@ function CurrentUserProfile(token) {
     let id3 = window.localStorage.getItem("userID");
     //data, pending, error
     let { data: data3, pending: pending3, error: error3 } = useGet('http://ituprojekt.fun:8000/admin/check/' + id3, null)
-    let jeAdmin3;
+    let isAdmin;
     if (error3) {
-        jeAdmin3 = false;
+        isAdmin = false;
     }
     else if (data3){
-        jeAdmin3 = data3.admin;
+        isAdmin = data3.admin;
     }
 
 
@@ -151,7 +151,7 @@ function CurrentUserProfile(token) {
                             </div>
                             <br />
                             {
-                                jeAdmin3?
+                                isAdmin?
                                     <div>
                                             <button class="w-100 btn btn-lg btn-outline-primary"
                                             onClick={() => navigate('/admin')}>Admin</button>
@@ -159,9 +159,6 @@ function CurrentUserProfile(token) {
                                     </div>
                                     :
                                     <div>
-                                        <button class="w-100 btn btn-lg btn-outline-primary"
-                                            onClick={() => navigate('/admin')}>AdminNE</button>
-                                        <br />
                                     </div>
                             }
                             <br />
