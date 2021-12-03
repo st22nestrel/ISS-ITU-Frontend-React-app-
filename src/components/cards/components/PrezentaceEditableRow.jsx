@@ -13,6 +13,17 @@ const EditableRow = ({
     //TODO maybe make selectbox for rooms?? :/
 
   return (
+    <div>
+
+    <tr>
+      <td>Název</td>
+      <td>Konference</td>
+      <td>Přednášející</td>
+      <td>Popis</td>
+      <td>Tagy</td>
+      <td>Grafika</td>
+    </tr>
+    
     <tr>
       <td>
         <input
@@ -36,8 +47,6 @@ const EditableRow = ({
         ></input>
       </td>
 
-     {//TODO make rendering of this conditional :)
-     true &&
       <td>
         <input
           type="text"
@@ -48,7 +57,6 @@ const EditableRow = ({
           onChange=""
         ></input>
       </td>
-    }
 
       <td>
         <input
@@ -82,7 +90,18 @@ const EditableRow = ({
           onChange={handleEditFormChange}
         ></input>
       </td>
+    </tr>
 
+    <tr>
+      <td>Soubor</td>
+      <td>Místnost</td>
+      <td>Schválena</td>
+      <td>Začátek čas</td>
+      <td>Konec čas</td>
+      <td>Poznámky pořadatele</td>
+    </tr>
+
+    <tr>
       <td>
         <input
           type="text"
@@ -172,6 +191,7 @@ const EditableRow = ({
         </button>
       </td>
     </tr>
+    </div>
   );
 };
 

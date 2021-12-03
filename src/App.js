@@ -15,7 +15,8 @@ import {
   KonferenceDetailNotRegistered,
   RezervaceFind,
   UserProfile,
-  Harmonogram
+  Harmonogram,
+  Users
 } from "./components";
 
 import Auth from './components/Authentificate';
@@ -61,6 +62,7 @@ function App() {
       <Route path="/uzivatel/konference" exact element={<ProtectedRoute> <KonferenceList url={'http://ituprojekt.fun:8000/uzivatel/poradatel'}/> </ProtectedRoute>}/>
 
       <Route path="/uzivatel/:id" exact element={<ProtectedRoute> <UserProfile/> </ProtectedRoute>}/>
+      <Route path="/uzivatele" exact element={<ProtectedRoute> <Users/> </ProtectedRoute>}/>
 
       <Route path="/konference/:id" exact element={ <ProtectedRoute> <KonfereceDetail /> </ProtectedRoute> } />
       <Route path="/konference/notRegistered/:id" element={ <KonferenceDetailNotRegistered /> } />

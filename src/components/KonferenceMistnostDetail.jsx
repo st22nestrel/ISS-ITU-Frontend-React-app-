@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PrezentaceTable from "./cards/PrezentaceTable";
+import PrezentaceTableReadOnly from "./cards/PrezentaceTableReadOnly";
 import { useParams } from 'react-router';
 import { useGet } from '../static/Loaders'
 
@@ -32,9 +32,9 @@ return (
                             <div class="card-header card-header-flex">
                                 <h3 class="card-title text-bold"> Prezentace v místnosti + {kod} v konferenci {id} </h3>
 
-                                <PrezentaceTable Konference={id} Mistnost={kod} 
+                                <PrezentaceTableReadOnly Konference={id} Mistnost={kod} 
                                     url={'http://ituprojekt.fun:8000/konference/'+id+'/'+kod+'/prispevky'}
-                                ></PrezentaceTable>
+                                ></PrezentaceTableReadOnly>
 
                             </div>
                         </div>

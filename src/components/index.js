@@ -17,3 +17,4 @@ export { default as Rezervace } from "./routes/Rezervace";
 export { default as RezervaceFind } from "./routes/RezervaceFind";
 
 export { default as UserProfile } from "./routes/UserProfile";
+export { default as Users } from "./routes/Users";

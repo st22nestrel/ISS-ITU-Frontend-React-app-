@@ -459,6 +459,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
               onClick={(() => setOpened(!opened))}>
           <i class="nc-icon nc-stre-up"></i>
+          Detail
       </button>
       {opened && card}
     </div>

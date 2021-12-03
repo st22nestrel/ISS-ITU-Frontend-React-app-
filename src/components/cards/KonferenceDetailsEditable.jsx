@@ -18,6 +18,8 @@ const UpravKonf = async details => {
 
 function KonferenceDetailsEditable({data}){
 
+    const [opened, setOpened] = useState(false);
+
     const [details, setDetails] = useState({
         Nazev: data.Nazev, Popis: data.Popis, Obor: data.Obor, Zeme: data.Zeme, 
         Mesto: data.Mesto, Misto: data.Misto ,
@@ -139,9 +141,14 @@ function KonferenceDetailsEditable({data}){
     )
 
 return (
-   
-        form
-    
+    <div>
+            <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
+                    onClick={(() => setOpened(!opened))}>
+                <i class="nc-icon nc-stre-up"></i>
+                Detail
+            </button>
+            {opened && form}
+    </div>  
   );
 
 }

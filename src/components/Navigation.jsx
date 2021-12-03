@@ -39,6 +39,12 @@ function Navigation() {
               </li>
 
               <li className="nav-item">
+                <NavLink className="nav-link" to="/uzivatele">
+                  Portfolio
+                </NavLink>
+              </li>
+
+              <li className="nav-item">
                 <NavLink className="nav-link" to="/konference">
                   Konference
                 </NavLink>

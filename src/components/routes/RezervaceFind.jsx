@@ -36,7 +36,6 @@ export default function KonferenceNew() {
         <div className="KonferenceRezervaceFind">
             <div class="content container-fluid">
                 <div class="row mb-3 " style={{marginTop: 20}}>
-                    {/* <!--<main class="form-signin">--> */}
                     <div class="col-12 themed-grid-col">
                         
 

@@ -8,7 +8,7 @@ function Admin() {
     let id = window.localStorage.getItem("userID");
 
     let { data, pending, error } = useGet('http://ituprojekt.fun:8000/admin/check/' + id, null)
-    let { data: allUsers, pending2, error2 } = useGet('http://ituprojekt.fun:8000/uzivatel/seznam', null)
+    let { data: allUsers, pending: pending2, error: error2 } = useGet('http://ituprojekt.fun:8000/uzivatel/seznam', null)
 
     let jeAdmin;
 
