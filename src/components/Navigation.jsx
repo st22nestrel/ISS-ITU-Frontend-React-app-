@@ -1,35 +1,33 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useGet } from '../static/Loaders';
 import Authentificate from "./Authentificate";
 /* import Auth from "./Authentificate"; */
 
 function Navigation() {
+  let id = window.localStorage.getItem("userID");
   const signInLink = false;
+  let isLogin = (Authentificate.isAuth());
+
   return (
     <div className="navigation">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
           <NavLink className="navbar-brand" to="/uzivatel">
-	        </NavLink>
+          </NavLink>
           <div>
             <ul className="navbar-nav ml-auto">
               {signInLink &&
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/signIn">
-                  Přihlášení
-                  <span className="sr-only">(current)</span>
-                </NavLink>
-              </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/signIn">
+                    Přihlásit se
+                    <span className="sr-only">(current)</span>
+                  </NavLink>
+                </li>
               }
- 	            <li className="nav-item">
-                <NavLink className="nav-link" to="/admin">
-                 Správa uživatelů 
-                </NavLink>
-              </li>
-              
               <li className="nav-item">
                 <NavLink className="nav-link" to="/rezervaceFind">
-                 Hledej Rezervace
+                  Rezervace
                 </NavLink>
               </li>
 
@@ -38,17 +36,43 @@ function Navigation() {
                   Konference
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/novaKonference">
-                  Přidat konferenci
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/uzivatel">
-                  Profil
-                </NavLink>
-              </li>
-              <button class="btn btn-outline-success" type="button" onClick={()=>(Authentificate.logout())}>Odhlásit</button>
+
+              {
+                isLogin ?
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/novaKonference">
+                      Přidat konferenci
+                    </NavLink>
+                  </li>
+                  :
+                  <li className="nav-item"></li>
+              }
+
+              {
+                isLogin ?
+                  <li className="nav-item">
+                    <NavLink className="nav-link" to="/uzivatel">
+                      Profil
+                    </NavLink>
+                  </li>
+                  :
+                  <div>
+                    <li className="nav-item">
+                      <NavLink className="nav-link" to="/signIn">
+                        Přihlásit se
+                      </NavLink>
+                    </li>
+                  </div>
+              }
+
+              {
+                isLogin ?
+                  <div>
+                    <button class="btn btn-outline-success" type="button" onClick={() => (Authentificate.logout())}>Odhlásit</button>
+                  </div>
+                  :
+                  <li className="nav-item"></li>
+              }
             </ul>
           </div>
         </div>

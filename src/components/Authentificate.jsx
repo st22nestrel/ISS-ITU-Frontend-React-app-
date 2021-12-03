@@ -17,6 +17,7 @@ class Authentificate{
         this.authentificated = true;
         this.token = token;
         window.localStorage.setItem("token", token);
+        window.location.reload(false);
     
     }
     static setId(details){
@@ -33,7 +34,7 @@ class Authentificate{
     }
 
     static isAuth(){
-        return this.authentificated;
+        return (window.localStorage.getItem("token") || false)
     }
     
     static getToken(){

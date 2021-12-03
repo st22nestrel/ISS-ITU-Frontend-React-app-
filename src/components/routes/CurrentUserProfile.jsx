@@ -137,6 +137,11 @@ function CurrentUserProfile(token) {
                         <br/>
                         <div>
                             <button class="w-100 btn btn-lg btn-outline-primary" 
+                            onClick={() => navigate('/admin')}>Admin</button>
+                        </div>
+                        <br/>
+                        <div>
+                            <button class="w-100 btn btn-lg btn-outline-primary" 
                             onClick={() => setPasswordChange(true)}>Změnit heslo</button>
                         </div>
                         <br/>
