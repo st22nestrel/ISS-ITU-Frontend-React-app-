@@ -11,19 +11,46 @@ function InnerHtml({datas, isAuth, error, pending}){
 
     const [data, setData] = useState(datas);
 
+
     return(
         <div class="col-12">
 
             <div class="content container-fluid">
                 <div class="row mb-3 " style={{marginTop: 20}}>
                     <div class="col-12 themed-grid-col">
+            
+            <div class="input-group">
+
+            <div class="form-outline" style={{marginRight: 20}}>
+                <h2>Filtr: </h2>
+            </div>
+
             <div class="form-outline">
                 <label class="form-label" for="form1">Zadej název konference</label>
                 <input type="search" id="form1" class="form-control" 
                 onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Nazev.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
             </div>
+
+            <div class="form-outline">
+                <label class="form-label" for="form1">Zadej obor</label>
+                <input type="search" id="form1" class="form-control" 
+                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Obor.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+            </div>
+
+            <div class="form-outline">
+                <label class="form-label" for="form1">Zadej zemi</label>
+                <input type="search" id="form1" class="form-control" 
+                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Zeme.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+            </div>
+
+            <div class="form-outline">
+                <label class="form-label" for="form1">Zadej město</label>
+                <input type="search" id="form1" class="form-control" 
+                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Mesto.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+            </div>
                     </div>
                 </div>
+            </div>
             </div>
 
             { 
@@ -43,7 +70,7 @@ function InnerHtml({datas, isAuth, error, pending}){
                 {
                 !data  &&
                 <div className="">
-                    <h2>Zadanému názvu neodpovídá žádná konference</h2>
+                    <h2>Zadanému filtru žádná konference</h2>
                 </div>
                 }
 

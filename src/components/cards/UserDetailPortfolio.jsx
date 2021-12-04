@@ -95,7 +95,7 @@ function UserDetailPortfolio({ uzivatel }) {
         <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
                 onClick={() => setOpen(!open)}>
           <i class="nc-icon nc-stre-up"></i>
-          Detail
+          {open ? "Skrýt" : "Zobrazit"}
         </button>
         {card}
       </div>
