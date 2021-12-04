@@ -34,7 +34,18 @@ function Footer() {
 
           <div className="col">
             <h6 className="list-unstyled">
-              <li></li>
+              <li> </li>
+            </h6>
+          </div>
+
+          <div className="col">
+            <h6 className="lightText2">
+              <li><a href="/map" class="mailwhite">Mapa</a></li>
+              <li><a href="/rezervaceFind" class="mailwhite">Rezervace</a></li>
+              <li><a href="/konference" class="mailwhite">Konference</a></li>
+              <li><a href="/novaKonference" class="mailwhite">Přidat konferenci</a></li>
+              <li><a href="/uzivatele" class="mailwhite">Portfolio uživatelů</a></li>
+              <li><a href="/signIn" class="mailwhite">Přihlašení</a></li>
             </h6>
           </div>
         </div>

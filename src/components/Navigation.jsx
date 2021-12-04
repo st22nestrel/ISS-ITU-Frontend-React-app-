@@ -13,6 +13,7 @@ function Navigation() {
         <div className="navigation">
             <nav className="navbar navbar-expand navbar-dark bg-dark">
                 <div className="container">
+                    <img src="logo.png" alt="Logo" />
                     <NavLink className="navbar-brand" to="/uzivatel">
                     </NavLink>
                     <div>
