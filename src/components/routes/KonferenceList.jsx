@@ -9,8 +9,20 @@ import Authentificate from "../Authentificate.jsx";
 
 function InnerHtml({datas, isAuth, error, pending}){
 
-    const [data, setData] = useState(datas);
+    //const [data, setData] = useState(datas);
 
+    const [filter1, setFilter1] = useState(null)
+    const [filter2, setFilter2] = useState(null)
+    const [filter3, setFilter3] = useState(null)
+    const [filter4, setFilter4] = useState(null)    
+
+    const data = (datas.filter(konf =>
+        (filter1 ? konf.Nazev.toLowerCase().includes(filter1.toLowerCase()) : true) &&
+        (filter2 ? konf.Obor.toLowerCase().includes(filter2.toLowerCase()) : true) &&
+        (filter3 ? konf.Zeme.toLowerCase().includes(filter3.toLowerCase()) : true) &&
+        (filter4 ? konf.Mesto.toLowerCase().includes(filter4.toLowerCase()) : true)
+    ))
+    
 
     return(
         <div class="col-12">
@@ -28,25 +40,25 @@ function InnerHtml({datas, isAuth, error, pending}){
             <div class="form-outline">
                 <label class="form-label" for="form1">Zadej název konference</label>
                 <input type="search" id="form1" class="form-control" 
-                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Nazev.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+                onChange={(e) => setFilter1(e.target.value)}/>
             </div>
 
             <div class="form-outline">
                 <label class="form-label" for="form1">Zadej obor</label>
                 <input type="search" id="form1" class="form-control" 
-                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Obor.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+                onChange={(e) => setFilter2(e.target.value)}/>
             </div>
 
             <div class="form-outline">
                 <label class="form-label" for="form1">Zadej zemi</label>
                 <input type="search" id="form1" class="form-control" 
-                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Zeme.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+                onChange={(e) => setFilter3(e.target.value)}/>
             </div>
 
             <div class="form-outline">
                 <label class="form-label" for="form1">Zadej město</label>
                 <input type="search" id="form1" class="form-control" 
-                onChange={(e) => setData(datas.filter(konf => e.target.value ? konf.Mesto.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+                onChange={(e) => setFilter4(e.target.value)}/>
             </div>
                     </div>
                 </div>

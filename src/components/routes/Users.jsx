@@ -4,7 +4,17 @@ import UserDetailPortfolio from '../cards/UserDetailPortfolio';
 
 function InnerHtml({datas, isAuth, error, pending}){
 
-  const [data, setData] = useState(datas);
+  const [filter1, setFilter1] = useState(null)
+  const [filter2, setFilter2] = useState(null)
+  const [filter3, setFilter3] = useState(null)
+  const [filter4, setFilter4] = useState(null)    
+
+  const data = (datas.filter(uzivatel =>
+      (filter1 ? uzivatel.ID === Number(filter1) : true) &&
+      (filter2 ? uzivatel.Email.toLowerCase().includes(filter2.toLowerCase()) : true) &&
+      (filter3 ? uzivatel.Jmeno.toLowerCase().includes(filter3.toLowerCase()) : true) &&
+      (filter4 ? uzivatel.Prijmeni.toLowerCase().includes(filter4.toLowerCase()) : true)
+  ))
 
   return(
       <div class="col-12">
@@ -22,25 +32,25 @@ function InnerHtml({datas, isAuth, error, pending}){
           <div class="form-outline">
               <label class="form-label" for="form1">Zadej id</label>
               <input type="search" id="form1" class="form-control" 
-              onChange={(e) => setData(datas.filter(uzivatel => e.target.value ? uzivatel.ID == Number(e.target.value) : true))}/>
+              onChange={(e) => setFilter1(e.target.value)}/>
           </div>
 
           <div class="form-outline">
               <label class="form-label" for="form1">Zadej email</label>
               <input type="search" id="form1" class="form-control" 
-              onChange={(e) => setData(datas.filter(uzivatel => e.target.value ? uzivatel.Email.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+              onChange={(e) => setFilter2(e.target.value)}/>
           </div>
 
           <div class="form-outline">
               <label class="form-label" for="form1">Zadej jméno</label>
               <input type="search" id="form1" class="form-control" 
-              onChange={(e) => setData(datas.filter(uzivatel => e.target.value ? uzivatel.Jmeno.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+              onChange={(e) => setFilter3(e.target.value)}/>
           </div>
 
           <div class="form-outline">
               <label class="form-label" for="form1">Zadej přijmení</label>
               <input type="search" id="form1" class="form-control" 
-              onChange={(e) => setData(datas.filter(uzivatel => e.target.value ? uzivatel.Prijmeni.toLowerCase().includes(e.target.value.toLowerCase()) : true))}/>
+              onChange={(e) => setFilter4(e.target.value)}/>
           </div>
                   </div>
               </div>
