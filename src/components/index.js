@@ -1,6 +1,6 @@
 /**
  * ITU - projekt, VUT FIT Brno
- * @author Tereza Buriánová, xburia28
+ * @author Tereza Burianová, xburia28
  * @file index.js
  */
 

@@ -1,6 +1,6 @@
 /**
  * ITU - projekt, VUT FIT Brno
- * @author Tereza Burianová, xburia23
+ * @author Tereza Burianová, xburia28
  * @file PrezentaceTableReadOnly.jsx
  */
 import React, { useState, Fragment } from "react";

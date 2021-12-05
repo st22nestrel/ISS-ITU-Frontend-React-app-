@@ -1,6 +1,6 @@
 /**
  * ITU - projekt, VUT FIT Brno
- * @author Tereza Burianová, xburia23
+ * @author Tereza Burianová, xburia28
  * @file PrispevekNew.jsx
  */
 import React, {useState} from 'react';
