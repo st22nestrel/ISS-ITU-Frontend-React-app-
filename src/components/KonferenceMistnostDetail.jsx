@@ -1,32 +1,27 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file KonferenceMistnostDetail.jsx
+ */
 import React, {useState} from "react";
 import PrezentaceTableReadOnly from "./cards/PrezentaceTableReadOnly";
 import { useParams } from 'react-router';
-import { useGet } from '../static/Loaders'
 
+/**
+ * Detail with prezentations in choosen room in choosen conference, given by params
+ * @returns Html
+ */
 function KonferenceMistnostDetail() {
 
     const { id, kod } = useParams();
 
-    //+id
-    //let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+id +'/'+'kod', null)
-
-    let data
-
-    const submitHandler = e => {
-        e.preventDefault();
-
-        
-    }
 
 return (
     <div className="Konference">
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
                 <div class="col-12 themed-grid-col">
-                    
-                {
-                    (data || true) && 
+
                     <div>
                         <div class="card">
                             <div class="card-header card-header-flex">
@@ -39,8 +34,6 @@ return (
                             </div>
                         </div>
                     </div>
-                }
-                
 
                 </div>
             </div>

@@ -1,8 +1,15 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file KonferenceCard.jsx
+ */
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 import { NavLink } from "react-router-dom";
 
-
+/**
+ * Class representing card containg conference details and other tabs related to conference 
+ * -> logged in user
+ */
 class KonferenceCard extends React.Component{
     state = {
         open: false
@@ -10,7 +17,6 @@ class KonferenceCard extends React.Component{
 
     konference = this.props.data;
     
-
     render(){
 
         let card;
@@ -62,13 +68,11 @@ class KonferenceCard extends React.Component{
                 <p>Další údaje: {konference.Doplnujici_udaje}</p>
             </div>
                 
-            {/* {konference.map((el)=>(<p>{el}</p>))} */}
         </div>)
         } else {
             card = null;
         }
 
-        //(() => this.setState({ open: true/* !this.state.open */ })
         return (
         <div class="card">
             <div class="card-header card-header-flex">

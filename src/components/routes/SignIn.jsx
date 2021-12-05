@@ -1,13 +1,22 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file SignIn.jsx
+ */
+
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import LoginForm from "../LoginForm";
 import RegistrationForm from "../RegistrationForm";
-import PropTypes from 'prop-types';
 import './SignIn.css';
 import Auth from "../Authentificate"
 import {Get} from "../../static/Loaders"
 
-//TODO
+/**
+ * post method to register user
+ * @param {*} credentials data to post
+ * @returns 
+ */
 async function registerUser(credentials) {
     return fetch('http://ituprojekt.fun:8000/uzivatel/registrace', {
       method: 'POST',
@@ -18,6 +27,11 @@ async function registerUser(credentials) {
     })
    }
 
+/**
+ * post method to log in user
+ * @param {*} credentials data to post
+ * @returns 
+ */
 async function loginUser(credentials) {
     return fetch('http://ituprojekt.fun:8000/uzivatel/prihlaseni', {
       method: 'POST',
@@ -29,6 +43,10 @@ async function loginUser(credentials) {
     .then(data => data.json())
    }
 
+/**
+ * Container for LoginForm and RegistrationForm
+ * @returns Html
+ */
 function SignIn() {
     const [error, setError] = useState("");
 
@@ -37,7 +55,6 @@ function SignIn() {
     const Login = async details => {
         console.log("details");
 
-        //TODO validate email lil
         if(details.Email && details.Heslo){
             
             //send to server
@@ -69,14 +86,12 @@ function SignIn() {
     const Registration = async details => {
         console.log("details");
 
-        //TODO validate email lil
         if(details.Email && details.Heslo && details.Jmeno && details.Prijmeni){
             //send to server
             let answer = await registerUser(details);
 
             //user succesfully registered
             if(answer.status === 201){
-              //login him TODO maybe display some message
               let answer = await loginUser(details);
 
               if(answer.data){
@@ -95,21 +110,19 @@ function SignIn() {
     <div className="signIn">
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
                 <div class="col-sm-4 themed-grid-col">
 
                     <LoginForm Login={Login} error={error}/>
 
                 </div>
                 <div class="col-sm-4 themed-grid-col">
-                    
+
                     <RegistrationForm Registration={Registration} error={error}/>
 
                 </div>
             </div>
         </div>
-    </div>  
-    
+    </div>
   );
 }
 

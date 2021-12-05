@@ -1,9 +1,15 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file LoginForm.jsx
+ */
 import React, { useState } from 'react'
 
 /**
- * 
+ * Login form
  * @param Login login fnc
- * @returns 
+ * @param error error
+ * @returns Html
  */
 function LoginForm({Login, error}) {
 

@@ -1,5 +1,17 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file ProfileForm.jsx
+ */
 import React, {useState} from 'react'
 
+/**
+ * Profile form
+ * @param {*} Update function to call when submitting update of profile
+ * @param {*} userInfo user details
+ * @param {*} adminUpdate permit admin role
+ * @returns 
+ */
 function ProfileForm({Update, userInfo, adminUpdate}) {
 
     const [role, setRole] = useState('uzivatel');
@@ -54,19 +66,7 @@ function ProfileForm({Update, userInfo, adminUpdate}) {
                             <option>Phd.</option>
                         </select>
 
-                        {/* <!--                                <div class="invalid-feedback">-->
-                        <!--                                    Titul není validní.-->
-                        <!--                                </div>--> */}
                     </div>
-
-{/*                     <div class="col-12">
-                        <label for="password" class="form-label">Heslo</label>
-                        <input type="password" class="form-control" id="password" required=""
-                        onChange={e => setDetails({...details, password: e.target.value})} value={details.password}/>
-                        <div class="invalid-feedback">
-                            Zadejte prosím validní email
-                        </div>
-                    </div> */}
 
                     {adminUpdate && (
                       <div className="col-12">
@@ -118,7 +118,6 @@ function ProfileForm({Update, userInfo, adminUpdate}) {
                         </div>
                     </div>
 
-                    {/* <!--                            TODO možno selectbox na zemi--> */}
                     <div class="col-12">
                         <label for="zeme" class="form-label">Země</label>
                         <input type="text" class="form-control" id="zeme"
@@ -138,12 +137,9 @@ function ProfileForm({Update, userInfo, adminUpdate}) {
                     </div>
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Potvrdit nové údaje</button>
-
             </div>
         </form>
     )

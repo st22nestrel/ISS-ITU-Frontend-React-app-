@@ -1,3 +1,8 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file RezervaceTable.jsx
+ */
 import React, { useState, Fragment } from "react";
 import "./MistnostiTable.css";
 import RezervacePotvrditRow from "./components/RezervacePotvrditRow";
@@ -19,9 +24,14 @@ const Delete = async details => {
 
     return error
   }
-  
 
-
+/**
+ * Table with presentations
+ * @param {*} Konference conference name
+ * @param {*} data data
+ * @param {*} poradatel boolean wheter we are creator of conference
+ * @returns Html
+ */
 function GenerateHtml({Konference, data, poradatel}){
 
     const [opened, setOpened] = useState(false);
@@ -61,7 +71,6 @@ function GenerateHtml({Konference, data, poradatel}){
           setPrezentace(newDatas);
         }
     }
-
 
     let card = (
         data &&
@@ -107,9 +116,15 @@ function GenerateHtml({Konference, data, poradatel}){
       );
 }
 
-function RezervaceTable ({Konference, _data, nofilter = false, poradatel}) {
+/**
+ * reservation table, for attendee of conference or creator of conference
+ * @param {*} Konference id of konference
+ * @param {*} nofilter whether to use filter
+ * @param {*} poradatel whether user is poradatel - creator of conference
+ * @returns 
+ */
+function RezervaceTable ({Konference, nofilter = false, poradatel}) {
 
-    //let {data, pending, error};
     let dataToUse
     let url = poradatel ? 
         'http://ituprojekt.fun:8000/konference/' + Konference+ '/rezervace' :

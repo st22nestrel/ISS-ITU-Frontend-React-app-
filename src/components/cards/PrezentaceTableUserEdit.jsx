@@ -1,11 +1,13 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file PrezentaceTableUserEdit.jsx
+ */
 import React, { useState, Fragment } from "react";
-import { nanoid } from "nanoid";
 import "./MistnostiTable.css";
-import data from "./mock-data.json";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRowUser";
 import { useGet, Post, Put } from "../../static/Loaders";
-import Authentificate from "../Authentificate";
 import { useParams } from "react-router";
 
 async function Add(details){
@@ -13,17 +15,6 @@ async function Add(details){
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/novyPrispevek', null, JSON.stringify(details));
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error
 }
 
@@ -33,17 +24,6 @@ const Update = async details => {
 
   let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error
 }
 
@@ -51,21 +31,17 @@ const Delete = async details => {
   console.log("deleting room");
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/odstranit', null, null);
-  
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
+
   return error
 }
 
+/**
+ * Table with presentations
+ * @param {*} Konference conference name
+ * @param {*} Mistnost room code
+ * @param {*} data data
+ * @returns Html
+ */
 function GenerateHtml({Konference, Mistnost, data}){
   const [opened, setOpened] = useState(false);
   const [prezentace, setPrezentace] = useState(data);
@@ -106,40 +82,25 @@ function GenerateHtml({Konference, Mistnost, data}){
 
   const [editRoomNazev, setEditRoomNazev] = useState(null);
 
-  const handleAddFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...addFormData };
-    newFormData[fieldName] = fieldValue;
-
-    setAddFormData(newFormData);
-  };
-
   const handleEditFormChange = (event) => {
     event.preventDefault();
 
-    //TODO poslať na server požiadavok o pridanie miestnosti
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
 
-    //TODO maybe sort newDatas :)
     setEditFormData(newFormData);
   };
 
   const handleAddFormSubmit = async (event) => {
     event.preventDefault();
 
-    //TODO poslať na server požiadavok o upravu miestnosti
     const newPrezentace = {
       Nazev: addFormData.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
+      Uzivatel: null,
       Popis: addFormData.Popis,
       Tagy: addFormData.Tagy,
       Grafika: addFormData.Grafika,
@@ -156,7 +117,6 @@ function GenerateHtml({Konference, Mistnost, data}){
 
     if(!error){
       const newDatas = [...prezentace, newPrezentace];
-      //TODO maybe sort newDatas :)
       setPrezentace(newDatas);
     }
     else{
@@ -172,7 +132,7 @@ function GenerateHtml({Konference, Mistnost, data}){
       ID: editFormData.ID,
       Nazev: editFormData.Nazev,
       Konference: Konference,
-      Uzivatel: editFormData.Uzivatel, //todo-store email in localstorage :D
+      Uzivatel: editFormData.Uzivatel,
       Popis: editFormData.Popis,
       Tagy: editFormData.Tagy,
       Grafika: editFormData.Grafika,
@@ -211,7 +171,7 @@ function GenerateHtml({Konference, Mistnost, data}){
       ID: room.ID,
       Nazev: room.Nazev,
       Konference: room.Konference,
-      Uzivatel: room.Uzivatel, //todo-store email in localstorage :D
+      Uzivatel: room.Uzivatel,
       Popis: room.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
@@ -265,7 +225,6 @@ function GenerateHtml({Konference, Mistnost, data}){
                 <td>Soubor</td>
                 <td>Mistnost</td>
                 <td>Schvalena</td>
-                {/* <td>Datum</td> */}
                 <td>Zacatek cas</td>
                 <td>Konec cas</td>
                 <td>poznamkyPoradatele</td>
@@ -274,7 +233,7 @@ function GenerateHtml({Konference, Mistnost, data}){
             <tbody>
               {prezentace.map((room) => (
                 <Fragment>
-                { //by this we make even nazev unique -> at least for room, which is ???
+                {
                 editRoomNazev === room.ID ? (
                   <EditableRow
                     editFormData={editFormData}
@@ -310,12 +269,18 @@ function GenerateHtml({Konference, Mistnost, data}){
 );
 }
 
+/**
+ * Table with presentions created by user for conference, yet waiting for approval
+ * @param {*} Konfernece conference name
+ * @param {*} Mistnost name of room
+ * @param {*} url url to ge data from
+ * @returns 
+ */
 function PrezentaceUserEdit ({Konference, Mistnost, url}) {
 
   let {id, kod} = useParams();
 
   let {data, pending, error} = useGet(url, null)
-
 
   const userID = window.localStorage.getItem("userID");
 
@@ -325,13 +290,11 @@ function PrezentaceUserEdit ({Konference, Mistnost, url}) {
 
     data = filteredData;
   }
-    
 
   return(data && 
     <div>
       <GenerateHtml data={data} Konference={id} Mistnost={kod}></GenerateHtml>
     </div>
-    
     )
 
 };

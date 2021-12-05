@@ -1,16 +1,19 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file PrezentaceEditableRow.jsx
+ */
 import React from "react";
 
-//MistnostRow
-//TODO make 
-
-const EditableRow = ({
+/**
+ * Prezentace row - edit
+ */
+const PrezentaceEditableRow = ({
   editFormData,
   handleEditFormChange,
   handleCancelClick,
 }) => {
 
-  const ID = window.localStorage.getItem("ID");
-    //TODO maybe make selectbox for rooms?? :/
 
   return (
     <div>
@@ -195,4 +198,4 @@ const EditableRow = ({
   );
 };
 
-export default EditableRow;
+export default PrezentaceEditableRow;

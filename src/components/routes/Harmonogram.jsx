@@ -1,11 +1,17 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file Harmonogram.jsx
+ */
 import React, {useState} from "react";
-import KonferenceFormButton from "../cards/KonferenceDetailsEditable";
-import MistnostiTable from "../cards/MistnostiTable";
 import { useParams } from 'react-router';
-import { useGet } from '../../static/Loaders'
 import PrezentaceShowTable from "../cards/PrezentaceTableReadOnly";
 
-function PrezentaceListReadOnly() {
+/**
+ * Harmonogram of prezentation for conference determined by id
+ * @returns Html
+ */
+function Harmonogram() {
 
     const { id } = useParams();
 
@@ -17,7 +23,6 @@ return (
     <div className="Konference">
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
                 <div class="col-12 themed-grid-col">
                     
                 {
@@ -42,4 +47,4 @@ return (
   );
 }
 
-export default PrezentaceListReadOnly;
+export default Harmonogram;

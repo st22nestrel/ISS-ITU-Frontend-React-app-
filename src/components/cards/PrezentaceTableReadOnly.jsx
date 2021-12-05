@@ -1,9 +1,18 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file PrezentaceTableReadOnly.jsx
+ */
 import React, { useState, Fragment } from "react";
 import "./MistnostiTable.css";
 import ReadRow from "./components/PrezentaceReadRow";
 import {useGet} from '../../static/Loaders'
 
-
+/**
+ * Table with presentations
+ * @param {*} data data
+ * @returns Html
+ */
 function GenerateHtml({data}){
   const [opened, setOpened] = useState(false);
 
@@ -24,7 +33,6 @@ function GenerateHtml({data}){
               <th>Soubor</th>
               <th>Mistnost</th>
               <th>Schavalena</th>
-              {/* <th>Datum</th> */}
               <th>Zacatek cas</th>
               <th>Konec cas</th>
               <th>Poznamky poradatele</th>
@@ -57,6 +65,15 @@ function GenerateHtml({data}){
   );
 }
 
+/**
+ * Table with presentions created by user for conference, yet waiting for approval
+ * @param {*} Konfernece conference name
+ * @param {*} Mistnost name of room
+ * @param {*} url url to ge data from
+ * @param {*} userID user id
+ * @param {*} Harmonogram boolean, whether to filter data for creation of harmonogram
+ * @returns 
+ */
 function PrezentaceTableReadOnly ({Konference, url, userID, Harmonogram}) {
 
   if(url){
@@ -80,8 +97,6 @@ function PrezentaceTableReadOnly ({Konference, url, userID, Harmonogram}) {
       data = filteredData;
     }
   }
-
-  //useEffect na nacitanie miestnosti
 
   return (
     data ?

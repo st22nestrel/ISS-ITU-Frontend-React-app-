@@ -1,7 +1,17 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file UserProfile.jsx
+ */
 import React, {useState} from 'react'
 import { useParams } from 'react-router-dom';
 import {useGet} from "../../static/Loaders"
 
+/**
+ * 
+ * @param {*} data data to display
+ * @returns Html
+ */
 function InnerHtml({data}){
     const details = data;
 
@@ -59,7 +69,6 @@ function InnerHtml({data}){
                         onChange="" value={details.Obor ? details.Obor : "" }/>
                     </div>
 
-                    {/* <!--                            TODO možno selectbox na zemi--> */}
                     <div class="col-12">
                         <label for="zeme" class="form-label">Země</label>
                         <input type="text" class="form-control" id="zeme"
@@ -82,6 +91,10 @@ function InnerHtml({data}){
     )
 }
 
+/**
+ * profile of user
+ * @returns Html
+ */
 function UserProfile() {
 
     let {id} =  useParams()

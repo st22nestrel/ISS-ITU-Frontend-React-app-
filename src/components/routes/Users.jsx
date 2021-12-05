@@ -1,8 +1,18 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file Users.jsx
+ */
 import React, {useState} from 'react';
 import { useGet } from '../../static/Loaders';
 import UserDetailPortfolio from '../cards/UserDetailPortfolio';
 
-function InnerHtml({datas, isAuth, error, pending}){
+/**
+ * 
+ * @param {*} datas data to work with
+ * @returns 
+ */
+function InnerHtml({datas}){
 
   const [filter1, setFilter1] = useState(null)
   const [filter2, setFilter2] = useState(null)
@@ -78,6 +88,10 @@ function InnerHtml({datas, isAuth, error, pending}){
   )
 }
 
+/**
+ * Returns list of user profiles
+ * @returns 
+ */
 function Users() {
 
     let { data, pending, error } = useGet('http://ituprojekt.fun:8000/uzivatel/seznam', null)

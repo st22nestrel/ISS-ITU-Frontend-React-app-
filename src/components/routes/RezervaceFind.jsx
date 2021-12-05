@@ -1,13 +1,17 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file RezervaceFind.jsx
+ */
 import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom';
-import {Post} from '../../static/Loaders';
-import { useParams } from 'react-router';
-import RezervaceTable from '../cards/RezervaceTable';
 import RezervaceList from './RezervaceList';
-import RezervaceFormNotRegistered from '../RezervaceFormNotRegistered';
 import { Get } from '../../static/Loaders';
-import Authentificate from '../Authentificate';
 
+/**
+ * Gets reservation by id
+ * @param {*} id reservation id
+ * @returns data of given reservation, null if not found
+ */
 async function GetRezervace(id){
 
     let {dataToReturn, pending, error} = await Get('http://ituprojekt.fun:8000/konference/rezervace/'+id, null);
@@ -16,8 +20,12 @@ async function GetRezervace(id){
 
 }
 
-
-export default function KonferenceNew() {
+/**
+ * Searchbar for searching reservation by id
+ * + table with reservations of current user
+ * @returns Html
+ */
+export default function RezervaceFind() {
 
     const [id, setId] = useState(null)
 

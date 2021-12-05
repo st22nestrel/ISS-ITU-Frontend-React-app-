@@ -1,7 +1,13 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file Loaders.jsx
+ */
+
 import { useState, useEffect } from 'react';
 
 /**
- * 
+ * Promise get method
  * @param {*} url server url route
  * @param {*} token authorization token
  * @returns {*} { data, pending, error }
@@ -50,7 +56,7 @@ const useGet = (url, token) => {
 }
 
 /**
- * 
+ * Promise post method
  * @param {*} url server url route
  * @param {*} token authorization token
  * @param {*} dataToPost should be stringified json 
@@ -259,7 +265,6 @@ async function Post (url, token, dataToPost) {
         }
       })
   )
-  
 }
 
 

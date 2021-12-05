@@ -1,9 +1,14 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file PrezentaceEditableRowUser.jsx
+ */
 import React from "react";
 
-//MistnostRow
-//TODO make 
-
-const EditableRow = ({
+/**
+ * Prezentace row - edit, customized for User
+ */
+const PrezentaceEditableRowUser = ({
   editFormData,
   handleEditFormChange,
   handleCancelClick,
@@ -109,4 +114,4 @@ const EditableRow = ({
   );
 };
 
-export default EditableRow;
+export default PrezentaceEditableRowUser;

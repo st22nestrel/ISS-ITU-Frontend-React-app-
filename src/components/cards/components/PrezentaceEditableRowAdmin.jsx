@@ -1,104 +1,47 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file PrezentaceEditableRowAdmin.jsx
+ */
 import React from "react";
 
-//MistnostRow
-//TODO make 
-
-const EditableRow = ({
+/**
+ * Prezentace row - edit, customized for Admin
+ */
+const PrezentaceEditableRowAdmin = ({
   editFormData,
   handleEditFormChange,
   handleCancelClick,
 }) => {
 
-  const ID = window.localStorage.getItem("ID");
-    //TODO maybe make selectbox for rooms?? :/
-
   return (
     <tr>
       <td>
         {editFormData.Nazev}
-        {/* <input
-          type="text"
-          required="required"
-          placeholder=""
-          name="Nazev"
-          value={editFormData.Nazev}
-          onChange={handleEditFormChange}
-        ></input> */}
       </td>
 
       <td>
         {editFormData.Konference}
-        {/* <input
-          type="text"
-          required="required"
-          placeholder=""
-          name="Konference"
-          value={editFormData.Konference}
-          onChange={handleEditFormChange}
-        ></input> */}
       </td>
 
-     {//TODO make rendering of this conditional :)
-     true &&
       <td>
         {editFormData.Uzivatel}
-        {/* <input
-          type="text"
-          required=""
-          placeholder=""
-          name="Prednasajuci"
-          value="Nejde měnit"
-          onChange=""
-        ></input> */}
       </td>
-    }
 
       <td>
         {editFormData.Popis}
-        {/* <input
-          type="text"
-          required="required"
-          placeholder=""
-          name="Popis"
-          value={editFormData.Popis}
-          onChange={handleEditFormChange}
-        ></input> */}
       </td>
 
       <td>
         {editFormData.Tagy}
-        {/* <input
-          type="text"
-          required=""
-          placeholder=""
-          name="Tagy"
-          value={editFormData.Tagy}
-          onChange={handleEditFormChange}
-        ></input> */}
       </td>
 
       <td>
         {editFormData.Grafika}
-        {/* <input
-          type="text"
-          required=""
-          placeholder=""
-          name="Grafika"
-          value={editFormData.Grafika}
-          onChange={handleEditFormChange}
-        ></input> */}
       </td>
 
       <td>
         {editFormData.Soubor}
-        {/* <input
-          type="text"
-          required=""
-          placeholder=""
-          name="Soubor"
-          value={editFormData.Soubor}
-          onChange={handleEditFormChange}
-        ></input> */}
       </td>
 
       <td>
@@ -125,17 +68,6 @@ const EditableRow = ({
             <option value="false">ne</option>
         </select>
       </td>
-      
-{/*       <td>
-        <input
-          type="date"
-          required=""
-          placeholder=""
-          name="Datum"
-          value={editFormData.Datum}
-          onChange={handleEditFormChange}
-        ></input>
-      </td> */}
 
       <td>
         <input
@@ -182,4 +114,4 @@ const EditableRow = ({
   );
 };
 
-export default EditableRow;
+export default PrezentaceEditableRowAdmin;

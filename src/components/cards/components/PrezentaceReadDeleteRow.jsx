@@ -1,7 +1,15 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file PrezentaceReadDeleteRow.jsx
+ */
 import React from "react";
 import UserButton from "../../../static/UserButton";
 
-const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
+/**
+ * Prezentace row - read and delete
+ */
+const PrezentaceReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{data.Nazev}</td>
@@ -16,7 +24,6 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
       <td>{data.Soubor}</td>
       <td>{data.Mistnost}</td>
       <td>{data.jeSchvalena}</td>
-      {/* <td>{data.Datum}</td> */}
       <td>{data.Zacatek_cas}</td>
       <td>{data.Konec_cas}</td>
       <td>{data.poznamkyPoradatele}</td>
@@ -38,4 +45,4 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
   );
 };
 
-export default ReadDeleteRow;
+export default PrezentaceReadDeleteRow;

@@ -1,8 +1,14 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file PasswordChange.jsx
+ */
 import React, { useState } from 'react'
 
 /**
- * 
- * @param Login login fnc
+ * password change form
+ * @param Update function to call on submit
+ * @param goBack setter for going back from changing password
  * @returns 
  */
 function NoveHesloChange({Update, goBack}) {

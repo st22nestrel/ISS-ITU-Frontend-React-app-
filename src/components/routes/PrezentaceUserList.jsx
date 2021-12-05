@@ -1,31 +1,21 @@
-import React, {useState} from "react";
-import KonferenceFormButton from "../cards/KonferenceDetailsEditable";
-import MistnostiTable from "../cards/MistnostiTable";
-import { useParams } from 'react-router';
-import { useGet } from '../../static/Loaders'
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file PrezentaceUserList.jsx
+ */
+import React from "react";
 import PrezentaceUserEdit from "../cards/PrezentaceTableUserEdit";
 
+/**
+ * Returns table with presentations of currently logged in user
+ */
 function PrezentaceUserList() {
-
-    const { id } = useParams();
-
-
-    //+id
-    //let {data, pending, error} = useGet('http://ituprojekt.fun:8000/uzivatel/prispevky', null)
-
-
-    const submitHandler = e => {
-        e.preventDefault();
-
-        
-    }
 
 return (
 
     <div className="Konference">
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
                 <div class="col-12 themed-grid-col">
                     
                 {

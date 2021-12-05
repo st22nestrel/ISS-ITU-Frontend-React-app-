@@ -1,8 +1,14 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file MistnostiEditableRow.jsx
+ */
 import React from "react";
 
-//MistnostRow
-
-const EditableRow = ({
+/**
+ * Mistnosti row - read and delete
+ */
+const MistnostiEditableRow = ({
   editFormData,
   handleEditFormChange,
   handleCancelClick,
@@ -51,4 +57,4 @@ const EditableRow = ({
   );
 };
 
-export default EditableRow;
+export default MistnostiEditableRow;

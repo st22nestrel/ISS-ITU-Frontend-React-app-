@@ -1,8 +1,18 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file UserDetailPortfolio.jsx
+ */
 import React, { useState, Fragment } from 'react';
 import "./MistnostiTable.css";
 import ReadRow from "./components/PrezentaceReadRow";
 import { useGet } from '../../static/Loaders';
 
+/**
+ * Datail of user
+ * @param {*} uzivatel user id
+ * @returns 
+ */
 function UserDetailPortfolio({ uzivatel }) {
 
     const [open, setOpen] = useState(false);
@@ -41,7 +51,6 @@ function UserDetailPortfolio({ uzivatel }) {
                             </select>
                         </div>
 
-
                         <div class="col-12">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email"
@@ -69,7 +78,6 @@ function UserDetailPortfolio({ uzivatel }) {
                                 onChange="" value={details.Obor ? details.Obor : ""} />
                         </div>
 
-                        {/* <!--                            TODO možno selectbox na zemi--> */}
                         <div class="col-12">
                             <label for="zeme" class="form-label">Země</label>
                             <input type="text" class="form-control" id="zeme"
@@ -83,8 +91,6 @@ function UserDetailPortfolio({ uzivatel }) {
                         </div>
                     </div>
 
-                    {/* This is just horizontal break.. */}
-                    {/* <hr class="my-4"/> */}
                     <br />
 
                 </div>
@@ -114,7 +120,6 @@ function UserDetailPortfolio({ uzivatel }) {
                                     <th>Soubor</th>
                                     <th>Mistnost</th>
                                     <th>Schavalena</th>
-                                    {/* <th>Datum</th> */}
                                     <th>Zacatek cas</th>
                                     <th>Konec cas</th>
                                     <th>Poznamky poradatele</th>

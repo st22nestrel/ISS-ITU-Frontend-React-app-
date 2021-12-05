@@ -1,8 +1,20 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file RezervaceFormNotRegistered.jsx
+ */
+
 import React, {useState} from "react";
 import { Post } from "../static/Loaders";
 import { useLocation} from "react-router-dom"
 
-
+/**
+ * Used to create new rezervation for non-registered user without registration
+ * @param {*} details registration details
+ * @param {*} id name of conferention
+ * @param {*} setTransakce setter of variable transakce
+ * @returns {*} {error, dataToReturn}
+ */
 async function Rezervace(details, id, setTransakce){
 
     if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni)
@@ -10,21 +22,19 @@ async function Rezervace(details, id, setTransakce){
 
     let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novaRezervace/nereg', null, JSON.stringify(details));
 
-    /* if(error) {
-        //reload get user info again
-        setMsg(error);
-    }
-    else{
-        //TODO navigate to created konference
-        setMsg(null);
-        navigate('/konference/'+id);
-    } */
     if(!error){
         setTransakce(dataToReturn);
     }
     return {error, dataToReturn}
 }
 
+/**
+ * Used to create new rezervation for non-registered user with registration
+ * @param {*} details registration details
+ * @param {*} id name of conferention
+ * @param {*} setTransakce setter of variable transakce
+ * @returns {*} {error, dataToReturn}
+ */
 async function RezervaceARegistrovat(details, id, setTransakce){
 
     if(details.Pocet_vstupenek < 1 || !details.Jmeno || !details.Prijmeni || !details.Heslo)
@@ -32,50 +42,34 @@ async function RezervaceARegistrovat(details, id, setTransakce){
 
     let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novaRezervace/reg', null, JSON.stringify(details));
 
-    /* if(error) {
-        //reload get user info again
-        setMsg(error);
-    }
-    else{
-        //TODO navigate to created konference
-        setMsg(null);
-        navigate('/konference/'+id);
-    } */
     if(!error){
         setTransakce(dataToReturn);
     }
     return {error, dataToReturn}
 }
 
+/**
+ * Form for used for buying tickets for non-registered/ not logged in users
+ * @param {*} Update Update fnc
+ * @param {*} setErr setter for variable error
+ * @param {*} konfData data about conferention
+ * @returns 
+ */
 function RezervaceFormNotRegistered({Update, setErr, konfData}) {
 
-    //const [dokoncena, setDokokoncena] = useState(false);
     const [transakce, setTransakce] = useState(null);
-
-    let locationData = useLocation();
 
     const [details, setDetails] = useState({
         Konfenerce: "",  Uzivatel: "", Jmeno: "", Prijmeni: "",
         Email: "", Pocet_vstupenek: "", Celkova_cena: "", Stav: ""
     });
 
-    //const [transakce, setTransakce] = useState(null)
-    //let transakce;
-
     const _Rezervace = async () =>{
         let {error, dataToReturn: transakce} = await Rezervace(details, konfData.Nazev, setTransakce)
-
-        /* if(!error){
-            setDokokoncena(true);
-        } */
     }
 
     const _RezervaceARegistrovat = async () =>{
         let {error, dataToReturn: transakce} = await RezervaceARegistrovat(details, konfData.Nazev, setTransakce)
-
-        /* if(!error){
-            setDokokoncena(true);
-        } */
     }
 
     let form = (
@@ -123,33 +117,11 @@ function RezervaceFormNotRegistered({Update, setErr, konfData}) {
                         <input type="password" class="form-control" id="Heslo"
                         onChange={e => setDetails({...details, Heslo: e.target.value})} value={details.Heslo}/>
                     </div>
-{/* 
-                    <div class="col-12">
-                        <label for="Soubor" class="form-label">Soubor </label>
-                        <input type="text" class="form-control" id="Soubor"
-                        onChange={e => setDetails({...details, Soubor: e.target.value})} value={details.Soubor}/>
-                    </div> */}
-
-                    {/* <div class="col-12">
-                        <label class="form-label">Start</label>
-                        <input type="time" class="form-control" id="Zacatek_cas"
-                        onChange={e => setDetails({...details, Zacatek_cas: e.target.value})} value={details.Zacatek_cas}/>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Konec</label>
-                        <input type="time" class="form-control" id="Konec_cas"
-                        onChange={e => setDetails({...details, Konec_cas: e.target.value})} value={details.Konec_cas}/>
-                    </div> */}
 
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
-
-                    {/* {() => /* await  RezervaceARegistrovat(details, konfData.Nazev)} */}
                 <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_RezervaceARegistrovat}>Potvrdit a registrovat</button>
                 <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_Rezervace}>Potvrdit bez registrace</button>
             </div>
@@ -160,7 +132,7 @@ function RezervaceFormNotRegistered({Update, setErr, konfData}) {
         <div class="fa fa-transgender" aria-hidden="true" >
             Uchovajte si nasledujúce údaje:  <br/>
             id transakcie: {transakce.ID} <br/>
-            Stav svojej transakcie môžte sledovať na (TODO tlačítko s linkom) <br/>
+            Stav svojej transakcie môžte sledovať cez rezervace <br/>
             Ak ste sa registrovali, stav svojej trasakcie môžte sledovať aj cez svoj profil
         </div>
     ) : null;
@@ -169,7 +141,6 @@ return (
         transakce ?
         dokoncenaMsg : 
         form
-    
   );
 }
 

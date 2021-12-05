@@ -1,12 +1,17 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file RegistrationForm.jsx
+ */
 import React, { useState } from 'react'
 
 /**
- * 
+ * returns Registration form
  * @param Registration login fnc
- * @returns 
+ * @param error errorToDisplay
+ * @returns HTML
  */
-
- function RegistrationForm({Registration, error}) {
+function RegistrationForm({Registration, error}) {
 
     const [details, setDetails] = useState({
         Jmeno: "", Prijmeni: "", Titul: "", Email: "", TelCislo: null, 
@@ -59,10 +64,6 @@ import React, { useState } from 'react'
                             <option>Mgr.</option>
                             <option>Phd.</option>
                         </select>
-
-                        {/* <!--                                <div class="invalid-feedback">-->
-                        <!--                                    Titul není validní.-->
-                        <!--                                </div>--> */}
                     </div>
 
                     <div class="col-12">
@@ -110,7 +111,6 @@ import React, { useState } from 'react'
                         </div>
                     </div>
 
-                    {/* <!--                            TODO možno selectbox na zemi--> */}
                     <div class="col-12">
                         <label for="zeme" class="form-label">Země<span class="text-muted">(Nepovinné)</span></label>
                         <input type="text" class="form-control" id="zeme" placeholder="Česko"
@@ -130,8 +130,6 @@ import React, { useState } from 'react'
                     </div>
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Zaregistrovat se</button>

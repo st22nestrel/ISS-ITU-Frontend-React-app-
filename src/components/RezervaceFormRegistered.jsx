@@ -1,8 +1,19 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file RezervaceFormRegistered.jsx
+ */
+
 import React, {useState} from "react";
 import { Post } from "../static/Loaders";
-import { useLocation} from "react-router-dom"
 
-
+/**
+ * Used to create new rezervation for user
+ * @param {*} details registration details
+ * @param {*} id name of conferention
+ * @param {*} setTransakce setter of variable transakce
+ * @returns {*} {error, dataToReturn}
+ */
 async function Rezervace(details, id, setTransakce){
 
     if(details.Pocet_vstupenek < 1)
@@ -10,43 +21,30 @@ async function Rezervace(details, id, setTransakce){
 
     let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+id+'/novaRezervace', null, JSON.stringify(details));
 
-    /* if(error) {
-        //reload get user info again
-        setMsg(error);
-    }
-    else{
-        //TODO navigate to created konference
-        setMsg(null);
-        navigate('/konference/'+id);
-    } */
     if(!error){
         setTransakce(dataToReturn);
     }
     return {error, dataToReturn}
 }
 
+/**
+ * Form for used for buying tickets for logged in users
+ * @param {*} Update Update fnc
+ * @param {*} setErr setter for variable error
+ * @param {*} konfData data about conferention
+ * @returns 
+ */
+function RezervaceFormRegistered({Update, setErr, konfData}) {
 
-function RezervaceFormNotRegistered({Update, setErr, konfData}) {
-
-    //const [dokoncena, setDokokoncena] = useState(false);
     const [transakce, setTransakce] = useState(null);
-
-    let locationData = useLocation();
 
     const [details, setDetails] = useState({
         Konfenerce: "",  Uzivatel: "", Jmeno: "", Prijmeni: "",
         Email: "", Pocet_vstupenek: "", Celkova_cena: "", Stav: ""
     });
 
-    //const [transakce, setTransakce] = useState(null)
-    //let transakce;
-
     const _Rezervace = async () =>{
         let {error, dataToReturn: transakce} = await Rezervace(details, konfData.Nazev, setTransakce)
-
-        /* if(!error){
-            setDokokoncena(true);
-        } */
     }
 
     let form = (
@@ -73,12 +71,8 @@ function RezervaceFormNotRegistered({Update, setErr, konfData}) {
 
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
-
-                    {/* {() => /* await  RezervaceARegistrovat(details, konfData.Nazev)} */}
                 <button class="w-10 btn btn-lg btn-primary" type="button" onClick={_Rezervace}>Potvrdit rezervaci</button>
             </div>
         </form>
@@ -87,7 +81,7 @@ function RezervaceFormNotRegistered({Update, setErr, konfData}) {
     let dokoncenaMsg = transakce ? (
         <div class="fa fa-transgender" aria-hidden="true" >
             id transakcie: {transakce.ID} <br/>
-            Stav svojej transakcie môžte sledovať na (TODO tlačítko s linkom) <br/>
+            Stav svojej transakcie môžte sledovať cez rezervace <br/>
             stav svojej trasakcie môžte sledovať aj cez svoj profil
         </div>
     ) : null;
@@ -96,8 +90,7 @@ return (
         transakce ?
         dokoncenaMsg : 
         form
-    
   );
 }
 
-export default RezervaceFormNotRegistered;
+export default RezervaceFormRegistered;

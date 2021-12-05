@@ -1,15 +1,21 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file KonferenceList.jsx
+ */
 import React, { useState } from "react";
-/* import hide from "./../static/index.js"; */
 import KonferenceCard from "../cards/KonferenceCard.jsx";
 import KonferenceCardNotRegistered from "../cards/KonferenceCardNotRegistered.jsx";
-/* import hideShowCardBody from './../static/index.js'; */
 import {useGet} from '../../static/Loaders';
 import Authentificate from "../Authentificate.jsx";
 
-
-function InnerHtml({datas, isAuth, error, pending}){
-
-    //const [data, setData] = useState(datas);
+/**
+ * 
+ * @param {*} datas data to display
+ * @param {*} isAuth is logged in
+ * @returns 
+ */
+function InnerHtml({datas, isAuth}){
 
     const [filter1, setFilter1] = useState(null)
     const [filter2, setFilter2] = useState(null)
@@ -90,7 +96,11 @@ function InnerHtml({datas, isAuth, error, pending}){
     )
 }
 
-
+/**
+ * Container for list of conference cards
+ * @param {*} url url to use to obtain data
+ * @returns 
+ */
 function KonferenceList({url}) {
 
     let {data, pending, error} = useGet(url, null)
@@ -118,7 +128,7 @@ function KonferenceList({url}) {
                 }
 
                 {
-                !data  &&
+                !data  && !pending &&
                 <div className="">
                     <h2>Žádné konference v systému, přidejte nějaké</h2>
                 </div>

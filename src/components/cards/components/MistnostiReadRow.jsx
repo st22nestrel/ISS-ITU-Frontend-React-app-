@@ -1,7 +1,15 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file MistnostiReadRow.jsx
+ */
 import React from "react";
 import { useNavigate } from "react-router";
 
-const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
+/**
+ * Mistnosti row - read only
+ */
+const MistnostiReadRow = ({ data, handleEditClick, handleDeleteClick }) => {
   const navigate = useNavigate();
   return (
     <tr>
@@ -9,7 +17,6 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
       <td>{data.Popis}</td>
       <td>{data.Vybaveni}</td>
       <td>
-          {/* {TODO zbraz ich v read only mode} */}
         <button 
           type="button" class="btn btn-round btn-fill btn-secondary show-hide-btn-sm"
           onClick={() => navigate("/konference/"+data.Konference+'/'+data.Kod)}
@@ -21,4 +28,4 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
   );
 };
 
-export default ReadDeleteRow;
+export default MistnostiReadRow;

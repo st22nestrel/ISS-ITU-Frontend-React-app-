@@ -1,6 +1,16 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file KonferenceForm.jsx
+ */
 import React, {useState} from "react";
 
-
+/**
+ * returns Registration form
+ * @param Update Update function
+ * @param setErr errorToDisplay
+ * @returns HTML
+ */
 function KonferenceForm({Update, setErr}) {    
 
     const [details, setDetails] = useState({
@@ -84,8 +94,6 @@ bez nich nelze vytvorit konferenci")
 
                     <div class="col-12">
                         <label class="form-label">End</label>
-                        {/* <input type="date" class="form-control" id="Konec_datum"
-                        onChange={e => setDetails({...details, Konec_datum: e.target.value})} value={details.endtDate}/> */}
                         <input type="time" class="form-control" id="Konec_cas"
                         onChange={e => setDetails({...details, Konec_cas: e.target.value})} value={details.Konec_cas}/>
                     </div>
@@ -115,8 +123,6 @@ bez nich nelze vytvorit konferenci")
                     </div>
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Potvrdit novou konferenci</button>

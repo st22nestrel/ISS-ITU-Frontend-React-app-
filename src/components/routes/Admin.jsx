@@ -1,8 +1,17 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file Admin.jsx
+ */
 import React, { useState } from "react";
 import { useGet } from '../../static/Loaders';
 import { useParams } from 'react-router';
 import YesAdmin from "../cards/YesAdmin";
 
+/**
+ * Container for admin page
+ * @returns Html
+ */
 function Admin() {
 
     let id = window.localStorage.getItem("userID");

@@ -1,3 +1,8 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file CurrentUserProfile.jsx
+ */
 import React, { useEffect, useState } from 'react'
 import Authentificate from '../Authentificate';
 import ProfileForm from '../ProfileForm';
@@ -6,14 +11,20 @@ import { useGet, Put, Post } from '../../static/Loaders';
 import DeleteUser from '../cards/DeleteUser';
 import { useNavigate } from 'react-router';
 
+/**
+ * Container for currently logged in user and its profile options
+ * @param {*} token user token
+ * @returns 
+ */
 function CurrentUserProfile(token) {
 
     const [updated, setUpdated] = useState(false);
     const [passwordChange, setPasswordChange] = useState(false);
     const navigate = useNavigate();
 
-    let { data: userInfo, pending, error } = useGet('http://ituprojekt.fun:8000/uzivatel/', token)
     let displayErr;
+
+    let { data: userInfo, pending, error } = useGet('http://ituprojekt.fun:8000/uzivatel/', token)
 
 
     let id3 = window.localStorage.getItem("userID");
@@ -87,7 +98,6 @@ function CurrentUserProfile(token) {
     const redirectToUpload = () => {
         window.location.href = 'http://www.ituprojekt.fun/upload/';
     }
-
 
     return (
         <div className="currentUserProfile">

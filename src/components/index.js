@@ -1,3 +1,9 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Buriánová, xburia28
+ * @file index.js
+ */
+
 export { default as Navigation } from "./Navigation";
 export { default as KonferenceList } from "./routes/KonferenceList";
 export { default as NewKonference } from "./KonferenceForm";

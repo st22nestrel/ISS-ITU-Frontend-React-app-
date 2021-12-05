@@ -1,9 +1,16 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file Navigation.jsx
+ */
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useGet } from '../static/Loaders';
 import Authentificate from "./Authentificate";
-/* import Auth from "./Authentificate"; */
 
+/**
+ * Navlinks at the top of the web app
+ * @returns Html
+ */
 function Navigation() {
     let id = window.localStorage.getItem("userID");
     const signInLink = false;

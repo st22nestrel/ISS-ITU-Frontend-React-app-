@@ -1,3 +1,9 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia28
+ * @file index.js
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

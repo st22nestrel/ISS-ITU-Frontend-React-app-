@@ -1,6 +1,16 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file PrispevekForm.jsx
+ */
 import React, {useState} from "react";
 
-
+/**
+ * returns Registration form
+ * @param Update Update function
+ * @param setErr errorToDisplay
+ * @returns HTML
+ */
 function PrispevekForm({Update, setErr}) {    
 
     const [details, setDetails] = useState({
@@ -60,22 +70,8 @@ function PrispevekForm({Update, setErr}) {
                         onChange={e => setDetails({...details, Soubor: e.target.value})} value={details.Soubor}/>
                     </div>
 
-                    {/* <div class="col-12">
-                        <label class="form-label">Start</label>
-                        <input type="time" class="form-control" id="Zacatek_cas"
-                        onChange={e => setDetails({...details, Zacatek_cas: e.target.value})} value={details.Zacatek_cas}/>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="form-label">Konec</label>
-                        <input type="time" class="form-control" id="Konec_cas"
-                        onChange={e => setDetails({...details, Konec_cas: e.target.value})} value={details.Konec_cas}/>
-                    </div> */}
-
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Potvrdit prispevek</button>
@@ -85,9 +81,7 @@ function PrispevekForm({Update, setErr}) {
     )
 
 return (
-   
-        form
-    
+    form
   );
 }
 

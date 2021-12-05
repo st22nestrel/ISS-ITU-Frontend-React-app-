@@ -1,3 +1,8 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file MistnostiTable.jsx
+ */
 import React, { useState, Fragment } from "react";
 import "./MistnostiTable.css";
 import ReadOnlyRow from "./components/MistnostiReadDeleteRow";
@@ -10,17 +15,6 @@ async function Add(details){
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/novaMistnost', null, JSON.stringify(details));
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error
 }
 
@@ -30,17 +24,6 @@ async function Update(details){
 
   let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Konference+'/mistnost/upravit', null, JSON.stringify(details));
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error
 }
 
@@ -48,21 +31,16 @@ const Delete = async details => {
   console.log("deleting room");
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/mistnost/odstranit', null, JSON.stringify(details));
-  
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
+
   return error
 }
 
+/**
+ * Table with rooms - editable
+ * @param {*} data data to use
+ * @param {*} Koference conference name
+ * @returns Html
+ */
 function GenerateHtml({data, Konference}){
   const [opened, setOpened] = useState(false);
   const [rooms, setRooms] = useState(data);
@@ -100,21 +78,18 @@ function GenerateHtml({data, Konference}){
   const handleEditFormChange = (event) => {
     event.preventDefault();
 
-    //TODO poslať na server požiadavok o pridanie miestnosti
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
 
-    //TODO maybe sort newRooms :)
     setEditFormData(newFormData);
   };
 
   const handleAddFormSubmit = async (event) => {
     event.preventDefault();
 
-    //TODO poslať na server požiadavok o upravu miestnosti
     const newRoom = {
         Kod: addFormData.Kod,
         Popis: addFormData.Popis,
@@ -127,7 +102,6 @@ function GenerateHtml({data, Konference}){
 
     if(!error){
       const newRooms = [...rooms, newRoom];
-      //TODO maybe sort newRooms :)
       setRooms(newRooms);
     }
     else{
@@ -270,7 +244,6 @@ function GenerateHtml({data, Konference}){
         </div>
         
         <div>
-          {/* <label for="btn" class="form-label"></label> */}
           <br />
           <button type="submit" id="btn"
           class="btn btn-round btn-fill btn-outline-success show-hide-btn-sm">Pridať</button>
@@ -280,8 +253,7 @@ function GenerateHtml({data, Konference}){
   );
 
   return(
-        
-        
+
     <div>
             <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
                     onClick={(() => setOpened(!opened))}>
@@ -294,9 +266,13 @@ function GenerateHtml({data, Konference}){
 );
 };
 
+/**
+ * Table with rooms only for creator of conference - editable
+ * @param {*} Konference conference name
+ * @returns Html
+ */
 function MistnostiTable ({Konference}) {
 
-  //useEffect na nacitanie miestnosti
   let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
 
   return(data && 

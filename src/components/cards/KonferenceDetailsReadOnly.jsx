@@ -1,6 +1,15 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file KonferenceDetailsReadOnly.jsx
+ */
 import React, {useState} from 'react';
-import reactDom from 'react-dom';
 
+/**
+ * Details of conference - read only
+ * @param {*} data data to use
+ * @returns Html
+ */
 function KonferenceDetailsReadOnly({data}){
 
     const [opened, setOpened] = useState(false);
@@ -24,7 +33,7 @@ function KonferenceDetailsReadOnly({data}){
     )
 
     return(
-        
+
         <div>
                 <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
                         onClick={(() => setOpened(!opened))}>

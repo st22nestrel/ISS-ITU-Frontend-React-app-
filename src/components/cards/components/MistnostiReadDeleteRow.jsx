@@ -1,7 +1,15 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file MistnostiReadDeleteRow.jsx
+ */
 import React from "react";
 import { useNavigate } from "react-router";
 
-const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
+/**
+ * Mistnosti row - read and delete
+ */
+const MistnostiReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
   const navigate = useNavigate();
   return (
     <tr>
@@ -33,4 +41,4 @@ const ReadDeleteRow = ({ data, handleEditClick, handleDeleteClick }) => {
   );
 };
 
-export default ReadDeleteRow;
+export default MistnostiReadDeleteRow;

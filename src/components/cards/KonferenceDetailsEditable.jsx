@@ -1,21 +1,32 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file KonferenceDetailsEditable.jsx
+ */
 import React, {useState} from 'react';
-import reactDom from 'react-dom';
 import { Put } from '../../static/Loaders';
 
+/**
+ * Updates conference details
+ * @param details data to put
+ */
 const UpravKonf = async details => {
 
     let {dataToReturn, pending, error} = await Put('http://ituprojekt.fun:8000/konference/'+details.Nazev+'/upravit', null, JSON.stringify(details));
 
     if(error) {
-        //reload get user info again
-        
+        //Do something
     }
     else{
-        //TODO navigate to created konference
+        //OK
     }
 }
 
-
+/**
+ * Details of conference - editable
+ * @param {*} data data to use
+ * @returns Html
+ */
 function KonferenceDetailsEditable({data}){
 
     const [opened, setOpened] = useState(false);
@@ -99,8 +110,6 @@ function KonferenceDetailsEditable({data}){
 
                     <div class="col-12">
                         <label class="form-label">End</label>
-                        {/* <input type="date" class="form-control" id="Konec_datum"
-                        onChange={e => setDetails({...details, Konec_datum: e.target.value})} value={details.endtDate}/> */}
                         <input type="time" class="form-control" id="Konec_cas"
                         onChange={e => setDetails({...details, Konec_cas: e.target.value})} value={details.Konec_cas}/>
                     </div>
@@ -130,11 +139,9 @@ function KonferenceDetailsEditable({data}){
                     </div>
                 </div>
 
-                {/* This is just horizontal break.. */}
-                {/* <hr class="my-4"/> */}
                 <br/>
 
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Potvrdit zmněny</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Potvrdit změny</button>
 
             </div>
         </form>

@@ -1,3 +1,8 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file KonferenceDetail.jsx
+ */
 import React, {useState} from "react";
 import KonferenceDetailsEditable from "../cards/KonferenceDetailsEditable";
 import KonferenceDetailsReadOnly from "../cards/KonferenceDetailsReadOnly";
@@ -14,11 +19,13 @@ import RezervaceTable from "../cards/RezervaceTable";
 import { useParams } from 'react-router';
 import { useGet } from '../../static/Loaders'
 
-
+/**
+ * KonferenceDetail for logged in users
+ * @returns Html
+ */
 function KonferenceDetail() {
 
     const { id } = useParams();
-
 
     //+id
     let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/' + id, null)
@@ -33,7 +40,7 @@ return (
     <div className="Konference">
         <div class="content container-fluid">
             <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                {/* <!--<main class="form-signin">--> */}
+
                 <div class="col-12 themed-grid-col">
                     
                 {
@@ -154,9 +161,7 @@ return (
 
                     </div>
                     )
-                    
                 }
-                
 
                 </div>
             </div>

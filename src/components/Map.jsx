@@ -1,8 +1,16 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file Map.jsx
+ */
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import "../App.css";
 
-
+/**
+ * Google map
+ * @returns Html
+ */
 function Map() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',

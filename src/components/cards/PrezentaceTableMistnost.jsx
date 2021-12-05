@@ -1,9 +1,13 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file PrezentaceTableMistnost.jsx
+ */
 import React, { useState, Fragment } from "react";
 import "./MistnostiTable.css";
 import ReadDeleteRow from "./components/PrezentaceReadDeleteRow";
 import EditableRow from "./components/PrezentaceEditableRow";
 import { useGet, Post } from "../../static/Loaders";
-import Authentificate from "../Authentificate";
 import { useParams } from "react-router";
 
 async function Add(details){
@@ -11,37 +15,14 @@ async function Add(details){
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/novyPrispevek', null, JSON.stringify(details));
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error;
 }
-
 
 const Update = async details => {
   console.log("updating room");
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/upravit', null, JSON.stringify(details));
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error;
 }
 
@@ -50,22 +31,17 @@ const Delete = async details => {
 
   let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+details.Konference+'/prispevky/'+details.ID+'/odstranit', null, null);
   
-  /* if(_error) {
-      //reload get user info again
-      console.log(error);
-      window.location.reload(false);
-  }
-  else{
-      setUpdated(true)
-      setTimeout(() => {
-          setUpdated(false);
-          }, 500);
-  } */
   return error;
 }
 
+/**
+ * Table with presentations
+ * @param {*} Konference conference name
+ * @param {*} Mistnost room code
+ * @param {*} data data
+ * @returns 
+ */
 function GenerateHtml ({Konference, Mistnost, data}) {
-
 
   const [opened, setOpened] = useState(false);
   const [prezentace, setPrezentace] = useState(data);
@@ -121,25 +97,22 @@ function GenerateHtml ({Konference, Mistnost, data}) {
   const handleEditFormChange = (event) => {
     event.preventDefault();
 
-    //TODO poslať na server požiadavok o pridanie miestnosti
     const fieldName = event.target.getAttribute("name");
     const fieldValue = event.target.value;
 
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
 
-    //TODO maybe sort newDatas :)
     setEditFormData(newFormData);
   };
 
   const handleAddFormSubmit = async (event) => {
     event.preventDefault();
 
-    //TODO poslať na server požiadavok o upravu miestnosti
     const newPrezentace = {
       Nazev: addFormData.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
+      Uzivatel: null,
       Popis: addFormData.Popis,
       Tagy: addFormData.Tagy,
       Grafika: addFormData.Grafika,
@@ -156,7 +129,6 @@ function GenerateHtml ({Konference, Mistnost, data}) {
 
     if(!error){
       const newDatas = [...prezentace, newPrezentace];
-      //TODO maybe sort newDatas :)
       setPrezentace(newDatas);
     }
     else{
@@ -172,7 +144,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       ID: editFormData.ID,
       Nazev: editFormData.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
+      Uzivatel: null,
       Popis: editFormData.Popis,
       Tagy: editFormData.Tagy,
       Grafika: editFormData.Grafika,
@@ -211,7 +183,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
       ID: room.Kod,
       Nazev: room.Nazev,
       Konference: Konference,
-      Uzivatel: null, //todo-store email in localstorage :D
+      Uzivatel: null,
       Popis: room.Popis,
       Tagy: room.Tagy,
       Grafika: room.Grafika,
@@ -273,7 +245,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
             <tbody>
               {prezentace.map((room) => (
                 <Fragment>
-                { //by this we make even nazev unique -> at least for room, which is ???
+                {
                 editRoomNazev === room.ID ? (
                   <EditableRow
                     editFormData={editFormData}
@@ -315,19 +287,9 @@ function GenerateHtml ({Konference, Mistnost, data}) {
             required=""
             placeholder=""
             value={Konference}
-            /* onChange={handleAddFormChange} */
           />
         </div>
-        {/* <div>
-          <label for="Uzivatel" class="form-label">Uzivatel</label>
-          <input id="Uzivatel" class="form-control"
-            type="number"
-            name="Uzivatel"
-            required=""
-            placeholder="zadaj svôj email"
-            onChange={handleAddFormChange}
-          />
-        </div> */}
+
         <div>
           <label for="Popis" class="form-label">Popis</label>
           <input id="Popis" class="form-control"
@@ -443,7 +405,6 @@ function GenerateHtml ({Konference, Mistnost, data}) {
         </div>
 
         <div>
-          {/* <label for="btn" class="form-label"></label> */}
           <br />
           <button type="submit" id="btn"
           class="btn btn-round btn-fill btn-outline-success show-hide-btn-sm">Pridať</button>
@@ -453,8 +414,7 @@ function GenerateHtml ({Konference, Mistnost, data}) {
   );
 
   return(
-        
-        
+ 
     <div>
       <button class="btn btn-round btn-fill btn-primary show-hide-btn-sm"
               onClick={(() => setOpened(!opened))}>
@@ -467,7 +427,11 @@ function GenerateHtml ({Konference, Mistnost, data}) {
 );
 };
 
-function PrezentaceTable(){
+/**
+ * Table with presentions associated with room in conference
+ * @returns Html
+ */
+function PrezentaceTableMistnost(){
   let {id, kod} = useParams();
 
   let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+id+'/'+kod+'/prispevky', null)
@@ -476,9 +440,8 @@ function PrezentaceTable(){
     <div>
       <GenerateHtml data={data} Konference={id} Mistnost={kod}></GenerateHtml>
     </div>
-    
-    )
+  )
 
 }
 
-export default PrezentaceTable;
+export default PrezentaceTableMistnost;

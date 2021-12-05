@@ -1,5 +1,13 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file RezervacePotvrditRow.jsx
+ */
 import React from "react";
 
+/**
+ * Rezervace row that provides ability to confirm reservation
+ */
 const RezervacePotvrditRow = ({ data, handleEditClick, handleDeleteClick, poradatel }) => {
   return (
     <tr>

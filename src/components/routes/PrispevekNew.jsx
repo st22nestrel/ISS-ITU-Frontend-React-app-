@@ -1,15 +1,21 @@
-import React, {useState} from 'react'
-import {useNavigate} from 'react-router-dom';
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Burianová, xburia23
+ * @file PrispevekNew.jsx
+ */
+import React, {useState} from 'react';
 import {Post} from '../../static/Loaders';
 import { useParams } from 'react-router';
 import PrispevekForm from '../PrispevekForm';
 
-
+/**
+ * Container for PrispevekForm
+ * @returns Html
+ */
 export default function KonferenceNew() {
 
     let {id} = useParams()
 
-    const navigate = useNavigate();
     const [msg, setMsg] = useState(null);
     const userID = window.localStorage.getItem("userID");
 
@@ -25,9 +31,7 @@ export default function KonferenceNew() {
             setMsg(error);
         }
         else{
-            //TODO navigate to created konference
             setMsg(null);
-            navigate('/konference/'+id);
         }
     }
 
@@ -35,7 +39,7 @@ export default function KonferenceNew() {
         <div className="KonferenceNew">
             <div class="content container-fluid">
                 <div class="row mb-3 justify-content-center" style={{marginTop: 20}}>
-                    {/* <!--<main class="form-signin">--> */}
+                    
                     <div class="col-4 themed-grid-col">
                         
                         <PrispevekForm Update={NewKonf} setErr={setMsg}/>
@@ -43,8 +47,6 @@ export default function KonferenceNew() {
                         { msg && 
                         <div>
                             <h2>Error: {msg}</h2>
-                            {/* <div class="spinner-border text-secondary" role="status">
-                            </div> */}
                         </div>
                         }
 

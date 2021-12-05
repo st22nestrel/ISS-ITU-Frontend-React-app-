@@ -1,9 +1,13 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file DeleteUser.jsx
+ */
 import React, { useState } from 'react'
-import yesno from "yesno-dialog"
 
 /**
- * 
- * @param Login login fnc
+ * Delete user functionality
+ * @param Delete delete function
  * @returns 
  */
 function DeleteUser({Delete}) {

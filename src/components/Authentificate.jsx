@@ -1,10 +1,14 @@
-//import React from "react";
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Tereza Buriánová, xburia28
+ * @file Authentificate.jsx
+ */
 
-import { Navigate } from "react-router";
-
+/**
+ * Class used to store common info for user verification
+ */
 class Authentificate{
 
-    //static wit = window.localStorage.setItem("token", null);
     static authentificated = window.localStorage.getItem("token") || false;
     static token = window.localStorage.getItem("token");
     static email = "";

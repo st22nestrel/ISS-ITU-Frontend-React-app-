@@ -1,13 +1,18 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file YesAdmin.jsx
+ */
 import React, {useState} from 'react';
-import { NavLink } from "react-router-dom";
 import ProfileForm from "../ProfileForm";
 import DeleteUser from "./DeleteUser";
-import { useNavigate } from 'react-router';
 import {Post, Put} from "../../static/Loaders";
-import Authentificate from "../Authentificate";
-import PasswordChange from "./PasswordChange";
 
-
+/**
+ * Container for user manipulation - admin
+ * @param {*} allUsers 
+ * @returns 
+ */
 function YesAdmin({ allUsers }) {
 
     const [open, setOpen] = useState(false);
@@ -16,7 +21,7 @@ function YesAdmin({ allUsers }) {
     const [passwordChange, setPasswordChange] = useState(false);
 
     let uzivatelia = allUsers;
-    const navigate = useNavigate();
+
     let displayErr;
 
     const submitHandler = e => {
@@ -36,7 +41,6 @@ function YesAdmin({ allUsers }) {
         Email: details.email, TelCislo: details.telNMB, Titul: details.degree});
 
       let {dataToReturn, pending: _pending, error: _error} = await Put(`http://ituprojekt.fun:8000/admin/upravit/${details.ID}`, null, dataToPut);
-      //userInfo = data;
       let pending = _pending; //this wont show saddly :/
       let error = _error;
 
@@ -105,7 +109,6 @@ function YesAdmin({ allUsers }) {
             </div>
           </div>
 
-          {/* {konference.map((el)=>(<p>{el}</p>))} */}
         </div>
       )
         : (

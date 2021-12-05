@@ -1,9 +1,19 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Timotej Ponek, xponek00
+ * @file MistnostiTableReadOnly.jsx
+ */
 import React, { useState, Fragment } from "react";
 import "./MistnostiTable.css";
 import ReadOnlyRow from "./components/MistnostiReadRow";
 import { useGet } from "../../static/Loaders";
 
-
+/**
+ * Table with rooms
+ * @param {*} Konference conference name
+ * @param {*} data data to use
+ * @returns Html
+ */
 function GenerateHtml({data, Konference}){
   const [opened, setOpened] = useState(false);
 
@@ -51,9 +61,13 @@ function GenerateHtml({data, Konference}){
   
 };
 
-function MistnostiTable ({Konference}) {
+/**
+ * Table with rooms only for read
+ * @param {*} Konference conference name
+ * @returns Html
+ */
+function MistnostiTableReadOnly ({Konference}) {
 
-  //useEffect na nacitanie miestnosti
   let {data, pending, error} = useGet('http://ituprojekt.fun:8000/konference/'+Konference+'/mistnosti', null)
 
   return(data && 
@@ -64,4 +78,4 @@ function MistnostiTable ({Konference}) {
     )
 };
 
-export default MistnostiTable;
+export default MistnostiTableReadOnly;

@@ -1,7 +1,16 @@
+/**
+ * ITU - projekt, VUT FIT Brno
+ * @author Adrián Bobola, xbobol00
+ * @file Footer.jsx
+ */
 import React from "react";
 import "../App.css";
 import Authentificate from "./Authentificate";
 
+/**
+ * web app footer
+ * @returns Html
+ */
 function Footer() {
   let isLogin = (Authentificate.isAuth());
 
