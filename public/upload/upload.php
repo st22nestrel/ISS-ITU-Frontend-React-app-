@@ -1,3 +1,8 @@
+<!--
+ * @author Adrian Bobola (xbobol00)
+ * @file Backend for upload server
+//-->
+
 <html>
 <?php
 $target_dir = "files/";
@@ -6,11 +11,13 @@ $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 $link = "";
 
+// check if filename is different than files on a server.
 if (file_exists($target_file)) {
     echo "<html><body><h1>Zmente prosim nazov suboru, dany subor uz existuje!</h1></body></html>";
     $uploadOk = 0;
 }
 
+// file size limit
 if ($_FILES["fileToUpload"]["size"] > (100 * 1024 * 1024)) { 
     echo "<html><body><h1>Prilis velky subor!</h1></body></html>";
     $uploadOk = 0;
@@ -25,6 +32,7 @@ if ($uploadOk != 0) {
 }
 ?>
 
+<!-- navigation button with automatic redirect -->
 <br>
 <button onclick="location.href = 'http://ituprojekt.fun/uzivatel';" class="float-left submit-button" >Napäť</button>
 <br>
