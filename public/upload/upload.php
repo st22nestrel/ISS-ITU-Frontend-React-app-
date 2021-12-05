@@ -18,7 +18,7 @@ if ($_FILES["fileToUpload"]["size"] > (100 * 1024 * 1024)) {
 
 if ($uploadOk != 0) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-	echo "<h1>Subor uspesne nahrany na server.</h1><br>Adresa súboru:<br>http://iisprojekt.fun/upload/files/". basename( $_FILES["fileToUpload"]["name"])."<br>";
+	echo "<h1>Subor uspesne nahrany na server.</h1><br>Adresa súboru:<br>http://ituprojekt.fun/upload/files/". basename( $_FILES["fileToUpload"]["name"])."<br>";
     } else {
         echo "<html><body><h1>Nastala chyba pri uploade, skuste to znovu</h1></body></html>";
     }
@@ -26,8 +26,8 @@ if ($uploadOk != 0) {
 ?>
 
 <br>
-<button onclick="location.href = 'http://iisprojekt.fun/uzivatel';" class="float-left submit-button" >Napäť</button>
+<button onclick="location.href = 'http://ituprojekt.fun/uzivatel';" class="float-left submit-button" >Napäť</button>
 <br>
-<meta http-equiv="refresh" content="10; url=http://iisprojekt.fun/uzivatel" />
+<meta http-equiv="refresh" content="10; url=http://ituprojekt.fun/uzivatel" />
 <p>Budete automaticky presmerovaný o 10 sekúnd</p>
 </html>

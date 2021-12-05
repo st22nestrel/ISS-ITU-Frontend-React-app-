@@ -1,7 +1,10 @@
 import React from "react";
 import "../App.css";
+import Authentificate from "./Authentificate";
 
 function Footer() {
+  let isLogin = (Authentificate.isAuth());
+
   return (
     <div className="Footer">
       <div className="container">
@@ -21,9 +24,9 @@ function Footer() {
           </div>
 
           <div className="col">
-	    <p className="lightText2">
-            <h6>Kontaktujte nás:</h6>
-	    </p>
+            <p className="lightText2">
+              <h6>Kontaktujte nás:</h6>
+            </p>
             <h6 className="list-unstyled">
               <li>Tel: (+420) 541 141 144</li>
               <li>Tel: (+420) 775 205 000</li>
@@ -42,10 +45,25 @@ function Footer() {
             <h6 className="lightText2">
               <li><a href="/map" class="mailwhite">Mapa</a></li>
               <li><a href="/rezervaceFind" class="mailwhite">Rezervace</a></li>
+              {
+                isLogin ?
+                  <li><a href="/uzivatele" class="mailwhite">Portfolio uživatelů</a></li>
+                  :
+                  <></>
+              }
               <li><a href="/konference" class="mailwhite">Konference</a></li>
-              <li><a href="/novaKonference" class="mailwhite">Přidat konferenci</a></li>
-              <li><a href="/uzivatele" class="mailwhite">Portfolio uživatelů</a></li>
-              <li><a href="/signIn" class="mailwhite">Přihlašení</a></li>
+              {
+                isLogin ?
+                  <li><a href="/novaKonference" class="mailwhite">Přidat konferenci</a></li>
+                  :
+                  <></>
+              }
+              {
+                isLogin ?
+                <li><a href="/uzivatel" class="mailwhite">Profil</a></li>
+                  :
+                  <li><a href="/signIn" class="mailwhite">Přihlašení</a></li>
+              }
             </h6>
           </div>
         </div>
