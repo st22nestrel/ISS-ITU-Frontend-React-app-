@@ -25,7 +25,10 @@ export default function KonferenceNew() {
     
         if(error) {
             //reload get user info again
-            setMsg(error);
+            if(dataToReturn)
+                setMsg(dataToReturn.message);
+            else
+                setMsg(error);
         }
         else{
             setMsg(null);
@@ -43,7 +46,7 @@ export default function KonferenceNew() {
 
                         { msg && 
                         <div>
-                            <h2>Error: {msg}</h2>
+                            <h2 style={{color: 'red'}}>Error: {msg}</h2>
                         </div>
                         }
 
