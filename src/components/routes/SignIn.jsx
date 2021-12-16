@@ -77,9 +77,12 @@ function SignIn() {
             //we cannot login, user does not exist
             else{
                 //does not work, but we give a fuck
-                console.log(answer.message)
                 console.log("not redirected");
+                window.alert(answer.message);
             }
+        }
+        else{
+          window.alert("Error: Zadejte email a heslo pro přihlášení");
         }
     }
 
@@ -103,6 +106,14 @@ function SignIn() {
               else
                 console.log("not redirected");
             }
+            else{
+              window.alert(answer.body.message);
+              setError(answer.body.message);
+            }
+        }
+        else{
+          window.alert("Error: Zadejte email, jmeno, přijmení a heslo pro registraci");
+          setError("Error: Zadejte email, jmeno, přijmení a heslo pro registraci");
         }
     }
 

@@ -32,6 +32,8 @@ function RegistrationForm({Registration, error}) {
         <form onSubmit={submitHandler} class="needs-validation" novalidate="">
             <div className="form-inner">
             <h1 class="h3 mb-3 fw-normal">Registrace</h1>
+
+                <p style={{color: 'red'}}>{error}</p>
                     
                 <div class="row g-3">
                     <div class="col-sm-6">
