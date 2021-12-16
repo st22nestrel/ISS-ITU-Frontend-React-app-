@@ -102,9 +102,14 @@ function SignIn() {
                 Auth.setEmail(details.Email);
                 console.log("redirected");
                 navigate('/konference');
+                window.location.reload(false);
+                window.alert("Registrace proběhla úspěšně, byli jste automaticky přihlášeni");
               }
-              else
+              else{
+                window.alert("Registrace proběhla úspěšně, nyní se mužete přihlásit");
                 console.log("not redirected");
+              }
+
             }
             else{
               window.alert(answer.body.message);
