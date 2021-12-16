@@ -101,19 +101,19 @@ bez nich nelze vytvorit konferenci")
                     <div class="col-12">
                         <label for="Poplatek" class="form-label">Poplatek</label>
                         <input type="number" class="form-control" id="Poplatek"
-                        onChange={e => setDetails({...details, Poplatek: e.target.value})} value={details.Poplatek}/>
+                        onChange={e => setDetails({...details, Poplatek: e.target.value > 0 ? e.target.value : 0})} value={details.Poplatek}/>
                     </div>
 
                     <div class="col-12">
                         <label for="Cena_vstup" class="form-label">Cena vstupenky</label>
                         <input type="number" class="form-control" id="Cena_vstup"
-                        onChange={e => setDetails({...details, Cena_vstup: e.target.value})} value={details.Cena_vstup}/>
+                        onChange={e => setDetails({...details, Cena_vstup: e.target.value > 0 ? e.target.value : 0})} value={details.Cena_vstup}/>
                     </div>
 
                     <div class="col-12">
                         <label for="Kapacita" class="form-label">Kapacita</label>
                         <input type="number" class="form-control" id="Kapacita"
-                        onChange={e => setDetails({...details, Kapacita: e.target.value})} value={details.Kapacita}/>
+                        onChange={e => setDetails({...details, Kapacita: e.target.value > 0 ? e.target.value : 0})} value={details.Kapacita}/>
                     </div>
 
                     <div class="col-12">

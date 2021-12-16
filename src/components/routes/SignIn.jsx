@@ -112,8 +112,9 @@ function SignIn() {
 
             }
             else{
-              window.alert(answer.body.message);
-              setError(answer.body.message);
+              let msg = await answer.json();
+              window.alert(msg.message);
+              setError(msg.message);
             }
         }
         else{
