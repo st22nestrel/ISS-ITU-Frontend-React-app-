@@ -4,7 +4,7 @@
  * @file Footer.jsx
  */
 import React from "react";
-import "../App.css";
+import "./FooterMap.css";
 import Authentificate from "./Authentificate";
 
 /**
