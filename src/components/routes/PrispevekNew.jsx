@@ -5,7 +5,7 @@
  */
 import React, {useState} from 'react';
 import {Post} from '../../static/Loaders';
-import { useParams } from 'react-router';
+import { useParams, useNavigate } from 'react-router';
 import PrispevekForm from '../PrispevekForm';
 
 /**
@@ -13,6 +13,8 @@ import PrispevekForm from '../PrispevekForm';
  * @returns Html
  */
 export default function KonferenceNew() {
+
+    const navigate = useNavigate();
 
     let {id} = useParams()
 
@@ -32,6 +34,8 @@ export default function KonferenceNew() {
         }
         else{
             setMsg(null);
+            window.alert("Příspěvek úspěšně přidán");
+            window.location.reload(1);
         }
     }
 
