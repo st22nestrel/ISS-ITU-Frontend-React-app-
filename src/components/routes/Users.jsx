@@ -98,6 +98,17 @@ function Users() {
     
   return (
     <div class="card">
+    { error && <div>{ error }</div> }
+    { pending && 
+
+    <div class="container-fluid content">
+        <div class="row mb-3 justify-content-center">
+            <div>Loading...
+                <div class="spinner-border text-secondary" role="status">
+                </div>
+            </div> 
+        </div>
+    </div>}
     {
         data &&
         <InnerHtml datas={data}/>
