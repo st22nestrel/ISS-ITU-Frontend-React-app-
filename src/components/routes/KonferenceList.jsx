@@ -11,6 +11,7 @@ import Authentificate from "../Authentificate.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faList } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 /**
  * 
@@ -226,8 +227,18 @@ function KonferenceList({url}) {
 
                 {
                 !data  && !pending &&
-                <div className="">
-                    <h2>Žádné konference v systému, přidejte nějaké</h2>
+                <div className="" class="errorText">
+                    <h2>Konference odpovídající daným požadavkům nenalezeny.</h2>
+                    <button 
+                    class="form-control btn btn-round btn-fill btn-secondary show-hide-btn-sm showAllBtn"
+                    onClick={() => {
+                        window.location.href=window.location
+                    }}
+                    >
+                        <FontAwesomeIcon icon={faList} /> 
+                        &nbsp;
+                        {"Zobrazit všechny konference"}
+                    </button>
                 </div>
                 }
 
