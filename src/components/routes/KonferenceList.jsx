@@ -6,8 +6,11 @@
 import React, { useState } from "react";
 import KonferenceCard from "../cards/KonferenceCard.jsx";
 import KonferenceCardNotRegistered from "../cards/KonferenceCardNotRegistered.jsx";
-import {useGet} from '../../static/Loaders';
+import {useGet, Post, Get} from '../../static/Loaders';
 import Authentificate from "../Authentificate.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faList } from '@fortawesome/free-solid-svg-icons';
+import { useEffect } from "react";
 
 /**
  * 
@@ -15,7 +18,7 @@ import Authentificate from "../Authentificate.jsx";
  * @param {*} isAuth is logged in
  * @returns 
  */
-function InnerHtml({datas, isAuth}){
+function InnerHtml({datas, isAuth, likeConference, dislikeConference, showFavourite, setShowFavourite}){
 
     const [filter1, setFilter1] = useState(null)
     const [filter2, setFilter2] = useState(null)
@@ -66,6 +69,20 @@ function InnerHtml({datas, isAuth}){
                 <input type="search" id="form1" class="form-control" 
                 onChange={(e) => setFilter4(e.target.value)}/>
             </div>
+            <div class="form-outline">
+                <label class="form-label" for="form1">&nbsp;</label>
+                <button 
+                    class="ml-5 form-control btn btn-round btn-fill btn-secondary show-hide-btn-sm"
+                    onClick={() => setShowFavourite(!showFavourite)}
+                >
+                    {showFavourite 
+                        ? <FontAwesomeIcon icon={faList} /> 
+                        : <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+                    }
+                    &nbsp;
+                    {showFavourite ? "Zobrazit všechny konference" : "Zobrazit oblíbené konference"}
+                </button>
+            </div>
                     </div>
                 </div>
             </div>
@@ -74,7 +91,12 @@ function InnerHtml({datas, isAuth}){
             { 
                 data && isAuth && data.map((konference)=>(
                     <div className="konference-card" key={konference.Nazev}>
-                        <KonferenceCard data={konference}/>
+                        <KonferenceCard
+                            data={konference}
+                            likeConference={likeConference}
+                            dislikeConference={dislikeConference}
+                            showFavourite={showFavourite}
+                        />
                     </div>
             ))}
 
@@ -103,12 +125,78 @@ function InnerHtml({datas, isAuth}){
  */
 function KonferenceList({url}) {
 
-    let {data, pending, error} = useGet(url, null)
+    const [data, setData] = useState([]);
+    const [error, setError] = useState();
+    const [pending, setPending] = useState(true);
+    const [showFavourite, setShowFavourite] = useState(false);
+
+
+    const likeConference = async (name) => {
+        let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+name+'/oblibene/pridat', null, null);
+        let confToUpdate = data.find(konf => konf.Nazev === name);
+        console.log(confToUpdate);
+
+        const newData = data.map(a => {
+            if (a.Nazev === name) {
+                return {...a, oblibena: true}
+            }
+            return a;
+        });
+        
+        setData(newData);
+    }
+    
+    const dislikeConference = async (name) => {
+        let {dataToReturn, pending, error} = await Post('http://ituprojekt.fun:8000/konference/'+name+'/oblibene/odebrat', null, null);
+        if (showFavourite) {
+            const newData = data.filter(konf => konf.Nazev !== name);
+            setData(newData);
+        }
+    }
+
+
+    const fetchFavouriteData = async () => {
+        setPending(true);
+        let {dataToReturn, pending, error} = await Get(url);
+        setError(error);
+        setPending(false);
+        const newData = dataToReturn.filter(konf => konf.oblibena);
+        setData(newData);
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            let {dataToReturn, pending, error} = await Get(url);
+            setData(dataToReturn);
+            setError(error);
+            setPending(false);
+        };
+
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        if (!pending) {
+            if (showFavourite) {
+                fetchFavouriteData();
+            } else {
+                setPending(true);
+                const fetchData = async () => {
+                    let {dataToReturn, pending, error} = await Get(url);
+                    setData(dataToReturn);
+                    setError(error);
+                    setPending(false);
+                };
+        
+                fetchData();
+            }
+        }
+    }, [showFavourite]);
     
     const isAuth = Authentificate.isAuth();
 
     if(data && data.length == 0){
-        data = null;
+        setData(null);
     }
 
     return (
@@ -123,8 +211,17 @@ function KonferenceList({url}) {
                     </div>
                 </div> }
 
-                {data &&
-                <InnerHtml datas={data} isAuth={isAuth} error={error} pending={pending}/> 
+                {(!pending && data) &&
+                <InnerHtml 
+                    datas={data} 
+                    isAuth={isAuth} 
+                    error={error} 
+                    pending={pending}
+                    likeConference={likeConference}
+                    dislikeConference={dislikeConference}
+                    showFavourite={showFavourite}
+                    setShowFavourite={setShowFavourite}
+                /> 
                 }
 
                 {

@@ -5,7 +5,6 @@
  */
 import React from 'react';
 import { NavLink } from "react-router-dom";
-import {useGet, Put, Post} from '../../static/Loaders'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,16 +14,17 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
  */
 class KonferenceCard extends React.Component{
     state = {
-        open: false
+        open: false,
+        konference: this.props.data,
     }
 
-    konference = this.props.data;
     
     render(){
 
         let card;
-        let konference = this.props.data;
+        let konference = this.state.konference;
         const opened = this.state.open;
+        
 
         if (opened){
             card = (
@@ -87,12 +87,24 @@ class KonferenceCard extends React.Component{
                 </button>
                 {
                 konference.oblibena ? 
-                    <button class="likeBtn">
-                        <FontAwesomeIcon icon={faHeart} style={{ color: "gray" }} />
+                    <button 
+                        class="likeBtn" 
+                        onClick={() => {
+                            this.props.dislikeConference(konference.Nazev);
+                            this.setState({ ...this.state, konference: {...this.state.konference, oblibena: false } });
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
                     </button>
                     : 
-                    <button class="likeBtn">
-                        <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+                    <button 
+                        class="likeBtn" 
+                        onClick={() => {
+                            this.props.likeConference(konference.Nazev);
+                            this.setState({ ...this.state, konference: {...this.state.konference, oblibena: true } });
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faHeart} style={{ color: "gray" }} />
                     </button>
                 }
             </div>
