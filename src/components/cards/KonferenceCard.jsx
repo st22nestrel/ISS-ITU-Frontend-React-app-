@@ -5,6 +5,9 @@
  */
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import {useGet, Put, Post} from '../../static/Loaders'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 /**
  * Class representing card containg conference details and other tabs related to conference 
@@ -82,6 +85,16 @@ class KonferenceCard extends React.Component{
                     <i class="nc-icon nc-stre-up"></i>
                     {opened ? "Skrýt" : "Zobrazit"}
                 </button>
+                {
+                konference.oblibena ? 
+                    <button class="likeBtn">
+                        <FontAwesomeIcon icon={faHeart} style={{ color: "gray" }} />
+                    </button>
+                    : 
+                    <button class="likeBtn">
+                        <FontAwesomeIcon icon={faHeart} style={{ color: "red" }} />
+                    </button>
+                }
             </div>
     
             {card}

@@ -42,3 +42,11 @@
     transform: rotate(360deg);
   }
 }
+
+.likeBtn {
+  height: 35px;
+  padding: 0 35px;
+  font-size: 13px;
+  background-color: transparent;
+  border-radius: 5px;
+}
